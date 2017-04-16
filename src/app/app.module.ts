@@ -5,6 +5,7 @@ import { MyApp } from './app.component';
 
 import { Timeline } from '../pages/timeline/timeline';
 import {AddRevenue} from '../pages/add-revenue/add-revenue';
+import {AddExpense} from '../pages/add-expense/add-expense';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -13,24 +14,19 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   declarations: [
     MyApp,
     Timeline,
-    AddRevenue
+    AddRevenue,
+    AddExpense
   ],
   imports: [
     BrowserModule,
-
-    //IonicModule.forRoot(MyApp)
-    IonicModule.forRoot(MyApp,{
-      mode : 'ios'
-    })
-    //---
-
-
+    IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     Timeline,
-    AddRevenue
+    AddRevenue,
+    AddExpense
   ],
   providers: [
     StatusBar,

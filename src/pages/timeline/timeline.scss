@@ -3,12 +3,6 @@ page-timeline {
         margin-left: auto;
         margin-right:auto;
     }
-    /*.md .headerselect{
-        float:right;
-        margin-top: -40px;
-        font-size: 18px;
-        color: white;
-    }*/
     .footerimg{
         background-repeat: no-repeat;
         max-width: 36px;
@@ -21,11 +15,20 @@ page-timeline {
     }
     .itemImageCategory{
         background-repeat: no-repeat;
-        width: 20px;
-        height: 20px;
+        width: 25px;
+        height: 25px;
     }
     .itemPrice{
         white-space: nowrap;
+    }
+    .color_white{
+        background: #e8e8e8;
+    }
+    .mediumsmallicom{
+        padding: 2px;
+    }
+    .item-ios{
+        padding-left: 2px;
     }
 }
 //Ios specific

@@ -1,6 +1,6 @@
 
 <ion-header>
-  <ion-navbar color="myred">
+  <ion-navbar color="_red">
     <button ion-button menuToggle left>
       <ion-icon name="menu"></ion-icon>
     </button>
@@ -19,21 +19,21 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding color="silver">
-    <ion-list>
+<ion-content padding class="color_white">
+    <ion-list no-lines>
         <ion-item-sliding *ngFor="let item of financelist; let i = index">
-            <ion-item>
-                <button ion-button clear icon-only item-left color="black">
-                  <ion-icon name="arrow-down" small></ion-icon>
+            <ion-item color="_white">
+                <button ion-button clear icon-only item-left color="_black" >
+                  <ion-icon name="arrow-down" class="mediumsmallicom"></ion-icon>
                 </button>
                 <img class="itemImageCategory" src="assets/Images/Category/Icons/Rendimento/Salário.png" item-left/>
                   <h2>{{item.name}}</h2>
-                <ion-note item-right color="secondary" class="nospacebreak">
+                <ion-note item-right [color]="item.type == 1 ? '_green' : '_red'" class="nospacebreak">
                   <h2>R$ {{item.price}}</h2>
                 </ion-note>
             </ion-item>
             <ion-item-options>
-                <button danger (click)="delete(i)">
+                <button color="_red" (click)="delete(i)">
                     <ion-icon name="trash"></ion-icon>
                     Delete
                 </button>
@@ -42,7 +42,7 @@
     </ion-list>
 
   <!--<ion-list>
-
+    date-wise 
     <ion-list-header>
       Sexta
     </ion-list-header>
@@ -72,12 +72,19 @@
 </ion-content>
 
 <ion-footer>
-  <ion-navbar text-center>
+  <ion-navbar text-center color="_white">
 
-    <button id="add_income" (click)="add();" ion-button clear icon-only class="footerbtn">
+    <button ion-button [color]=" _saldo >= 0 ? '_green' : '_red'">
+      Saldo R$ {{ _saldo }}
+    </button>
+
+  </ion-navbar>
+  <ion-navbar text-center color="_white">
+
+    <button id="add_income" (click)="addrevenue();" ion-button clear icon-only>
       <img class="footerimg" src="assets/Images/Timeline/icons/08.png"/>
     </button>
-    <button id="add_expense" ion-button clear icon-only class="footerbtn">
+    <button id="add_expense" (click)="addexpense();" ion-button clear icon-only class="footerbtn">
       <img class="footerimg" src="assets/Images/Timeline/icons/07.png"/>
     </button>
     <button id="transfer_amt" ion-button clear icon-only class="footerbtn">

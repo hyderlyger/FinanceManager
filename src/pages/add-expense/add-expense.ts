@@ -6,24 +6,25 @@ import { FinanceEntryType } from '../../models/financeEntry';
 
 @IonicPage()
 @Component({
-  selector: 'page-add-revenue',
-  templateUrl: 'add-revenue.html',
+  selector: 'page-add-expense',
+  templateUrl: 'add-expense.html',
 })
-export class AddRevenue {
-  public financelist:  Array<financeEntry>; //Array<[string,string]>;
-  financeitem :  financeEntry; //[string,string];
+export class AddExpense {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.financelist = JSON.parse(localStorage.getItem("finance_entry_list"));
     if(!this.financelist) {
         this.financelist = [];
     }
-    this.financeitem = new financeEntry("","", FinanceEntryType.Revenue);
+    this.financeitem = new financeEntry("","", FinanceEntryType.Expense);
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad AddRevenue');
+    console.log('ionViewDidLoad AddExpense');
   }
+
+  public financelist:  Array<financeEntry>; //Array<[string,string]>;
+  financeitem :  financeEntry; //[string,string];
 
   save(){
     if(this.financeitem != null) {
