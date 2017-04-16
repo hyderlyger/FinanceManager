@@ -1,0 +1,51 @@
+page-timeline {
+    .headerimg{
+        margin-left: auto;
+        margin-right:auto;
+    }
+    /*.md .headerselect{
+        float:right;
+        margin-top: -40px;
+        font-size: 18px;
+        color: white;
+    }*/
+    .footerimg{
+        background-repeat: no-repeat;
+        max-width: 36px;
+        max-height: 36px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        margin-left: 5px;
+        margin-right: 5px;
+        text-align: center;
+    }
+    .itemImageCategory{
+        background-repeat: no-repeat;
+        width: 20px;
+        height: 20px;
+    }
+    .itemPrice{
+        white-space: nowrap;
+    }
+}
+//Ios specific
+.ios {
+    page-timeline{
+        .headerselect{
+            float:right;
+            font-size: 18px;
+            color: white;
+        }
+    }
+}
+//Android Specific
+.md {
+    page-timeline{
+        .headerselect{
+            float:right;
+            font-size: 18px;
+            margin-top: -30px;
+            color: white;
+        }
+    }
+}
