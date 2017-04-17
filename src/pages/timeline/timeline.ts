@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Storage } from '@ionic/storage';
 
 import {AddRevenue} from '../add-revenue/add-revenue';
 import {AddExpense} from '../add-expense/add-expense';
@@ -16,7 +17,7 @@ export class Timeline {
   public financelist: Array<financeEntry>;
   _saldo : number;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public storage : Storage, public navParams: NavParams) {
     this._saldo = 0;
   }
   //Overrides
@@ -34,22 +35,32 @@ export class Timeline {
         this.navCtrl.push(AddExpense);
     }
   delete(index: number) {
+    if(this.financelist != null)
+    {
       this.financelist.splice(index, 1);
-      localStorage.setItem("finance_entry_list", JSON.stringify(this.financelist));
-      this.performRefreshAdjustments();
+      this.storage.ready().then(() => {
+          this.storage.set("finance_entry_list", JSON.stringify(this.financelist));
+          this.performRefreshAdjustments();
+        });
+    }
   }
 
   //Data Manipulations
   refreshlist() {
-      this.financelist = JSON.parse(localStorage.getItem("finance_entry_list"));
-      if(!this.financelist) //null check i guess
-      {
-          this.financelist = [];
-      }else{
 
-        this.performRefreshAdjustments();
-      }
+      this.storage.ready().then(() => {
+        this.storage.get("finance_entry_list").then( (val) => {
+            this.financelist = JSON.parse(val);
+            if(this.financelist == null) {
+              this.financelist = [];
+            }else{
+              this.performRefreshAdjustments();
+            }
+        })
+      });
+
     }
+
   private performRefreshAdjustments() {
     this.calculateSaldo();
   }
