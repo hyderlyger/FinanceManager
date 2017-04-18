@@ -43,4 +43,10 @@ export class AddExpense {
             
         }
   }
+  invokepromise()
+  {
+    this.financeitem.promiseExample(this.storage).then((data) => {
+      debugger;
+    });
+  }
 }

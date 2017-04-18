@@ -4,9 +4,11 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { IonicStorageModule } from '@ionic/storage';
 
+import { MainMenu } from '../pages/main-menu/main-menu'
+
 import { Timeline } from '../pages/timeline/timeline';
-import {AddRevenue} from '../pages/add-revenue/add-revenue';
-import {AddExpense} from '../pages/add-expense/add-expense';
+import { AddRevenue } from '../pages/add-revenue/add-revenue';
+import { AddExpense } from '../pages/add-expense/add-expense';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -14,6 +16,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 @NgModule({
   declarations: [
     MyApp,
+    MainMenu,
     Timeline,
     AddRevenue,
     AddExpense
@@ -26,6 +29,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
+    MainMenu,
     Timeline,
     AddRevenue,
     AddExpense
