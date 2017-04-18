@@ -15,13 +15,30 @@ export class MainMenu {
   ionViewDidLoad() {
     console.log('ionViewDidLoad MainMenu');
   }
-  openProfile()
-  {
+  showAlert(msg : string){
     let alert = this.alertCtrl.create({
-      title: 'Perfil!',
+      title: msg,
       subTitle: 'Clicked!',
       buttons: ['OK']
     });
     alert.present();
   }
+  
+  openProfile()
+  {
+    this.showAlert('Perfil!');
+  }
+  openPanel(){
+    this.showAlert('Panel!');
+  }
+  openCategories(){
+    this.showAlert('Categories!');
+  }
+  openAccounts(){
+    this.showAlert('Accounts!');
+  }
+  openSettings(){
+    this.showAlert('Settings!');
+  }
+  
 }

@@ -3,46 +3,47 @@
     <ion-title>Menu</ion-title>
   </ion-toolbar>
 </ion-header>
+ <!--menuClose-->
 
 <ion-content>
-  <ion-list no-padding no-lines no-menuClose>
 
-    <!--menuClose-->
+  <ion-list no-padding no-lines no-margin>
 
-    <ion-item (click)="openProfile();">
-        <ion-thumbnail (click)="openProfile();" text-wrap>
-          <img class="menuimg" src="assets/Images/Timeline/icons/002-wallet.png">
+    <ion-item (click)="openProfile();" >
+        <ion-thumbnail text-wrap>
+          <img class="menuimg" src="assets/Images/Timeline/icons/profilephoto.png">
            <h2 text-center>Perfil</h2>
         </ion-thumbnail>
     </ion-item>
 
-    <ion-item >
+    <ion-item (click)="openPanel();">
         <ion-thumbnail text-wrap>
           <img class="menuimg" src="assets/Images/Timeline/icons/004-pie-chart.png">
            <h2 text-center>Painel</h2>
         </ion-thumbnail>
     </ion-item>
 
-    <ion-item >
+    <ion-item (click)="openCategories();">
         <ion-thumbnail text-wrap>
           <img class="menuimg" src="assets/Images/Timeline/icons/003-office-material.png">
            <h2 text-center>Categorias</h2>
         </ion-thumbnail>
     </ion-item>
 
-    <ion-item >
+    <ion-item (click)="openAccounts();">
         <ion-thumbnail text-wrap>
           <img class="menuimg" src="assets/Images/Timeline/icons/002-wallet.png">
-           <h2 text-center>Perfil</h2>
+           <h2 text-center>Contas</h2>
         </ion-thumbnail>
     </ion-item>
 
-    <ion-item >
+    <ion-item (click)="openSettings();">
         <ion-thumbnail text-wrap>
           <img class="menuimg" src="assets/Images/Timeline/icons/001-settings.png">
            <h2 text-center>Opções</h2>
         </ion-thumbnail>
     </ion-item>
     
-  </ion-list>-
+  </ion-list>
+
 </ion-content>
