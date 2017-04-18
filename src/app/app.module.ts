@@ -4,11 +4,19 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { IonicStorageModule } from '@ionic/storage';
 
-import { MainMenu } from '../pages/main-menu/main-menu'
+//Menus
+import { MainMenu } from '../pages/main-menu/main-menu';
+import { MenuProfile } from '../pages/menu-profile/menu-profile'
+import { MenuPanel } from '../pages/menu-panel/menu-panel'
+import { MenuCategories } from '../pages/menu-categories/menu-categories'
+import { MenuAccounts } from '../pages/menu-accounts/menu-accounts'
+import { MenuSettings } from '../pages/menu-settings/menu-settings'
 
+//Pages
 import { Timeline } from '../pages/timeline/timeline';
 import { AddRevenue } from '../pages/add-revenue/add-revenue';
 import { AddExpense } from '../pages/add-expense/add-expense';
+import { Transfer } from '../pages/transfer/transfer'
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -16,10 +24,18 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 @NgModule({
   declarations: [
     MyApp,
+
     MainMenu,
+    MenuProfile,
+    MenuPanel,
+    MenuCategories,
+    MenuAccounts,
+    MenuSettings,
+
     Timeline,
     AddRevenue,
-    AddExpense
+    AddExpense,
+    Transfer
   ],
   imports: [
     BrowserModule,
@@ -29,10 +45,18 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
+    
     MainMenu,
+    MenuProfile,
+    MenuPanel,
+    MenuCategories,
+    MenuAccounts,
+    MenuSettings,
+
     Timeline,
     AddRevenue,
-    AddExpense
+    AddExpense,
+    Transfer
   ],
   providers: [
     StatusBar,

@@ -14,13 +14,21 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
+
 .headerimg{
     // background-repeat: no-repeat;
      max-width: 40px;
      max-height: 40px;
      margin-top: 3px;
     // margin-bottom: 10px;
-}
+    }
 .nospacebreak{
         white-space: nowrap;
+    }
+.menuimg{
+        max-width: 70px;
+        max-height: 70px;
+        margin-left: auto;
+        margin-right: auto;
     }

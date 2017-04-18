@@ -1,6 +1,6 @@
 
 <ion-header>
-  <ion-navbar color="_red">
+  <ion-toolbar color="_red">
     <button ion-button menuToggle left>
       <ion-icon name="menu"></ion-icon>
     </button>
@@ -16,7 +16,7 @@
       <ion-option value="creditcard">Credit Card</ion-option>
     </ion-select>
 
-  </ion-navbar>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content padding class="color_white">
@@ -72,27 +72,27 @@
 </ion-content>
 
 <ion-footer>
-  <ion-navbar text-center color="_white">
+  <ion-toolbar text-center color="_white">
 
     <button ion-button [color]=" _saldo >= 0 ? '_green' : '_red'">
       Saldo R$ {{ _saldo }}
     </button>
 
-  </ion-navbar>
-  <ion-navbar text-center color="_white">
+  </ion-toolbar>
+  <ion-toolbar text-center color="_white">
 
-    <button id="add_income" (click)="addrevenue();" ion-button clear icon-only>
+    <button id="add_income" (click)="goto_addrevenue();" ion-button clear icon-only>
       <img class="footerimg" src="assets/Images/Timeline/icons/08.png"/>
     </button>
-    <button id="add_expense" (click)="addexpense();" ion-button clear icon-only class="footerbtn">
+    <button id="add_expense" (click)="goto_addexpense();" ion-button clear icon-only class="footerbtn">
       <img class="footerimg" src="assets/Images/Timeline/icons/07.png"/>
     </button>
-    <button id="transfer_amt" ion-button clear icon-only class="footerbtn">
+    <button id="transfer_amt" (click)="goto_transfer();" ion-button clear icon-only class="footerbtn">
       <img class="footerimg" src="assets/Images/Timeline/icons/11.png"/>
     </button>
     <button id="calendar" ion-button clear icon-only class="footerbtn">
       <img class="footerimg" src="assets/Images/Timeline/icons/09.png"/>
     </button>
 
-  </ion-navbar>
+  </ion-toolbar>
 </ion-footer>

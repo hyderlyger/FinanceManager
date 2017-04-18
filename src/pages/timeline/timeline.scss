@@ -1,4 +1,8 @@
 page-timeline {
+    .headerimg{
+            margin-left: auto;
+            margin-right:auto;
+        }
     .footerimg{
         background-repeat: no-repeat;
         max-width: 36px;
@@ -30,13 +34,10 @@ page-timeline {
 //Ios specific
 .ios {
     page-timeline{
-        .headerimg{
-            margin-left: auto;
-            margin-right:auto;
-        }
         .headerselect{
             float:right;
             font-size: 18px;
+            margin-top: -5px;
             color: white;
         }
     }
@@ -44,15 +45,10 @@ page-timeline {
 //Android Specific
 .md {
     page-timeline{
-        .headerimg{
-            //try to center
-            margin-left: auto;
-            margin-right:auto;
-        }
         .headerselect{
             float:right;
             font-size: 18px;
-            margin-top: -30px;
+            margin-top: -45px;
             color: white;
         }
     }

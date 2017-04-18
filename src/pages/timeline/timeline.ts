@@ -4,6 +4,7 @@ import { Storage } from '@ionic/storage';
 
 import {AddRevenue} from '../add-revenue/add-revenue';
 import {AddExpense} from '../add-expense/add-expense';
+import { Transfer } from '../transfer/transfer'
 
 import { financeEntry } from '../../models/financeEntry';
 import { FinanceEntryType } from '../../models/financeEntry';
@@ -28,12 +29,15 @@ export class Timeline {
   }
 
   //UI Events
-  addrevenue() {
+  goto_addrevenue() {
         this.navCtrl.push(AddRevenue);
     }
-  addexpense() {
+  goto_addexpense() {
         this.navCtrl.push(AddExpense);
     }
+  goto_transfer(){
+        this.navCtrl.push(Transfer);
+  }
   delete(index: number) {
     if(this.financelist != null)
     {

@@ -2,13 +2,18 @@ import { Component } from '@angular/core';
 import { AlertController } from 'ionic-angular';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
+import { MenuProfile } from '../menu-profile/menu-profile'
+import { MenuPanel } from '../menu-panel/menu-panel'
+import { MenuCategories } from '../menu-categories/menu-categories'
+import { MenuAccounts } from '../menu-accounts/menu-accounts'
+import { MenuSettings } from '../menu-settings/menu-settings'
+
 @IonicPage()
 @Component({
   selector: 'page-main-menu',
   templateUrl: 'main-menu.html',
 })
 export class MainMenu {
-
   constructor(public navCtrl: NavController,public alertCtrl: AlertController, public navParams: NavParams) {
   }
 
@@ -18,27 +23,26 @@ export class MainMenu {
   showAlert(msg : string){
     let alert = this.alertCtrl.create({
       title: msg,
-      subTitle: 'Clicked!',
+      subTitle: 'Clicked',
       buttons: ['OK']
     });
     alert.present();
   }
   
-  openProfile()
-  {
-    this.showAlert('Perfil!');
+  openProfile(){
+    this.navCtrl.push(MenuProfile);
   }
   openPanel(){
-    this.showAlert('Panel!');
+    this.navCtrl.push(MenuPanel);
   }
   openCategories(){
-    this.showAlert('Categories!');
+    this.navCtrl.push(MenuCategories);
   }
   openAccounts(){
-    this.showAlert('Accounts!');
+    this.navCtrl.push(MenuAccounts);
   }
   openSettings(){
-    this.showAlert('Settings!');
+    this.navCtrl.push(MenuSettings);
   }
   
 }
