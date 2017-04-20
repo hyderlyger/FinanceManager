@@ -11,8 +11,7 @@ $font-path: "../assets/fonts";
 // the Sass variables found in Ionic's source scss files.
 // To view all the possible Ionic variables, see:
 // http://ionicframework.com/docs/v2/theming/overriding-ionic-variables/
-
-
+$menu-width: 230px;
 
 
 // Named Color Variables
@@ -30,7 +29,7 @@ $colors: (
   light:      #f4f4f4,
   dark:       #222,
   //custom colors
-  _red:       #e81d27,
+  _red:       #b11623, //#e81d27,
   _white:     #e8e8e8,
   _blue:      #00a0b0,
   _black:     #383838,

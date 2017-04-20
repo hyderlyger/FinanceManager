@@ -1,16 +1,9 @@
 page-timeline {
-    .headerimg{
-            margin-left: auto;
-            margin-right:auto;
-        }
-    .footerimg{
-        background-repeat: no-repeat;
-        max-width: 36px;
-        max-height: 36px;
-        margin-top: 0px;
-        margin-bottom: 0px;
-        margin-left: 5px;
-        margin-right: 5px;
+    .btnfooterimg{
+        width: 45px;
+        height: 45px;
+        margin-left: 7px;
+        margin-right: 7px;
         text-align: center;
     }
     .itemImageCategory{
@@ -21,14 +14,24 @@ page-timeline {
     .itemPrice{
         white-space: nowrap;
     }
-    .color_white{
-        background: #e8e8e8;
-    }
     .mediumsmallicom{
         padding: 2px;
     }
     .item-ios{
         padding-left: 2px;
+    }
+    .width180{
+        width: 180px;
+    }
+    .autoFont{
+        //font-size: 4vi;
+    }
+    .maxWidth150{
+        max-width: 150px;
+    }
+    .headerimg{
+    margin-left: auto;
+     margin-right:auto;
     }
 }
 //Ios specific
@@ -50,6 +53,16 @@ page-timeline {
             font-size: 18px;
             margin-top: -45px;
             color: white;
+        }
+        .toolbar-title{
+            display: -webkit-flex;
+            display: flex;
+            -webkit-flex-direction: row;
+            flex-direction: row;
+            -webkit-align-items: center;
+            align-items: center;
+            -webkit-justify-content: center;
+            justify-content: center;
         }
     }
 }

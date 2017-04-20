@@ -9,27 +9,29 @@
         <img class="headerimg" src="assets/Images/Timeline/icons/whiteLogo.png"/>
       </button>
     </ion-title>
-
-    <ion-select class="headerselect" right>
+    <button ion-button menuToggle style="width: 45px;" end>
+      Visa
+    </button>
+    <!--<ion-select class="headerselect" right>
       <ion-option value="visa" selected>Visa</ion-option>
       <ion-option value="cash">Cash</ion-option>
       <ion-option value="creditcard">Credit Card</ion-option>
-    </ion-select>
+    </ion-select>-->
 
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding class="color_white">
+<ion-content padding class="color_white padding5">
     <ion-list no-lines>
         <ion-item-sliding *ngFor="let item of financelist; let i = index">
             <ion-item color="_white">
                 <button ion-button clear icon-only item-left color="_black" >
-                  <ion-icon name="arrow-down" class="mediumsmallicom"></ion-icon>
+                  <ion-icon name="ios-arrow-down" class="mediumsmallicom"></ion-icon>
                 </button>
                 <img class="itemImageCategory" src="assets/Images/Category/Icons/Rendimento/Salário.png" item-left/>
                   <h2>{{item.name}}</h2>
-                <ion-note item-right [color]="item.type == 1 ? '_green' : '_red'" class="nospacebreak">
-                  <h2>R$ {{item.price}}</h2>
+                <ion-note item-right [color]="item.type == 1 ? '_green' : '_red'">
+                  <h2 text-wrap class="nospacebreak">{{item.price | currency:'BRL':true:'1.2-2'}}</h2>
                 </ion-note>
             </ion-item>
             <ion-item-options>
@@ -74,24 +76,24 @@
 <ion-footer>
   <ion-toolbar text-center color="_white">
 
-    <button ion-button [color]=" _saldo >= 0 ? '_green' : '_red'">
-      Saldo R$ {{ _saldo }}
+    <button ion-button class="width180 autoFont" [color]=" _saldo >= 0 ? '_green' : '_red'">
+      Saldo {{ _saldo | currency:'BRL':true:'1.2-2'}}
     </button>
 
   </ion-toolbar>
   <ion-toolbar text-center color="_white">
 
-    <button id="add_income" (click)="goto_addrevenue();" ion-button clear icon-only>
-      <img class="footerimg" src="assets/Images/Timeline/icons/08.png"/>
+    <button class="btnfooterimg" (click)="goto_addrevenue();" ion-button clear icon-only>
+      <img src="assets/Images/Timeline/icons/08.png"/>
     </button>
-    <button id="add_expense" (click)="goto_addexpense();" ion-button clear icon-only class="footerbtn">
-      <img class="footerimg" src="assets/Images/Timeline/icons/07.png"/>
+    <button class="btnfooterimg" (click)="goto_addexpense();" ion-button clear icon-only>
+      <img src="assets/Images/Timeline/icons/07.png"/>
     </button>
-    <button id="transfer_amt" (click)="goto_transfer();" ion-button clear icon-only class="footerbtn">
-      <img class="footerimg" src="assets/Images/Timeline/icons/11.png"/>
+    <button class="btnfooterimg" (click)="goto_transfer();" ion-button clear icon-only>
+      <img src="assets/Images/Timeline/icons/11.png"/>
     </button>
-    <button id="calendar" ion-button clear icon-only class="footerbtn">
-      <img class="footerimg" src="assets/Images/Timeline/icons/09.png"/>
+    <button class="btnfooterimg" ion-button clear icon-only>
+      <img src="assets/Images/Timeline/icons/09.png"/>
     </button>
 
   </ion-toolbar>

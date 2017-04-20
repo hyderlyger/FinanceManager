@@ -1,15 +1,17 @@
-<ion-header>
+<ion-header >
   <ion-navbar color="_red">
-    <ion-title>Menu</ion-title>
+    <button class="menuheaderbutton" ion-button clear icon-only right>
+      <img src="assets/Images/Timeline/icons/whiteLogo.png"/>
+    </button>
   </ion-navbar>
 </ion-header>
  <!--menuClose-->
 
-<ion-content>
+<ion-content class="color_white">
 
   <ion-list no-padding no-lines no-margin>
 
-    <ion-item (click)="openProfile();" >
+    <ion-item (click)="openProfile();">
         <ion-thumbnail text-wrap>
           <img class="menuimg" src="assets/Images/Timeline/icons/profilephoto.png">
            <h2 text-center>Perfil</h2>

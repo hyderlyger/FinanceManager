@@ -32,3 +32,27 @@
         margin-left: auto;
         margin-right: auto;
     }
+.color_white{
+        background: #e8e8e8;
+    }
+.item{
+    background: #e8e8e8;
+}
+
+.ios {
+    .menuheaderbutton{
+        float:right;
+        max-width: 40px;
+        max-height: 40px;
+        margin-top:-8px;
+    }
+}
+//Android Specific
+.md {
+    .menuheaderbutton{
+        float:right;
+        max-width: 40px;
+        max-height: 40px;
+        margin-top: 3px;
+    }
+}
