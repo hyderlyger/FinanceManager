@@ -12,7 +12,8 @@ $font-path: "../assets/fonts";
 // To view all the possible Ionic variables, see:
 // http://ionicframework.com/docs/v2/theming/overriding-ionic-variables/
 $menu-width: 230px;
-
+$popover-ios-width: 180px;
+$popover-md-width: 180px;
 
 // Named Color Variables
 // --------------------------------------------------
@@ -30,11 +31,12 @@ $colors: (
   dark:       #222,
   //custom colors
   _red:       #b11623, //#e81d27,
-  _white:     #e8e8e8,
+  _offwhite:  #e8e8e8,
   _blue:      #00a0b0,
   _black:     #383838,
   _silver:    #bebebe,
-  _green:     #4fb37c
+  _green:     #4fb37c,
+  _white:     #ffffff
 );
 
 

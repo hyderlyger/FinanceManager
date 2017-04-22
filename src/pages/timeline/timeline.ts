@@ -9,6 +9,9 @@ import { Transfer } from '../transfer/transfer'
 import { financeEntry } from '../../models/financeEntry';
 import { FinanceEntryType } from '../../models/financeEntry';
 
+import { PopoverController } from 'ionic-angular';
+import { PopoverAccountSelect } from '../../components/popover-account-select/popover-account-select';
+
 @IonicPage()
 @Component({
   selector: 'page-timeline',
@@ -17,9 +20,11 @@ import { FinanceEntryType } from '../../models/financeEntry';
 export class Timeline {
   public financelist: Array<financeEntry>;
   _saldo : number;
-
-  constructor(public navCtrl: NavController, public storage : Storage, public navParams: NavParams) {
+  _Account : string;
+  constructor(public navCtrl: NavController,private popoverCtrl: PopoverController,
+              public storage : Storage, public navParams: NavParams) {
     this._saldo = 0;
+    this._Account = "Visa";
   }
   //Overrides
   ionViewDidLoad() {
@@ -27,7 +32,19 @@ export class Timeline {
   ionViewDidEnter(){
     this.refreshlist();
   }
-
+  //PopOver
+  presentPopover(ev) {
+    let popover = this.popoverCtrl.create(PopoverAccountSelect, {
+    });
+    popover.present({
+      ev: ev
+    });
+    popover.onDidDismiss((popoverData) => {
+      if(popoverData != "" && popoverData != null)
+        this._Account = popoverData;
+    });
+  }
+  
   //UI Events
   goto_addrevenue() {
         this.navCtrl.push(AddRevenue);

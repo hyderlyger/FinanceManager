@@ -2,7 +2,6 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
-import { IonicStorageModule } from '@ionic/storage';
 
 //Menus
 import { MainMenu } from '../pages/main-menu/main-menu';
@@ -18,8 +17,16 @@ import { AddRevenue } from '../pages/add-revenue/add-revenue';
 import { AddExpense } from '../pages/add-expense/add-expense';
 import { Transfer } from '../pages/transfer/transfer'
 
+//Pipes
+import { CurrencyBRL } from '../pipes/currency-brl'
+
+//Plugins
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { IonicStorageModule } from '@ionic/storage';
+
+//Components
+import { PopoverAccountSelect } from '../components/popover-account-select/popover-account-select';
 
 @NgModule({
   declarations: [
@@ -35,7 +42,11 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     Timeline,
     AddRevenue,
     AddExpense,
-    Transfer
+    Transfer,
+
+    CurrencyBRL,
+
+    PopoverAccountSelect
   ],
   imports: [
     BrowserModule,
@@ -56,7 +67,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     Timeline,
     AddRevenue,
     AddExpense,
-    Transfer
+    Transfer,
+
+    PopoverAccountSelect
   ],
   providers: [
     StatusBar,

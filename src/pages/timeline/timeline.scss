@@ -1,4 +1,11 @@
 page-timeline {
+    .headerimg{
+        margin-left: auto;
+        margin-right:auto;
+    }
+    .headersidebuttons{
+        width: 50px;
+    }
     .btnfooterimg{
         width: 45px;
         height: 45px;
@@ -6,22 +13,14 @@ page-timeline {
         margin-right: 7px;
         text-align: center;
     }
-    .itemImageCategory{
-        background-repeat: no-repeat;
-        width: 25px;
-        height: 25px;
-    }
-    .itemPrice{
-        white-space: nowrap;
-    }
     .mediumsmallicom{
         padding: 2px;
     }
     .item-ios{
         padding-left: 2px;
     }
-    .width180{
-        width: 180px;
+    .width200{
+        width: 200px;
     }
     .autoFont{
         //font-size: 4vi;
@@ -29,31 +28,16 @@ page-timeline {
     .maxWidth150{
         max-width: 150px;
     }
-    .headerimg{
-    margin-left: auto;
-     margin-right:auto;
-    }
 }
 //Ios specific
 .ios {
     page-timeline{
-        .headerselect{
-            float:right;
-            font-size: 18px;
-            margin-top: -5px;
-            color: white;
-        }
+
     }
 }
 //Android Specific
 .md {
     page-timeline{
-        .headerselect{
-            float:right;
-            font-size: 18px;
-            margin-top: -45px;
-            color: white;
-        }
         .toolbar-title{
             display: -webkit-flex;
             display: flex;

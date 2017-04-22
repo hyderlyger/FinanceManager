@@ -15,7 +15,27 @@
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
 
+//Cores
+.item{
+    background: #e8e8e8;
+}
+.popover-viewport{
+    background: #b11623;
+}
+.nospacebreak{
+        white-space: nowrap;
+    }
+.color_offwhite{
+        background: #e8e8e8;
+    }
+.red_itemOption{
+        background: #b11623;
+        color: white;
+    }
 
+
+
+//Specials
 .headerimg{
     // background-repeat: no-repeat;
      max-width: 40px;
@@ -23,22 +43,27 @@
      margin-top: 3px;
     // margin-bottom: 10px;
     }
-.nospacebreak{
-        white-space: nowrap;
-    }
 .menuimg{
         max-width: 70px;
         max-height: 70px;
         margin-left: auto;
         margin-right: auto;
     }
-.color_white{
-        background: #e8e8e8;
+.btnitemImageCategory{
+        width: 25px;
+        height: 25px;
     }
-.item{
-    background: #e8e8e8;
-}
+.itemImageCategory{
+        background-repeat: no-repeat;
+        max-width: 25px;
+        max-height: 25px;
+        vertical-align: middle;
+    }
 
+
+
+
+//Platform specifics
 .ios {
     .menuheaderbutton{
         float:right;
