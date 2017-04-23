@@ -3,8 +3,8 @@ page-registeration-info-page {
     .input-cover {  //Keyboard fix for android
         position: static;
     }
-    .text-input{
-        color: #8B8D91;   //for Date input text
+    .inputtextcolor{
+        color: #8B8D91;
     }
     //layout
     .fillcomplete{
@@ -94,5 +94,8 @@ page-registeration-info-page {
     .errortext{
         font-weight: lighter;
         font-size: 11px;
+    }
+    .floatleft{
+        float:left;
     }
 }

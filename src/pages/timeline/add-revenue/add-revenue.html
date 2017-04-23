@@ -14,7 +14,9 @@
       <ion-input type="number" placeholder="Price" [(ngModel)]="financeitem.price"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-input type="Date" placeholder="Date" [(ngModel)]="financeitem.timestamp"></ion-input>
+      <ion-label style="margin-left: 8px;">Date</ion-label>
+      <ion-datetime displayFormat="MM/DD/YYYY" [(ngModel)]="financeitem.timestamp"></ion-datetime>
+      <!--<ion-input type="datetime-local" placeholder="Date" [(ngModel)]="financeitem.timestamp"></ion-input>-->
     </ion-item>
   </ion-list>
   

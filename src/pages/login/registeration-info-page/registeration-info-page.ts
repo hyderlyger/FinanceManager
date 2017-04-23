@@ -9,8 +9,9 @@ import { RegisterationCredentialsPage } from '../registeration-credentials-page/
   templateUrl: 'registeration-info-page.html',
 })
 export class RegisterationInfoPage {
-
+  dob : string;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.dob = new Date().toISOString();
   }
 
   ionViewDidLoad() {

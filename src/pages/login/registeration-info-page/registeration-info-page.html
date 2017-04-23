@@ -56,7 +56,10 @@
                         <img class="formimg " src="assets/Images/Login/icons/02.png"/>
                     </td>
                     <td class="forminput">
-                        <ion-input type="Date" color="_white" placeholder="Date of birth" class="marginleft5 adjustwidth155"></ion-input>
+                      <div class="marginleft5 adjustwidth155 inputtextcolor">
+                        <ion-label class="floatleft" style="margin-left: 8px;">DOB: </ion-label>
+                        <ion-datetime displayFormat="MM/DD/YYYY" class="marginleft5 floatleft" [(ngModel)]="dob"></ion-datetime>
+                      </div>
                     </td>
                   </tr>
                 </table>
