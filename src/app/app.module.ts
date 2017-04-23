@@ -12,6 +12,7 @@ import { MenuAccounts } from '../pages/menu-accounts/menu-accounts'
 import { MenuSettings } from '../pages/menu-settings/menu-settings'
 
 //Pages
+import { LoginPage } from '../pages/login-page/login-page'
 import { Timeline } from '../pages/timeline/timeline';
 import { AddRevenue } from '../pages/add-revenue/add-revenue';
 import { AddExpense } from '../pages/add-expense/add-expense';
@@ -24,6 +25,9 @@ import { CurrencyBRL } from '../pipes/currency-brl'
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { IonicStorageModule } from '@ionic/storage';
+
+//Providers
+import { AuthProvider } from '../providers/auth-provider'
 
 //Components
 import { PopoverAccountSelect } from '../components/popover-account-select/popover-account-select';
@@ -39,6 +43,7 @@ import { PopoverAccountSelect } from '../components/popover-account-select/popov
     MenuAccounts,
     MenuSettings,
 
+    LoginPage,
     Timeline,
     AddRevenue,
     AddExpense,
@@ -64,6 +69,7 @@ import { PopoverAccountSelect } from '../components/popover-account-select/popov
     MenuAccounts,
     MenuSettings,
 
+    LoginPage,
     Timeline,
     AddRevenue,
     AddExpense,
@@ -74,7 +80,8 @@ import { PopoverAccountSelect } from '../components/popover-account-select/popov
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    AuthProvider
   ]
 })
 export class AppModule {}

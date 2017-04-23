@@ -26,14 +26,14 @@
     <ion-list no-lines>
         <ion-item-sliding *ngFor="let item of financelist; let i = index">
             <ion-item color="_offwhite">
-                <button ion-button clear icon-only item-left color="_black" >
-                  <ion-icon name="ios-arrow-down" class="mediumsmallicom"></ion-icon>
-                </button>
-                <div class="btnitemImageCategory" item-left>
-                  <img class="itemImageCategory" [src]="item.type == 1 ? 'assets/Images/Category/Icons/Rendimento/Salário.png' : 'assets/Images/Category/Icons/Despesas/11.png'"/>
+                <div item-left>
+                  <button ion-button clear icon-only color="_black" >
+                    <ion-icon name="ios-arrow-down" class="mediumsmallicom"></ion-icon>
+                  </button>
+                    <img class="itemImageCategory" [src]="item.type == 1 ? 'assets/Images/Category/Icons/Rendimento/Salário.png' : 'assets/Images/Category/Icons/Despesas/02.png'"/>
                 </div>
-                  <h2>{{item.name}}</h2>
-                <ion-note item-right [color]="item.type == 1 ? '_green' : '_red'">
+                <h2>{{item.name}}</h2>
+                <ion-note style="margin: 0px;" item-right [color]="item.type == 1 ? '_green' : '_red'">
                   <h2 text-wrap class="nospacebreak">{{item.price | currency:'BRL':true:'1.2-2' | currencybrl}}</h2>
                 </ion-note>
             </ion-item>
