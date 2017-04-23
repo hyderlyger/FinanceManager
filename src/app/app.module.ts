@@ -30,6 +30,8 @@ import { IonicStorageModule } from '@ionic/storage';
 
 //Providers
 import { AuthProvider } from '../providers/auth-provider'
+import { DBProvider } from '../providers/db-provider'
+import { StringConstantsProvider } from '../providers/string-constants-provider';
 
 //Components
 import { PopoverAccountSelect } from '../components/popover-account-select/popover-account-select';
@@ -87,7 +89,9 @@ import { PopoverAccountSelect } from '../components/popover-account-select/popov
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    AuthProvider
+    AuthProvider,
+    DBProvider,
+    StringConstantsProvider
   ]
 })
 export class AppModule {}

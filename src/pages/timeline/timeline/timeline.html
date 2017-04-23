@@ -23,9 +23,19 @@
 </ion-header>
 
 <ion-content padding class="color_offwhite padding5">
+
     <ion-list no-lines>
-        <ion-item-sliding *ngFor="let item of financelist; let i = index">
-            <ion-item color="_offwhite">
+      <ion-item-group no-lines >
+        <ion-item-divider light class="listgroupheading">
+          <div class="listgroupheadingbackline"></div>
+          <ion-note small color="_black" class="listgroupheadingnote">
+            Group Heading
+          </ion-note>
+
+        </ion-item-divider>
+
+        <ion-item-sliding *ngFor="let item of dbprovider.timelinelist; let i = index">
+            <ion-item class="timelineItem" color="_offwhite">
                 <div item-left>
                   <button ion-button clear icon-only color="_black" >
                     <ion-icon name="ios-arrow-down" class="mediumsmallicom"></ion-icon>
@@ -44,33 +54,17 @@
                 </button>
             </ion-item-options>
         </ion-item-sliding>
+
+      </ion-item-group>
     </ion-list>
-
-  <!--<ion-list>
-    date-wise 
-    <ion-list-header>
-      Sexta
-    </ion-list-header>
-    <ion-item>
-      <button ion-button clear icon-only item-left color="black">
-        <ion-icon name="arrow-down" small></ion-icon>
-      </button>
-      <img class="itemImageCategory" src="assets/Images/Category/Icons/Rendimento/Salário.png" item-left/>
-        Salario
-      <ion-note item-right color="secondary" class="nospacebreak">
-      R$ 1500
-      </ion-note>
-    </ion-item>
-
-  </ion-list>-->
 
 </ion-content>
 
 <ion-footer>
   <ion-toolbar text-center color="_offwhite">
 
-    <button ion-button class="width200 autoFont" [color]=" _saldo >= 0 ? '_green' : '_red'">
-      Saldo {{ _saldo | currency:'BRL':true:'1.2-2' | currencybrl }}
+    <button ion-button class="width200 autoFont" [color]=" dbprovider.balance >= 0 ? '_green' : '_red'">
+      Saldo {{ dbprovider.balance | currency:'BRL':true:'1.2-2' | currencybrl }}
     </button>
 
   </ion-toolbar>
