@@ -4,19 +4,21 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 
 //Menus
-import { MainMenu } from '../pages/main-menu/main-menu';
-import { MenuProfile } from '../pages/menu-profile/menu-profile'
-import { MenuPanel } from '../pages/menu-panel/menu-panel'
-import { MenuCategories } from '../pages/menu-categories/menu-categories'
-import { MenuAccounts } from '../pages/menu-accounts/menu-accounts'
-import { MenuSettings } from '../pages/menu-settings/menu-settings'
+import { MainMenu } from '../pages/sidemenu/main-menu/main-menu';
+import { MenuProfile } from '../pages/sidemenu/menu-profile/menu-profile'
+import { MenuPanel } from '../pages/sidemenu/menu-panel/menu-panel'
+import { MenuCategories } from '../pages/sidemenu/menu-categories/menu-categories'
+import { MenuAccounts } from '../pages/sidemenu/menu-accounts/menu-accounts'
+import { MenuSettings } from '../pages/sidemenu/menu-settings/menu-settings'
 
 //Pages
-import { LoginPage } from '../pages/login-page/login-page'
-import { Timeline } from '../pages/timeline/timeline';
-import { AddRevenue } from '../pages/add-revenue/add-revenue';
-import { AddExpense } from '../pages/add-expense/add-expense';
-import { Transfer } from '../pages/transfer/transfer'
+import { LoginPage } from '../pages/login/login-page/login-page'
+import { RegisterationInfoPage } from '../pages/login/registeration-info-page/registeration-info-page';
+import { RegisterationCredentialsPage } from '../pages/login/registeration-credentials-page/registeration-credentials-page';
+import { Timeline } from '../pages/timeline/timeline/timeline';
+import { AddRevenue } from '../pages/timeline/add-revenue/add-revenue';
+import { AddExpense } from '../pages/timeline/add-expense/add-expense';
+import { Transfer } from '../pages/timeline/transfer/transfer'
 
 //Pipes
 import { CurrencyBRL } from '../pipes/currency-brl'
@@ -44,6 +46,8 @@ import { PopoverAccountSelect } from '../components/popover-account-select/popov
     MenuSettings,
 
     LoginPage,
+    RegisterationInfoPage,
+    RegisterationCredentialsPage,
     Timeline,
     AddRevenue,
     AddExpense,
@@ -70,6 +74,8 @@ import { PopoverAccountSelect } from '../components/popover-account-select/popov
     MenuSettings,
 
     LoginPage,
+    RegisterationInfoPage,
+    RegisterationCredentialsPage,
     Timeline,
     AddRevenue,
     AddExpense,

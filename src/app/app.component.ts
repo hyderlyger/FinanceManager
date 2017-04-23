@@ -3,10 +3,10 @@ import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { MainMenu } from '../pages/main-menu/main-menu';
+import { MainMenu } from '../pages/sidemenu/main-menu/main-menu';
 
-import { LoginPage } from '../pages/login-page/login-page';
-import { Timeline } from '../pages/timeline/timeline';
+import { LoginPage } from '../pages/login/login-page/login-page';
+import { Timeline } from '../pages/timeline/timeline/timeline';
 
 import { AuthProvider } from '../providers/auth-provider';
 

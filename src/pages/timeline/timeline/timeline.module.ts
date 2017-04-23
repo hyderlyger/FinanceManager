@@ -6,7 +6,7 @@ import { AddRevenue} from '../add-revenue/add-revenue';
 import { AddExpense} from '../add-expense/add-expense';
 import { Transfer } from '../transfer/transfer';
 
-import { PopoverAccountSelect } from '../../components/popover-account-select/popover-account-select';
+import { PopoverAccountSelect } from '../../../components/popover-account-select/popover-account-select';
 
 @NgModule({
   declarations: [

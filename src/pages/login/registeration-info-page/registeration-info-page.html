@@ -1,0 +1,103 @@
+<ion-content class="no-scroll fillcomplete" style="background-image: url('assets/Images/bg.png');  background-size: cover;">
+  <table class="fillcomplete">
+    <tr id="logoContainer">
+      <td>
+        <div class="loginimgcontainer">
+          <img src="assets/Images/Login/icons/logoS-Fundo.png"/>
+        </div>
+      </td>
+    </tr>
+    <tr id="formContainer">
+      <td>
+        
+        <table class="fillcomplete">
+          <tr class="formrow">
+            <td>
+              <!--empty-->
+            <td>
+          </tr>
+          <tr class="formrow">
+            <td>
+
+                <table class="formcontent allignmiddle">
+                  <tr >
+                    <td class="formimgcontainer">
+                        <img class="formimg " src="assets/Images/Login/icons/01.png"/>
+                    </td>
+                    <td class="forminput">
+                        <ion-input type="text" color="_white" placeholder="Name" class="marginleft5"></ion-input>
+                    </td>
+                  </tr>
+                </table>
+
+            <td>
+          </tr>
+          <tr class="formrow">
+            <td>
+
+                <table class="formcontent allignmiddle">
+                  <tr >
+                    <td class="formimgcontainer">
+                        <img class="formimg " src="assets/Images/Login/icons/03.png"/>
+                    </td>
+                    <td class="forminput">
+                        <ion-input type="Email" color="_white" placeholder="E-mail" class="marginleft5"></ion-input>
+                    </td>
+                  </tr>
+                </table>
+
+            <td>
+          </tr>
+          <tr class="formrow">
+            <td>
+                <table class="formcontent allignmiddle">
+                  <tr >
+                    <td class="formimgcontainer">
+                        <img class="formimg " src="assets/Images/Login/icons/02.png"/>
+                    </td>
+                    <td class="forminput">
+                        <ion-input type="Date" color="_white" placeholder="Date of birth" class="marginleft5 adjustwidth155"></ion-input>
+                    </td>
+                  </tr>
+                </table>
+            <td>
+          </tr>
+          <tr class="formrow">
+            <td>
+                <div class="formcontent allignmiddle">
+                  <!--error-->
+                  <div class="aligntopright">
+                      <ion-note small color="_white" class="errortext">*this is an error</ion-note>
+                  </div>
+                </div>
+            <td>
+          </tr>
+          <tr class="formrow">
+            <td>
+                <div class="formcontent allignmiddle">
+                    <button small ion-button style="width:120px;" color="_red" (click)="next();">
+                      <ion-note color="_white">Next</ion-note>
+                    </button>
+                </div>
+            <td>
+          </tr>
+        </table>
+
+      </td>
+    </tr>
+    <tr id="footerContainer1">
+      <td id="registertextwrap">
+          <ion-note class="marginleft10" color="_white">Already have an account?</ion-note>
+      </td>
+    </tr>
+    <tr id="footerContainer2">
+      <td id="registerbuttonwrap">
+        <button small class="marginleft10" ion-button color="_white" (click)="GoBackToLogin();">
+          <ion-note color="_red">Login Instead</ion-note>
+        </button>
+      </td>
+    </tr>
+    
+  </table>
+
+</ion-content>

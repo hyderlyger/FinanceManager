@@ -52,6 +52,9 @@
             <td>
                 <div class="formcontent allignmiddle">
                   <!--error-->
+                  <div class="aligntopright">
+                      <ion-note small color="_white" class="errortext">*incorrect password</ion-note>
+                  </div>
                 </div>
             <td>
           </tr>
@@ -80,11 +83,12 @@
     </tr>
     <tr id="footerContainer2">
       <td id="registerbuttonwrap">
-        <button small class="marginleft10" ion-button color="_white" >
+        <button small class="marginleft10" ion-button color="_white" (click)="RegisterMe();">
           <ion-note color="_red">Register</ion-note>
         </button>
       </td>
     </tr>
+    
   </table>
 
 </ion-content>

@@ -1,19 +1,22 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { LoginPage } from './login-page';
-import { Timeline } from '../timeline/timeline';
+import { Timeline } from '../../timeline/timeline/timeline';
+import { RegisterationInfoPage } from '../registeration-info-page/registeration-info-page';
 
 @NgModule({
   declarations: [
     LoginPage,
-    Timeline
+    Timeline,
+    RegisterationInfoPage
   ],
   imports: [
     IonicPageModule.forChild(LoginPage),
   ],
   exports: [
     LoginPage,
-    Timeline
+    Timeline,
+    RegisterationInfoPage
   ]
 })
 export class LoginPageModule {}

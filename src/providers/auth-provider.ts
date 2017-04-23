@@ -10,7 +10,7 @@ export class AuthProvider {
   authenticate(){
     return new Promise((resolve)=>
     {
-      resolve(false); //false to say this guy is not already signed in
+      resolve(false); //false to say this guy has no cloud account before
     });
   }
 }
