@@ -30,6 +30,5 @@ export class AddRevenue {
         //if(status == true)
           this.navCtrl.pop();
       });
-    }
   }
 }
