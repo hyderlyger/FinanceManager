@@ -26,9 +26,10 @@ export class AddRevenue {
   }
 
   save(){
-    this.dbprovider.addEntry(this.financeitem).then((status)=>{
-      //if(status == true)
-        this.navCtrl.pop();
-    });
+      this.dbprovider.addEntry(this.financeitem).then((status)=>{
+        //if(status == true)
+          this.navCtrl.pop();
+      });
+    }
   }
 }

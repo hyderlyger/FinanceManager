@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { Timeline } from '../../timeline/timeline/timeline';
 import { RegisterationCredentialsPage } from '../registeration-credentials-page/registeration-credentials-page';
 
 @IonicPage()

@@ -5,11 +5,15 @@ import { Storage } from '@ionic/storage';
 import { financeEntry } from '../models/financeEntry';
 import { FinanceEntryType } from '../models/financeEntry';
 
+//Insert single-level key value pairs
+//Retrieve all Stored Pairs and sort/organise in respective lists(like tables).
+//to add/delete/update an entry = 
+
 @Injectable()
 export class DBProvider {
   
   //Database Constants
-  private db_userinfo = "UserInfo";
+  //private db_userinfo = "UserInfo";
   private db_data = "AppData";
 
   //public data

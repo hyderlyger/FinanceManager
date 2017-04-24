@@ -29,9 +29,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { IonicStorageModule } from '@ionic/storage';
 
 //Providers
-import { AuthProvider } from '../providers/auth-provider'
-import { DBProvider } from '../providers/db-provider'
-import { StringConstantsProvider } from '../providers/string-constants-provider';
+import { AuthProvider } from '../providers/auth-provider';
+import { DBProvider } from '../providers/db-provider';
+import { ImagesProvider } from '../providers/images-provider';
 
 //Components
 import { PopoverAccountSelect } from '../components/popover-account-select/popover-account-select';
@@ -91,7 +91,7 @@ import { PopoverAccountSelect } from '../components/popover-account-select/popov
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthProvider,
     DBProvider,
-    StringConstantsProvider
+    ImagesProvider
   ]
 })
 export class AppModule {}

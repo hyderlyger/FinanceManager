@@ -56,10 +56,8 @@ export class Timeline {
         this.navCtrl.push(Transfer);
   }
   delete(index: number) {
-    this.dbprovider.deleteEntry(index).then((status)=>
-    {
+    this.dbprovider.deleteEntry(index).then((status)=> {
       //when done
     });
   }
-
 }
