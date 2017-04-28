@@ -61,21 +61,20 @@
     }
 
 
-
-
 //Platform specifics
 .ios {
     .menuheaderbutton{
-        float:right;
         max-width: 40px;
         max-height: 40px;
         margin-top:-8px;
+    }
+    .menuheaderbuttonimage{
+        margin-bottom:-6px;
     }
 }
 //Android Specific
 .md {
     .menuheaderbutton{
-        float:right;
         max-width: 40px;
         max-height: 40px;
         margin-top: 3px;

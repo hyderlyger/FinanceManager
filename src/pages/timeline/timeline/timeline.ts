@@ -5,8 +5,8 @@ import {AddRevenue} from '../add-revenue/add-revenue';
 import {AddExpense} from '../add-expense/add-expense';
 import { Transfer } from '../transfer/transfer'
 
-//import { financeEntry } from '../../../models/financeEntry';
-import { FinanceEntryType } from '../../../models/financeEntry';
+//import { AmountEntry } from '../../../models/financeEntry';
+import { AmountEntryType } from '../../../models/financeEntry';
 
 import { PopoverController } from 'ionic-angular';
 import { PopoverAccountSelect } from '../../../components/popover-account-select/popover-account-select';

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
 
-//Note: Indices are the ids here.
+//Note: INDEXES ARE OUR KEYS HERE
 
 @Injectable()
 export class ImagesProvider {

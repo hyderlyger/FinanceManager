@@ -8,14 +8,14 @@
 <ion-content padding class="color_offwhite">
   <ion-list>
     <ion-item>
-      <ion-input type="text" placeholder="Name" [(ngModel)]="financeitem.name"></ion-input>
+      <ion-input type="text" placeholder="Name" [(ngModel)]="newAmountEntry.subject"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-input type="number" placeholder="Price" [(ngModel)]="financeitem.price"></ion-input>
+      <ion-input type="number" placeholder="Price" [(ngModel)]="newAmountEntry.price"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label style="margin-left: 8px;">Date</ion-label>
-      <ion-datetime displayFormat="MM/DD/YYYY" [(ngModel)]="financeitem.timestamp"></ion-datetime>
+      <ion-datetime displayFormat="MM/DD/YYYY" [(ngModel)]="newAmountEntry.timestamp"></ion-datetime>
       <!--<ion-input type="datetime-local" placeholder="Date" [(ngModel)]="financeitem.timestamp"></ion-input>-->
     </ion-item>
   </ion-list>
