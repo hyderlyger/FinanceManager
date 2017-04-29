@@ -6,12 +6,14 @@ import {AddExpense} from '../add-expense/add-expense';
 import { Transfer } from '../transfer/transfer'
 
 //import { AmountEntry } from '../../../models/financeEntry';
-import { AmountEntryType } from '../../../models/financeEntry';
+import { AmountEntryType } from '../../../models/amountEntry';
+import { Account } from '../../../models/account';
 
 import { PopoverController } from 'ionic-angular';
 import { PopoverAccountSelect } from '../../../components/popover-account-select/popover-account-select';
 
-import { DBProvider } from '../../../providers/db-provider'
+import { DBProvider } from '../../../providers/db-provider';
+import { ImagesProvider } from '../../../providers/images-provider';
 
 @IonicPage()
 @Component({
@@ -20,10 +22,8 @@ import { DBProvider } from '../../../providers/db-provider'
 })
 export class Timeline {
 
-  _Account : string;
   constructor(public navCtrl: NavController,private popoverCtrl: PopoverController, 
-              private dbprovider : DBProvider, public navParams: NavParams) {
-    this._Account = "Visa";
+              private dbprovider : DBProvider, private imageprovider : ImagesProvider, public navParams: NavParams) {
   }
 
   //Overrides
@@ -34,14 +34,12 @@ export class Timeline {
 
   //PopOver
   presentPopover(ev) {
-    let popover = this.popoverCtrl.create(PopoverAccountSelect, {
-    });
+    let popover = this.popoverCtrl.create(PopoverAccountSelect);
     popover.present({
       ev: ev
     });
-    popover.onDidDismiss((popoverData) => {
-      if(popoverData != "" && popoverData != null)
-        this._Account = popoverData;
+    popover.onDidDismiss((popoverData : number) => {
+        this.dbprovider.UpdateSelectedAccount(popoverData);
     });
   }
   

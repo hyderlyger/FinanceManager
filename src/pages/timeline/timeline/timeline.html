@@ -13,9 +13,9 @@
 
     <ion-buttons end class="headersidebuttons">
       <button ion-button color="light" (click)="presentPopover($event)" style="margin-left: -20px;">
-        <ion-note color="light" style="max-width:50px; font-size: 14px; overflow: hidden;">{{_Account}}</ion-note>
+        <img class="ImageCategory" [src]="imageprovider.getAccountImagebyID(dbprovider.selectedAccount.imageindex)"/>
+        <!--<ion-note color="light" style="max-width:50px; font-size: 14px; overflow: hidden;">{{dbprovider.selectedAccount.subject}}</ion-note>-->
         <ion-icon name="ios-arrow-down" style="margin-right: 3px;" class="mediumsmallicom"></ion-icon> 
-        <!--class="headersidebuttons headerselect"-->
       </button>
     </ion-buttons>
 

@@ -12,6 +12,13 @@ page-timeline {
     .headersidebuttons{
         width: 50px;
     }
+    .ImageCategory{
+        background-repeat: no-repeat;
+        max-width: 39px;
+        max-height: 30px;
+        vertical-align: middle;
+        margin-right: 1px;
+    }
     .btnfooterimg{
         width: 60px;
         height: 60px;
@@ -65,6 +72,9 @@ page-timeline {
         max-width: 150px;
     }
 }
+
+
+
 //Ios specific
 .ios {
     page-timeline{

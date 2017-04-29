@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
-import {ViewController} from 'ionic-angular';
+import { ViewController } from 'ionic-angular';
+import { Account } from '../../models/account';
+
+import { DBProvider } from '../../providers/db-provider';
+import { ImagesProvider } from '../../providers/images-provider';
 
 @Component({
   selector: 'popover-account-select',
@@ -7,16 +11,10 @@ import {ViewController} from 'ionic-angular';
 })
 export class PopoverAccountSelect {
 
-  constructor(private viewCtrl: ViewController) {
+  constructor(private viewCtrl: ViewController, private dbprovider : DBProvider, private imagesprovider : ImagesProvider) {
     console.log('Hello PopoverAccountSelect Component');
   }
-  VisaTapped(){
-      this.viewCtrl.dismiss('Visa');
-  }
-  CashTapped(){
-      this.viewCtrl.dismiss('Cash');
-  }
-  AllTapped(){
-      this.viewCtrl.dismiss('All');
+  ItemTapped(index){
+      this.viewCtrl.dismiss(index);
   }
 }

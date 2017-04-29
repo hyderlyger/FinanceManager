@@ -29,25 +29,23 @@ export class DBProvider {
   public accounts: Array<Account> = [];
   public categories: Array<Category> = [];
   public amountEntries: Array<AmountEntry> = [];
+
   public balance : number = 0;
+  public selectedAccount : Account;
 
   //CONSTRUCTOR
   constructor(private storage : Storage) {
     console.log('Hello DBProvider Provider');
 
     //let uuid = UUID.UUID();
-
     //TODO - Eliminate Storage ready checks 
-    this.getLatestAMOUNTENTRIESfromDB();
-    this.getLatestACCOUNTSfromDB();
-    this.getLatestCATEGORIESfromDB();
-    this.getLatestUserfromDB();
+    this.getLatestUSERfromDB();
   }
 
   //User
   registerUser( _user : User){
-    this.user = _user;  //UI User    
 
+    this.user = _user;  //UI User    
     return new Promise((resolve) => {
 
       if(_user){
@@ -57,10 +55,13 @@ export class DBProvider {
           this.storage.set(this.dbConstants.db_user, JSON.stringify(this.user));
 
           //Adding Initial Application Data
-          this.initializeDefaultDataOnRegister();
+          this.createDefaultApplicationData();
           this.storage.set(this.dbConstants.db_accounts, JSON.stringify(this.accounts));
           this.storage.set(this.dbConstants.db_categories, JSON.stringify(this.categories));
-          resolve("Accepted");
+          //Need to load from database since we are doing many things in those functions for thr UI to work
+          this.LoadAllDatabaseData().then(()=>{
+            resolve("Accepted");  //Success Case
+          });
 
         }).catch(() => {
           resolve("Error");
@@ -78,12 +79,14 @@ export class DBProvider {
       if(userid && userpass)
       {
         if(this.user != null){
-            if(this.user.userid == userid && this.user.password == userpass)
-              resolve("Accepted");  //Success Case
-            else
+            if(this.user.userid == userid && this.user.password == userpass){
+              this.LoadAllDatabaseData().then(()=>{
+                resolve("Accepted");  //Success Case
+              });
+            }else
               resolve("Invalid UserID or Password");
-          }
-        resolve("No User Found. Please Register");
+          }else
+            resolve("No User Found. Please Register");
       }else
         resolve("UserID & Password fields are required");
 
@@ -124,32 +127,40 @@ export class DBProvider {
   //retrieve
   getLatestAMOUNTENTRIESfromDB()
   {
-      this.storage.ready().then(() => {
-        this.storage.get(this.dbConstants.db_ammountenteries).then( (val) => {
-            this.amountEntries = JSON.parse(val);
-            if(this.amountEntries == null) {
-              this.amountEntries = [];
-            }else{
-              this.calculateBalance()
-            }
-        })
+      return new Promise ((resolve)=>{
+          this.storage.ready().then(() => {
+            this.storage.get(this.dbConstants.db_ammountenteries).then( (val) => {
+                this.amountEntries = JSON.parse(val);
+                if(this.amountEntries == null) {
+                  this.amountEntries = [];
+                }else{
+                  this.calculateBalance()
+                }
+                resolve();
+            });
+          });
       });
+      
   }
   getLatestACCOUNTSfromDB()
   {
+    return new Promise ((resolve)=>{
       this.storage.ready().then(() => {
         this.storage.get(this.dbConstants.db_accounts).then( (val) => {
             this.accounts = JSON.parse(val);
             if(this.accounts == null) {
               this.accounts = [];
             }else{
-              // Nothing
+              this.UpdateSelectedAccount(0); //default selectedAccount selection.
             }
-        })
+            resolve();
+        });
       });
+    });
   }
   getLatestCATEGORIESfromDB()
   {
+    return new Promise ((resolve)=>{
       this.storage.ready().then(() => {
         this.storage.get(this.dbConstants.db_categories).then( (val) => {
             this.categories = JSON.parse(val);
@@ -158,23 +169,41 @@ export class DBProvider {
             }else{
               // Nothing
             }
+            resolve();
         })
       });
+    });
   }
-  getLatestUserfromDB(){
-    this.storage.ready().then(() => {
-        this.storage.get(this.dbConstants.db_user).then( (val) => {
-            this.user = JSON.parse(val);
-            if(this.user == null) {
-              this.user = null;
-            }else{
-              // Nothing
-            }
-        })
-      });
+  getLatestUSERfromDB(){
+    return new Promise ((resolve)=>{
+      this.storage.ready().then(() => {
+          this.storage.get(this.dbConstants.db_user).then( (val) => {
+              this.user = JSON.parse(val);
+              if(this.user == null) {
+                this.user = null;
+              }else{
+                // Nothing
+              }
+              resolve();
+          });
+        });
+    });
   }
 
   //Helping Functions
+  private LoadAllDatabaseData(){
+    return new Promise((resolve)=> {
+        Promise.all([ this.getLatestAMOUNTENTRIESfromDB(),
+                      this.getLatestACCOUNTSfromDB(),
+                      this.getLatestCATEGORIESfromDB() ]).then(()=>{
+                        resolve();
+        });
+      });
+  }
+  public UpdateSelectedAccount(index : number){
+    if(this.accounts.length>0 && index< this.accounts.length)
+      this.selectedAccount = this.accounts[index];  
+  }
   private calculateBalance() {
     if(this.amountEntries != null)
     {
@@ -187,14 +216,14 @@ export class DBProvider {
         });
     }
   }
-  private initializeDefaultDataOnRegister(){
+  private createDefaultApplicationData(){
     let dateToday = new Date();
     let issystem = true;
     //Accounts
     this.accounts = []; //Clearing
-    this.accounts.push( new Account( UUID.UUID(), "Dinheiro", 1, dateToday, issystem, 0));           //Cash
     this.accounts.push( new Account( UUID.UUID(), "Cartão de Crédito", 9, dateToday, issystem, 0));  //CreditCard
-
+    this.accounts.push( new Account( UUID.UUID(), "Dinheiro", 1, dateToday, issystem, 0));           //Cash
+    
     this.categories = []; //Clearing
     //Categories - Expense
     this.categories.push( new Category( UUID.UUID(), "Entretenimento", 2, CategoryType.Expense, issystem));

@@ -6,9 +6,9 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class ImagesProvider {
 
-  private readonly AccountImages : Array<string>;
-  private readonly CategoryRevenueImages : Array<string>;
-  private readonly CategoryExpenseImages : Array<string>;
+  public readonly AccountImages : Array<string> = [];
+  public readonly CategoryRevenueImages : Array<string> = [];
+  public readonly CategoryExpenseImages : Array<string> = [];
 
   constructor() {
     console.log('Hello ImagesProvider Provider');
@@ -70,9 +70,12 @@ export class ImagesProvider {
     this.CategoryExpenseImages.push(root + categorydirExpExtras + "extra19.png");    //index 29
 
   }
+  
   getAccountImagebyID(_id : number){
     if(_id>=0 && _id< this.AccountImages.length)
       return this.AccountImages[_id];
+    else
+      "";
   }
   getAllAccountsImages() {
     return this.AccountImages;  //check if private makes a problem
@@ -93,4 +96,5 @@ export class ImagesProvider {
   getAllCategoryExpenseImages() {
     return this.CategoryExpenseImages;  //check if private makes a problem
   }
+  
 }

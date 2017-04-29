@@ -30,7 +30,7 @@ export class LoginPage {
           this.error = result;
       });
     }else{
-      this.error = "Please fill all fields";
+      this.error = "UserID & Password fields are required";
     }
   }
   RegisterMePage(){
