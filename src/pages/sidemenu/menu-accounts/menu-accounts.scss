@@ -1,3 +1,36 @@
 page-menu-accounts {
-
+    .MenuTableGroup{
+        width : 100%;
+    }
+    .leftcol{
+        width : 25%;
+    }
+    .rightcol{
+        width : 75%;
+        text-align: left;
+    }
+    .rowimagecontainer{
+        width:25px; 
+        height:25px; 
+        float:right;
+    }
+    .rowimg{
+        max-width : 25px;
+        max-height : 25px;
+    }
+    .rowtitle{
+        font-size: 13px;
+        font-weight: bolder;
+        color : #b11623;
+        margin-left: 10px;
+    }
+    .verticalcenter{
+        vertical-align: middle;
+        margin-top: auto;
+        margin-bottom: auto;
+    }
+    .row{
+        height:25px;
+        margin-top: 5px;
+    }
 }

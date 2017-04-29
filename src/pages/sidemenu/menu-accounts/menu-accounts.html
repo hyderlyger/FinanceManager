@@ -23,7 +23,32 @@
           <h2 text-center>This is Contas Menu</h2>
         </ion-note>
     </ion-item>
-    
+
+
+    <table class="MenuTableGroup" *ngFor="let account of dbprovider.accounts; let i = index">
+      <!--<thead>
+        <tr>
+          <th>Group heading</th>
+          <th>+</th>
+        </tr>
+      </thead>-->
+      
+      <tr class="row verticalcenter">
+        <td class="leftcol">
+          <div class="rowimagecontainer">
+            <img class="rowimg " [src]="imageprovider.getAccountImagebyID(account.imageindex)"/>
+          </div>
+        </td>
+        <td class="rightcol verticalcenter">
+          <h3 class="rowtitle verticalcenter">{{account.subject}}</h3>
+        </td>
+      </tr>
+      
+      
+
+    </table>
+
+
   </ion-list>
 
 </ion-content>
