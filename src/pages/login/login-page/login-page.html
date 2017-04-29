@@ -1,4 +1,4 @@
-<ion-content class="no-scroll fillcomplete" style="background-image: url('assets/Images/login-tela.png');  background-size: contain;">
+<ion-content class="no-scroll fillcomplete" style="background-image: url('assets/Images/login-tela.png');  background-size: cover;">
   <table class="fillcomplete">
     <tr id="logoContainer">
       <td>
@@ -25,7 +25,7 @@
                         <img class="formimg " src="assets/Images/Login/icons/01.png"/>
                     </td>
                     <td class="forminput">
-                        <ion-input type="text" color="_white" placeholder="UserName" class="marginleft5"></ion-input>
+                        <ion-input type="text" color="_white" placeholder="UserName" [(ngModel)]="userid" class="marginleft5"></ion-input>
                     </td>
                   </tr>
                 </table>
@@ -41,7 +41,7 @@
                         <img class="formimg " src="assets/Images/Login/icons/04.png"/>
                     </td>
                     <td class="forminput">
-                        <ion-input type="Password" color="_white" placeholder="Password" class="marginleft5"></ion-input>
+                        <ion-input type="Password" color="_white" placeholder="Password" [(ngModel)]="userpass" class="marginleft5"></ion-input>
                     </td>
                   </tr>
                 </table>
@@ -53,7 +53,7 @@
                 <div class="formcontent allignmiddle">
                   <!--error-->
                   <div class="aligntopright">
-                      <ion-note small color="_white" class="errortext">*incorrect password</ion-note>
+                      <ion-note small color="_white" class="errortext">{{ error }}</ion-note>
                   </div>
                 </div>
             <td>
@@ -83,7 +83,7 @@
     </tr>
     <tr id="footerContainer2">
       <td id="registerbuttonwrap">
-        <button small class="marginleft10" ion-button color="_white" (click)="RegisterMe();">
+        <button small class="marginleft10" ion-button color="_white" (click)="RegisterMePage();">
           <ion-note color="_red">Register</ion-note>
         </button>
       </td>

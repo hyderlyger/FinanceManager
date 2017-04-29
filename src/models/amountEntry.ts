@@ -1,10 +1,10 @@
 export class AmountEntry {
     public constructor( public id : string, 
                         public subject : string,
-                        public price: string,
+                        public price: number,
                         public type: AmountEntryType,
                         public observation : string,//notes
-                        public timestamp : string,  
+                        public timestamp : Date,  
                         public issystem : boolean,  //for transfers
                         public accountID : string, 
                         public categoryID : string )

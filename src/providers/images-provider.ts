@@ -26,7 +26,7 @@ export class ImagesProvider {
     this.AccountImages.push( root + accountdir + "07.png");    
     this.AccountImages.push( root + accountdir + "08.png");    
     this.AccountImages.push( root + accountdir + "09.png");    
-    this.AccountImages.push( root + accountdir + "10.png");
+    this.AccountImages.push( root + accountdir + "10.png");    //index 9
 
     //Category - Revenue
     var categorydirRev = "Category/Icons/Rendimento/";
@@ -67,7 +67,7 @@ export class ImagesProvider {
     this.CategoryExpenseImages.push(root + categorydirExpExtras + "extra16.png");
     this.CategoryExpenseImages.push(root + categorydirExpExtras + "extra17.png");
     this.CategoryExpenseImages.push(root + categorydirExpExtras + "extra18.png");
-    this.CategoryExpenseImages.push(root + categorydirExpExtras + "extra19.png");
+    this.CategoryExpenseImages.push(root + categorydirExpExtras + "extra19.png");    //index 29
 
   }
   getAccountImagebyID(_id : number){

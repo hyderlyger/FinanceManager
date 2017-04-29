@@ -8,7 +8,10 @@ import { RegisterationCredentialsPage } from '../registeration-credentials-page/
   templateUrl: 'registeration-info-page.html',
 })
 export class RegisterationInfoPage {
-  dob : string;
+  fullname : string = "";
+  email : string = "";
+  dob : string = "";
+  error : string = "";
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.dob = new Date().toISOString();
   }
@@ -18,8 +21,14 @@ export class RegisterationInfoPage {
   }
   next()
   {
-    this.navCtrl.push(RegisterationCredentialsPage);
-  }
+    if( this.fullname && this.email && this.dob)
+    {
+      let data= { fullname : this.fullname, email : this.email, dob : this.dob };
+      this.navCtrl.push(RegisterationCredentialsPage,data);
+    }else{
+      this.error = "Please fill all fields";
+    }
+}
   GoBackToLogin(){
     this.navCtrl.popToRoot();
   }

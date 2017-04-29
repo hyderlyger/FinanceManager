@@ -1,4 +1,4 @@
-<ion-content class="no-scroll fillcomplete" style="background-image: url('assets/Images/login-tela.png');  background-size: contain;">
+<ion-content class="no-scroll fillcomplete" style="background-image: url('assets/Images/login-tela.png');  background-size: cover;">
   <table class="fillcomplete">
     <tr id="logoContainer">
       <td>
@@ -25,7 +25,7 @@
                         <img class="formimg " src="assets/Images/Login/icons/01.png"/>
                     </td>
                     <td class="forminput">
-                        <ion-input type="text" color="_white" placeholder="Name" class="marginleft5"></ion-input>
+                        <ion-input type="text" color="_white" placeholder="Name" [(ngModel)]="fullname" class="marginleft5"></ion-input>
                     </td>
                   </tr>
                 </table>
@@ -41,7 +41,7 @@
                         <img class="formimg " src="assets/Images/Login/icons/03.png"/>
                     </td>
                     <td class="forminput">
-                        <ion-input type="Email" color="_white" placeholder="E-mail" class="marginleft5"></ion-input>
+                        <ion-input type="Email" color="_white" placeholder="E-mail" [(ngModel)]="email" class="marginleft5"></ion-input>
                     </td>
                   </tr>
                 </table>
@@ -70,7 +70,7 @@
                 <div class="formcontent allignmiddle">
                   <!--error-->
                   <div class="aligntopright">
-                      <ion-note small color="_white" class="errortext">*this is an error</ion-note>
+                      <ion-note small color="_white" class="errortext">{{ error }}</ion-note>
                   </div>
                 </div>
             <td>

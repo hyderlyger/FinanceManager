@@ -17,7 +17,7 @@ export class AddExpense {
   constructor(public navCtrl: NavController,
               private dbprovider : DBProvider, public navParams: NavParams) {
 
-    this.newAmountEntry = new AmountEntry("","","",AmountEntryType.Expense,"",new Date().toISOString(),false,"","");
+    this.newAmountEntry = new AmountEntry("","",0,AmountEntryType.Expense,"",new Date(),false,"","");
 
   }
 

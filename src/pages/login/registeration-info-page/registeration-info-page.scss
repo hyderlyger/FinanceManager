@@ -6,6 +6,12 @@ page-registeration-info-page {
     .inputtextcolor{
         color: #8B8D91;
     }
+    .text-input{
+        color: #8B8D91;   //for Date input text
+    }
+    ion-datetime {
+        position: relative;
+    }
     //layout
     .fillcomplete{
         width:100%;

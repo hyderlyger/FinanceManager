@@ -17,7 +17,7 @@ export class AddRevenue {
 
   constructor(public navCtrl: NavController,
               private dbprovider : DBProvider, public navParams: NavParams) {
-    this.newAmountEntry = new AmountEntry("","","",AmountEntryType.Revenue,"",new Date().toISOString(),false,"",""); //creating a new one
+    this.newAmountEntry = new AmountEntry("","",0,AmountEntryType.Revenue,"",new Date(),false,"",""); //creating a new one
     
   }
 
