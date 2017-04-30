@@ -40,11 +40,10 @@ export class SelectCategory {
                                                 this.navParams.get("price"),
                                                 this.type,
                                                 this.navParams.get("observations"),
-                                                this.navParams.get("date"),
+                                                new Date(this.navParams.get("date")),
                                                 false,  //not a system entry
                                                 this.navParams.get("accountid"),
                                                 this.selectedCategoryid ));
-
                                                 this.navCtrl.popToRoot();
     }
   }

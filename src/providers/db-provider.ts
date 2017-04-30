@@ -15,7 +15,6 @@ import { ImagesProvider } from '../providers/images-provider'
 export class DBProvider {
   
   //Database Constants
-  private db_data = "AppData";  //temperary
   private dbConstants = {
         db_user : "DBUser",
         db_accounts : "DBAccounts",
@@ -100,8 +99,11 @@ export class DBProvider {
             this.amountEntries.push(amountEntry);
             this.storage.ready().then(() => {
               this.storage.set(this.dbConstants.db_ammountenteries, JSON.stringify(this.amountEntries));
-              this.calculateBalance();
-              resolve(true);
+
+              this.getLatestAMOUNTENTRIESfromDB().then(()=>{
+                resolve(true);
+              });
+
             });
         }
     });
@@ -114,9 +116,12 @@ export class DBProvider {
       {
         this.amountEntries.splice(index, 1);
         this.storage.ready().then(() => {
-            this.storage.set(this.db_data, JSON.stringify(this.amountEntries));
-            this.calculateBalance();
-            resolve(true);
+            this.storage.set(this.dbConstants.db_ammountenteries, JSON.stringify(this.amountEntries));
+            
+            this.getLatestAMOUNTENTRIESfromDB().then(()=>{
+                resolve(true);
+              });
+              
           });
       }
     });

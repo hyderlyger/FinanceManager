@@ -24,17 +24,17 @@
 
 <ion-content padding class="color_offwhite padding5">
 
-    <ion-list no-lines>
-      <ion-item-group no-lines >
+    <ion-list no-lines >
+      <ion-item-group no-lines *ngFor="let amountEntryGroup of (dbprovider.amountEntries | groupamountentriesbydate:dbprovider.selectedAccount.id)">
         <ion-item-divider light class="listgroupheading">
           <!--<div class="listgroupheadingbackline"></div> Problem in Android-->
-          <!--<ion-note small color="_black" class="listgroupheadingnote">
-            Group Heading
-          </ion-note>-->
+          <ion-note small color="_black" class="listgroupheadingnote">
+            {{ amountEntryGroup.date.toDateString() }}
+          </ion-note>
 
         </ion-item-divider>
 
-        <ion-item-sliding *ngFor="let amountEntry of dbprovider.amountEntries; let i = index">
+        <ion-item-sliding *ngFor="let amountEntry of amountEntryGroup.AccountEntries ; let i = index">
             <ion-item class="timelineItem" color="_offwhite">
                 <div item-left>
                   <button ion-button clear icon-only color="_black">

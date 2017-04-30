@@ -21,7 +21,8 @@ import { SelectCategory } from '../pages/timeline/select-category/select-categor
 import { Transfer } from '../pages/timeline/transfer/transfer';
 
 //Pipes
-import { CurrencyBRL } from '../pipes/currency-brl'
+import { CurrencyBRL } from '../pipes/currency-brl';
+import { GroupAmountEntriesbyDate } from '../pipes/group-amount-entriesby-date';
 
 //Plugins
 import { StatusBar } from '@ionic-native/status-bar';
@@ -39,14 +40,14 @@ import { PopoverAccountSelect } from '../components/popover-account-select/popov
 @NgModule({
   declarations: [
     MyApp,
-
+    //MenuPages
     MainMenu,
     MenuProfile,
     MenuPanel,
     MenuCategories,
     MenuAccounts,
     MenuSettings,
-
+    //Pages
     LoginPage,
     RegisterationInfoPage,
     RegisterationCredentialsPage,
@@ -54,9 +55,10 @@ import { PopoverAccountSelect } from '../components/popover-account-select/popov
     AddAmountEntry,
     SelectCategory,
     Transfer,
-
+    //Pipes
     CurrencyBRL,
-
+    GroupAmountEntriesbyDate,
+    //Components
     PopoverAccountSelect
   ],
   imports: [
@@ -67,14 +69,14 @@ import { PopoverAccountSelect } from '../components/popover-account-select/popov
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    
+    //MenuPages
     MainMenu,
     MenuProfile,
     MenuPanel,
     MenuCategories,
     MenuAccounts,
     MenuSettings,
-
+    //Pages
     LoginPage,
     RegisterationInfoPage,
     RegisterationCredentialsPage,
@@ -82,7 +84,7 @@ import { PopoverAccountSelect } from '../components/popover-account-select/popov
     AddAmountEntry,
     SelectCategory,
     Transfer,
-
+    //Components
     PopoverAccountSelect
   ],
   providers: [

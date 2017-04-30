@@ -1,0 +1,61 @@
+http://blog.teamtreehouse.com/install-node-js-npm-windows
+
+
+LISTS
+https://www.joshmorony.com/an-introduction-to-lists-in-ionic-2/
+Virtual Scroll = https://www.joshmorony.com/boosting-scroll-performance-in-ionic-2/
+
+TODOLIST
+https://www.thepolyglotdeveloper.com/2016/06/create-a-simple-todo-list-app-using-ionic-2-for-android-and-ios/
+
+ERRROR FIXES && Helping stuff
+C:\> cd /d D:\foo\bar\
+ionic g page myPage
+IonicModule -> IonicPageModule
+IONIC for MAC => script error fix => npm install @ionic/app-scripts@latest --save-dev
+Multiple Buttons in title :  <ion-buttons end>
+      <button>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+Whole list-item click : <button ion-item (click)="onClick()">
+Provider without service? solution: remove "public http: Http" from constructor
+
+Debugger (In Package.json):
+"config":{
+    "ionic_source_map": "source-map"
+  },
+
+Lifecycle of Page:
+http://blog.ionic.io/navigating-lifecycle-events/
+
+FOR GIT CLONE:
+https://www.pluralsight.com/guides/front-end-javascript/cloning-an-ionic-2-application-from-github?status=in-review
+
+Model:
+https://www.joshmorony.com/how-to-create-a-data-model-in-ionic-2/
+
+CSS:
+OFFICIAL: http://ionicframework.com/docs/theming/css-utilities/
+https://www.joshmorony.com/a-list-of-common-css-utility-attributes-in-ionic-2/
+
+Tutorials:
+https://www.youtube.com/user/LittlejTFS/featured
+
+PopOver:
+https://learnionic2.com/2017/03/05/ionic-2-getting-data-from-a-popover-to-your-component-using-ondismiss/
+https://ionicframework.com/docs/api/components/popover/PopoverController/S
+
+Database:
+https://www.pluralsight.com/guides/software-engineering-best-practices/ionic-2-database-management-and-versioning
+
+UUID:
+https://www.npmjs.com/package/angular2-uuid
+
+DATE:
+https://ionicframework.com/docs/api/components/datetime/DateTime/
+myDate: String = new Date().toISOString();	//Ionic uses the ISO 8601 datetime format for its value. The value is simply a string
+
+Pipes:
+https://www.joshmorony.com/how-to-use-pipes-to-manipulate-data-in-ionic-2/
+Note: Eliminate dashes in the 'name'. Causes error "unexpected Uppercase".
