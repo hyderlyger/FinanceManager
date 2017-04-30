@@ -16,9 +16,9 @@ import { LoginPage } from '../pages/login/login-page/login-page'
 import { RegisterationInfoPage } from '../pages/login/registeration-info-page/registeration-info-page';
 import { RegisterationCredentialsPage } from '../pages/login/registeration-credentials-page/registeration-credentials-page';
 import { Timeline } from '../pages/timeline/timeline/timeline';
-import { AddRevenue } from '../pages/timeline/add-revenue/add-revenue';
-import { AddExpense } from '../pages/timeline/add-expense/add-expense';
-import { Transfer } from '../pages/timeline/transfer/transfer'
+import { AddAmountEntry } from '../pages/timeline/add-amount-entry/add-amount-entry';
+import { SelectCategory } from '../pages/timeline/select-category/select-category';
+import { Transfer } from '../pages/timeline/transfer/transfer';
 
 //Pipes
 import { CurrencyBRL } from '../pipes/currency-brl'
@@ -51,8 +51,8 @@ import { PopoverAccountSelect } from '../components/popover-account-select/popov
     RegisterationInfoPage,
     RegisterationCredentialsPage,
     Timeline,
-    AddRevenue,
-    AddExpense,
+    AddAmountEntry,
+    SelectCategory,
     Transfer,
 
     CurrencyBRL,
@@ -79,8 +79,8 @@ import { PopoverAccountSelect } from '../components/popover-account-select/popov
     RegisterationInfoPage,
     RegisterationCredentialsPage,
     Timeline,
-    AddRevenue,
-    AddExpense,
+    AddAmountEntry,
+    SelectCategory,
     Transfer,
 
     PopoverAccountSelect

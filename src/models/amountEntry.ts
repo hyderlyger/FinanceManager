@@ -1,8 +1,9 @@
+import { Type } from './enums'
+
 export class AmountEntry {
-    public constructor( public id : string, 
-                        public subject : string,
+    public constructor( public id : string,
                         public price: number,
-                        public type: AmountEntryType,
+                        public type: Type,
                         public observation : string,//notes
                         public timestamp : Date,  
                         public issystem : boolean,  //for transfers
@@ -12,8 +13,4 @@ export class AmountEntry {
                             
 
     }
-}
-export enum AmountEntryType {
-    Revenue = 1,
-    Expense
 }

@@ -1,0 +1,36 @@
+page-select-category {
+    .colcontainer{
+        height: 85px;
+        width: 90px;
+    }
+    .imgg{
+        max-width: 50px;
+        min-width: 50px;
+        display: inline-block;
+        line-height: 1;
+    }
+    .imggbtn{
+        width: 50px;
+        height: 50px;
+        margin: 9px;
+    }
+    .highlight{
+        background-color: #bebebe;
+    }
+    .btnContainer{
+        width: 70px;
+        height: 70px;
+        text-align: center;
+        border-left: 2px inset;
+        border-bottom: 2px inset;
+        border-top:0px;
+        border-right:0px;
+        margin-right:10px;
+    }
+    .greenborder{
+        border-color: #4fb37c;
+    }
+    .redborder{
+        border-color: #b11623;
+    }
+}

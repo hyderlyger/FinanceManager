@@ -6,9 +6,8 @@ import { UUID } from 'angular2-uuid';
 import { User } from '../models/user';
 import { Account } from '../models/account';
 import { Category } from '../models/category';
-import { CategoryType } from '../models/category';
 import { AmountEntry } from '../models/amountEntry';
-import { AmountEntryType } from '../models/amountEntry';
+import { Type } from '../models/enums';
 //Providers
 import { ImagesProvider } from '../providers/images-provider'
 
@@ -34,7 +33,7 @@ export class DBProvider {
   public selectedAccount : Account;
 
   //CONSTRUCTOR
-  constructor(private storage : Storage) {
+  constructor(private storage : Storage , private imagesprovider : ImagesProvider) {
     console.log('Hello DBProvider Provider');
 
     //let uuid = UUID.UUID();
@@ -94,14 +93,13 @@ export class DBProvider {
   }
 
   //add
-  addEntry(financeitem : AmountEntry)  //it is prefered to return all elements seperated
+  addEntry(amountEntry : AmountEntry)  //it is prefered to return all elements seperated
   {
     return new Promise((resolve)=> {
-      if(financeitem != null && this.amountEntries != null) {  //Do Validations Here
-            this.amountEntries.push(financeitem);
-
+      if(amountEntry != null && this.amountEntries != null) {  //Do Validations Here
+            this.amountEntries.push(amountEntry);
             this.storage.ready().then(() => {
-              this.storage.set(this.db_data, JSON.stringify(this.amountEntries));
+              this.storage.set(this.dbConstants.db_ammountenteries, JSON.stringify(this.amountEntries));
               this.calculateBalance();
               resolve(true);
             });
@@ -124,7 +122,7 @@ export class DBProvider {
     });
   }
 
-  //retrieve
+  //refresh data
   getLatestAMOUNTENTRIESfromDB()
   {
       return new Promise ((resolve)=>{
@@ -190,6 +188,29 @@ export class DBProvider {
     });
   }
 
+  //public functions
+  getCategorySubjectbyCategoryID(id:string)
+  {
+    if(this.categories.find(item=> item.id == id))
+      return this.categories.find(item=> item.id == id).subject;
+    else
+      return "Unknown Category";
+  }
+  getCategoryImagebyCategoryID(id:string)
+  {
+    if(this.categories.find( item => item.id == id))
+    {
+      var categoryobject = this.categories.find( item => item.id == id);
+      if (categoryobject.type == Type.Revenue)
+        return this.imagesprovider.getCategoryRevenueImagebyID(categoryobject.imageindex);
+      else
+        return this.imagesprovider.getCategoryExpenseImagebyID(categoryobject.imageindex);
+    }else{
+      return "";
+    }
+    
+  }
+
   //Helping Functions
   private LoadAllDatabaseData(){
     return new Promise((resolve)=> {
@@ -200,7 +221,7 @@ export class DBProvider {
         });
       });
   }
-  public UpdateSelectedAccount(index : number){
+  public UpdateSelectedAccount(index : number){   //UPdates the UI Active Account i.e. on the selection
     if(this.accounts.length>0 && index< this.accounts.length)
       this.selectedAccount = this.accounts[index];  
   }
@@ -209,7 +230,7 @@ export class DBProvider {
     {
       this.balance = 0;
         this.amountEntries.forEach(item => {
-          if(item.type == AmountEntryType.Revenue)
+          if(item.type == Type.Revenue)
             this.balance += parseFloat(item.price.toString());
           else
             this.balance -= parseFloat(item.price.toString());
@@ -226,23 +247,23 @@ export class DBProvider {
     
     this.categories = []; //Clearing
     //Categories - Expense
-    this.categories.push( new Category( UUID.UUID(), "Entretenimento", 2, CategoryType.Expense, issystem));
-    this.categories.push( new Category( UUID.UUID(), "Higiene", 3, CategoryType.Expense, issystem));
-    this.categories.push( new Category( UUID.UUID(), "Comida", 4, CategoryType.Expense, issystem));
-    this.categories.push( new Category( UUID.UUID(), "Esportes", 5, CategoryType.Expense, issystem));
-    this.categories.push( new Category( UUID.UUID(), "Transporte", 6, CategoryType.Expense, issystem));
-    this.categories.push( new Category( UUID.UUID(), "Telefone", 7, CategoryType.Expense, issystem));
-    this.categories.push( new Category( UUID.UUID(), "Café", 8, CategoryType.Expense, issystem));
-    this.categories.push( new Category( UUID.UUID(), "Roupas", 9, CategoryType.Expense, issystem));
-    this.categories.push( new Category( UUID.UUID(), "Saúde", 10, CategoryType.Expense, issystem));
-    this.categories.push( new Category( UUID.UUID(), "Animais", 0, CategoryType.Expense, issystem));
-    this.categories.push( new Category( UUID.UUID(), "Carro", 1, CategoryType.Expense, issystem));
-    this.categories.push( new Category( UUID.UUID(), "Casa", 11, CategoryType.Expense, issystem));
+    this.categories.push( new Category( UUID.UUID(), "Entretenimento", 2, Type.Expense, issystem));
+    this.categories.push( new Category( UUID.UUID(), "Higiene", 3, Type.Expense, issystem));
+    this.categories.push( new Category( UUID.UUID(), "Comida", 4, Type.Expense, issystem));
+    this.categories.push( new Category( UUID.UUID(), "Esportes", 5, Type.Expense, issystem));
+    this.categories.push( new Category( UUID.UUID(), "Transporte", 6, Type.Expense, issystem));
+    this.categories.push( new Category( UUID.UUID(), "Telefone", 7, Type.Expense, issystem));
+    this.categories.push( new Category( UUID.UUID(), "Café", 8, Type.Expense, issystem));
+    this.categories.push( new Category( UUID.UUID(), "Roupas", 9, Type.Expense, issystem));
+    this.categories.push( new Category( UUID.UUID(), "Saúde", 10, Type.Expense, issystem));
+    this.categories.push( new Category( UUID.UUID(), "Animais", 0, Type.Expense, issystem));
+    this.categories.push( new Category( UUID.UUID(), "Carro", 1, Type.Expense, issystem));
+    this.categories.push( new Category( UUID.UUID(), "Casa", 11, Type.Expense, issystem));
 
     //Categories - Revenue
-    this.categories.push( new Category( UUID.UUID(), "Salário", 2, CategoryType.Revenue, issystem));
-    this.categories.push( new Category( UUID.UUID(), "Aluguel", 0, CategoryType.Revenue, issystem));
-    this.categories.push( new Category( UUID.UUID(), "Poupança", 1, CategoryType.Revenue, issystem));
+    this.categories.push( new Category( UUID.UUID(), "Salário", 2, Type.Revenue, issystem));
+    this.categories.push( new Category( UUID.UUID(), "Aluguel", 0, Type.Revenue, issystem));
+    this.categories.push( new Category( UUID.UUID(), "Poupança", 1, Type.Revenue, issystem));
 
   }
 }

@@ -15,6 +15,15 @@
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
 
+@font-face {
+    font-family: 'AgencyFB'; /*a name to be used later*/
+    src: url('assets/fonts/Agency FB.ttf'); /*URL to font*/
+}
+
+*{
+    font-family: 'AgenxyFB';
+}
+
 //Cores
 .item{
     background: #e8e8e8;
@@ -32,7 +41,6 @@
         background: #b11623;
         color: white;
     }
-
 
 
 //Specials

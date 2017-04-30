@@ -1,28 +1,38 @@
 page-menu-accounts {
-    .MenuTableGroup{
+    .fill100{
         width : 100%;
     }
     .leftcol{
-        width : 25%;
+        width : 15%;
+        margin-left: 5%;
     }
     .rightcol{
-        width : 75%;
+        width : 80%;
         text-align: left;
     }
     .rowimagecontainer{
-        width:25px; 
-        height:25px; 
-        float:right;
+        width:30px; 
+        height:30px; 
+        text-align: center;
     }
     .rowimg{
-        max-width : 25px;
-        max-height : 25px;
+        max-width : 30px;
+        max-height : 30px;
     }
+
     .rowtitle{
-        font-size: 13px;
+        font-size: 12px;
         font-weight: bolder;
-        color : #b11623;
-        margin-left: 10px;
+        color : #383838;
+        margin-left: 15px;
+    }
+    .rowdetail{
+        font-size: 12px;
+        color :#383838;
+        margin-left: 15px;
+        margin-top:0px;
+        margin-right:0px;
+        margin-bottom:0px;
     }
     .verticalcenter{
         vertical-align: middle;
@@ -30,7 +40,31 @@ page-menu-accounts {
         margin-bottom: auto;
     }
     .row{
-        height:25px;
+        height:30px;
         margin-top: 5px;
+    }
+
+    .headingleft{
+        width : 80%;
+        text-align: left;
+        vertical-align: middle;
+    }
+    .headingright{
+        width : 20%;
+        text-align: center;
+    }
+    .headingbutton{
+        max-height: 14px;
+        max-width: 14px;
+    }
+
+
+    //Ios specific
+    .ios {
+        page-menu-accounts{
+            .iosbold{
+                font-weight: bolder;    //check working
+            }
+        }
     }
 }

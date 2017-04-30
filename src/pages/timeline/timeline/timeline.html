@@ -13,7 +13,7 @@
 
     <ion-buttons end class="headersidebuttons">
       <button ion-button color="light" (click)="presentPopover($event)" style="margin-left: -20px;">
-        <img class="ImageCategory" [src]="imageprovider.getAccountImagebyID(dbprovider.selectedAccount.imageindex)"/>
+        <img class="ImageCategory" [src]="imagesprovider.getAccountImagebyID(dbprovider.selectedAccount.imageindex)"/>
         <!--<ion-note color="light" style="max-width:50px; font-size: 14px; overflow: hidden;">{{dbprovider.selectedAccount.subject}}</ion-note>-->
         <ion-icon name="ios-arrow-down" style="margin-right: 3px;" class="mediumsmallicom"></ion-icon> 
       </button>
@@ -28,23 +28,23 @@
       <ion-item-group no-lines >
         <ion-item-divider light class="listgroupheading">
           <!--<div class="listgroupheadingbackline"></div> Problem in Android-->
-          <ion-note small color="_black" class="listgroupheadingnote">
+          <!--<ion-note small color="_black" class="listgroupheadingnote">
             Group Heading
-          </ion-note>
+          </ion-note>-->
 
         </ion-item-divider>
 
-        <ion-item-sliding *ngFor="let item of dbprovider.amountEntries; let i = index">
+        <ion-item-sliding *ngFor="let amountEntry of dbprovider.amountEntries; let i = index">
             <ion-item class="timelineItem" color="_offwhite">
                 <div item-left>
                   <button ion-button clear icon-only color="_black">
                     <ion-icon name="ios-arrow-down" class="mediumsmallicom"></ion-icon>
                   </button>
-                    <img class="itemImageCategory" [src]="item.type == 1 ? 'assets/Images/Category/Icons/Rendimento/Salário.png' : 'assets/Images/Category/Icons/Despesas/02.png'"/>
+                    <img class="itemImageCategory" [src]="dbprovider.getCategoryImagebyCategoryID(amountEntry.categoryID)"/>
                 </div>
-                <h2>{{item.subject}}</h2>
-                <ion-note style="margin: 0px;" item-right [color]="item.type == 1 ? '_green' : '_red'">
-                  <h2 text-wrap class="nospacebreak">{{item.price | currency:'BRL':true:'1.2-2' | currencybrl}}</h2>
+                <h2>{{dbprovider.getCategorySubjectbyCategoryID(amountEntry.categoryID)}}</h2>
+                <ion-note style="margin: 0px;" item-right [color]="amountEntry.type == 1 ? '_green' : '_red'">
+                  <h2 text-wrap class="nospacebreak">{{amountEntry.price | currency:'BRL':true:'1.2-2' | currencybrl}}</h2>
                 </ion-note>
             </ion-item>
             <ion-item-options >

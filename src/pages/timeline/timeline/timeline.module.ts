@@ -2,8 +2,7 @@ import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 
 import { Timeline } from './timeline';
-import { AddRevenue} from '../add-revenue/add-revenue';
-import { AddExpense} from '../add-expense/add-expense';
+import { AddAmountEntry } from '../add-amount-entry/add-amount-entry';
 import { Transfer } from '../transfer/transfer';
 
 import { PopoverAccountSelect } from '../../../components/popover-account-select/popover-account-select';
@@ -11,8 +10,7 @@ import { PopoverAccountSelect } from '../../../components/popover-account-select
 @NgModule({
   declarations: [
     Timeline,
-    AddRevenue,
-    AddExpense,
+    AddAmountEntry,
     Transfer,
     PopoverAccountSelect
   ],
@@ -21,8 +19,7 @@ import { PopoverAccountSelect } from '../../../components/popover-account-select
   ],
   exports: [
     Timeline,
-    AddRevenue,
-    AddExpense,
+    AddAmountEntry,
     Transfer,
     PopoverAccountSelect
   ]

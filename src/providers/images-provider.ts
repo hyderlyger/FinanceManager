@@ -6,9 +6,9 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class ImagesProvider {
 
-  public readonly AccountImages : Array<string> = [];
-  public readonly CategoryRevenueImages : Array<string> = [];
-  public readonly CategoryExpenseImages : Array<string> = [];
+  private readonly AccountImages : Array<string> = [];
+  private readonly CategoryRevenueImages : Array<string> = [];
+  private readonly CategoryExpenseImages : Array<string> = [];
 
   constructor() {
     console.log('Hello ImagesProvider Provider');
@@ -77,24 +77,24 @@ export class ImagesProvider {
     else
       "";
   }
-  getAllAccountsImages() {
-    return this.AccountImages;  //check if private makes a problem
-  }
+  // getAllAccountsImages() {
+  //   return this.AccountImages;  //check if private makes a problem
+  // }
 
   getCategoryRevenueImagebyID(_id : number){
     if(_id>=0 && _id< this.CategoryRevenueImages.length)
       return this.CategoryRevenueImages[_id];
   }
-  getAllCategoryRevenueImages() {
-    return this.CategoryRevenueImages;  //check if private makes a problem
-  }
+  // getAllCategoryRevenueImages() {
+  //   return this.CategoryRevenueImages;  //check if private makes a problem
+  // }
   
   getCategoryExpenseImagebyID(_id : number){
     if(_id>=0 && _id< this.CategoryExpenseImages.length)
       return this.CategoryExpenseImages[_id];
   }
-  getAllCategoryExpenseImages() {
-    return this.CategoryExpenseImages;  //check if private makes a problem
-  }
+  // getAllCategoryExpenseImages() {
+  //   return this.CategoryExpenseImages;  //check if private makes a problem
+  // }
   
 }

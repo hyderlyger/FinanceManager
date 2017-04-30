@@ -1,3 +1,67 @@
 page-menu-categories {
+    .fill100{
+        width : 100%;
+    }
+    .leftcol{
+        width : 20%;
+        margin-left: 5%;
+    }
+    .rightcol{
+        width : 75%;
+        text-align: left;
+    }
+    .rowimagecontainer{
+        width:23px; 
+        height:23px; 
+        text-align: center;
+    }
+    .rowimg{
+        max-width : 23px;
+        max-height : 23px;
+    }
 
+    .rowtitle{
+        font-size: 13px;
+        font-weight: bolder;
+        margin-left: 10px;
+    }
+    .red{
+        color : #b11623;
+    }
+    .green{
+        color : #4fb37c;
+    }
+    .verticalcenter{
+        vertical-align: middle;
+        margin-top: auto;
+        margin-bottom: auto;
+    }
+    .row{
+        height:23px;
+        margin-top: 5px;
+    }
+
+    .headingleft{
+        width : 80%;
+        text-align: left;
+        vertical-align: middle;
+    }
+    .headingright{
+        width : 20%;
+        text-align: center;
+    }
+    .headingbutton{
+        max-height: 14px;
+        max-width: 14px;
+    }
+
+
+    //Ios specific
+    .ios {
+        page-menu-accounts{
+            .iosbold{
+                font-weight: bolder;    //check working
+            }
+        }
+    }
 }

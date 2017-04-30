@@ -1,0 +1,35 @@
+<ion-header >
+
+  <ion-navbar [color]=" type == 1 ? '_green' : '_red' " >
+    <ion-title>Select Category</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding class="color_offwhite">
+
+  <ion-row>
+    <div class="colcontainer" *ngFor=" let category of dbprovider.categories; let i = index">
+      <ion-col style="padding:5px;" *ngIf="category.type == type" >
+        <div class="btnContainer" [ngClass]=" type == 1 ? 'greenborder' : 'redborder' " >
+          <div [ngClass]="selectedCategoryid == category.id ? 'highlight' : '' ">
+            <button class="imggbtn" ion-button clear icon-only (click)="updateSelection(i);" >
+              <img class="imgg" [src]="type == 1 ? imageprovider.getCategoryRevenueImagebyID(category.imageindex) : imageprovider.getCategoryExpenseImagebyID(category.imageindex)" />
+            </button>
+          </div>
+        </div>
+      </ion-col>
+
+    </div>
+    
+  </ion-row>
+<!---->
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar text-center color="_offwhite">
+    <button ion-button center [color]=" type == 1 ? '_green' : '_red' " (click)="saveEntry();">
+      Save Entry
+    </button>
+  </ion-toolbar>
+</ion-footer>

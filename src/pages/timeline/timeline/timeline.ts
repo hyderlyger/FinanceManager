@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-import {AddRevenue} from '../add-revenue/add-revenue';
-import {AddExpense} from '../add-expense/add-expense';
+import { AddAmountEntry } from '../add-amount-entry/add-amount-entry';
 import { Transfer } from '../transfer/transfer'
 
 //import { AmountEntry } from '../../../models/financeEntry';
-import { AmountEntryType } from '../../../models/amountEntry';
+import { Type } from '../../../models/enums';
 import { Account } from '../../../models/account';
 
 import { PopoverController } from 'ionic-angular';
@@ -23,7 +22,7 @@ import { ImagesProvider } from '../../../providers/images-provider';
 export class Timeline {
 
   constructor(public navCtrl: NavController,private popoverCtrl: PopoverController, 
-              private dbprovider : DBProvider, private imageprovider : ImagesProvider, public navParams: NavParams) {
+              private dbprovider : DBProvider, private imagesprovider : ImagesProvider, public navParams: NavParams) {
   }
 
   //Overrides
@@ -45,10 +44,10 @@ export class Timeline {
   
   //UI Events
   goto_addrevenue() {
-        this.navCtrl.push(AddRevenue);
+        this.navCtrl.push(AddAmountEntry,{type : Type.Revenue, selectedaccountid: this.dbprovider.selectedAccount.id});
     }
   goto_addexpense() {
-        this.navCtrl.push(AddExpense);
+        this.navCtrl.push(AddAmountEntry,{type : Type.Expense, selectedaccountid: this.dbprovider.selectedAccount.id});
     }
   goto_transfer(){
         this.navCtrl.push(Transfer);
