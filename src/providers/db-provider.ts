@@ -98,7 +98,9 @@ export class DBProvider {
             this.amountEntries.push(amountEntry);
             this.storage.ready().then(() => {
               this.storage.set(this.dbConstants.db_ammountenteries, JSON.stringify(this.amountEntries));
-              resolve(true);
+              this.LoadLatestAMOUNTENTRIESfromDB().then(()=>{
+                resolve(true);
+              });
             });
         }
     });
@@ -114,7 +116,9 @@ export class DBProvider {
         this.amountEntries.splice(index, 1);  //removing item
         this.storage.ready().then(() => {
             this.storage.set(this.dbConstants.db_ammountenteries, JSON.stringify(this.amountEntries));
-            resolve(true);
+            this.LoadLatestAMOUNTENTRIESfromDB().then(()=>{
+              resolve(true);
+            });
           });
       }else
         resolve(false);
@@ -192,6 +196,7 @@ export class DBProvider {
   public UpdateSelectedAccount(accountid : string){   //UPdates the UI Active Account i.e. on the selection
     if(this.accounts.length>0 && this.accounts.find(item=> item.id == accountid))
     {
+      //if issue occurs use -> this.LoadLatestAMOUNTENTRIESfromDB().then(()=>{
       this.selectedAccount = this.accounts.find(item=> item.id == accountid);
       this.calculateBalance();
     }  
