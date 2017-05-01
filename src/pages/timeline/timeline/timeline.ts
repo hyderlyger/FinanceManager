@@ -21,6 +21,8 @@ import { ImagesProvider } from '../../../providers/images-provider';
 })
 export class Timeline {
 
+  _selectedAccountImageSource : string;
+
   constructor(public navCtrl: NavController,private popoverCtrl: PopoverController, 
               private dbprovider : DBProvider, private imagesprovider : ImagesProvider, public navParams: NavParams) {
   }
@@ -29,6 +31,7 @@ export class Timeline {
   ionViewDidLoad() {
   }
   ionViewDidEnter(){
+    this._selectedAccountImageSource = this.imagesprovider.getAccountImagebyID(this.dbprovider.selectedAccount.imageindex);
   }
 
   //PopOver
@@ -38,6 +41,7 @@ export class Timeline {
       ev: ev
     });
     popover.onDidDismiss((popoverData : number) => {
+        this._selectedAccountImageSource = this.imagesprovider.getAccountImagebyID(this.dbprovider.accounts[popoverData].imageindex);
         this.dbprovider.UpdateSelectedAccount(popoverData);
     });
   }
