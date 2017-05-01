@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
+import { Category } from '../../../models/category';
+
 import { DBProvider } from '../../../providers/db-provider';
 import { ImagesProvider } from '../../../providers/images-provider';
 
@@ -10,13 +12,17 @@ import { ImagesProvider } from '../../../providers/images-provider';
   templateUrl: 'menu-categories.html',
 })
 export class MenuCategories {
-
+  _categories : Array<Category> = [];
   constructor(public navCtrl: NavController, public navParams: NavParams,
               private dbprovider : DBProvider, private imageprovider : ImagesProvider) {
+                this.ionViewDidEnter();
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MenuCategories');
+  }
+  ionViewDidEnter(){
+    this._categories = this.dbprovider.categories;
   }
   goback(){
     this.navCtrl.pop();

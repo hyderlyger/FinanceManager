@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
  import { UUID } from 'angular2-uuid';
 
 import { AmountEntry } from '../../../models/amountEntry';
+import { Category } from '../../../models/category'
 import { Type } from '../../../models/enums';
 
 import { DBProvider } from '../../../providers/db-provider';
@@ -16,21 +17,28 @@ import { ImagesProvider } from '../../../providers/images-provider';
 export class SelectCategory {
   type : Type;
   selectedCategoryid : string;
+
+  _categories : Array<Category>;
+
   constructor(public navCtrl: NavController, public navParams: NavParams, 
               private dbprovider : DBProvider, private imageprovider : ImagesProvider) {
 
                 this.type = navParams.get("type");
-
-                if(dbprovider.categories.find(item => item.type == this.type))
-                  this.selectedCategoryid = dbprovider.categories.find(item => item.type == this.type).id;
+                this.ionViewDidEnter();
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad SelectCategory');
   }
+  ionViewDidEnter(){
+    this._categories = this.dbprovider.categories;
+
+    if(this._categories.find(item => item.type == this.type))
+      this.selectedCategoryid = this._categories.find(item => item.type == this.type).id;
+  }
   updateSelection(index : number)
   {
-    this.selectedCategoryid =  this.dbprovider.categories[index].id;
+    this.selectedCategoryid =  this._categories[index].id;
   }
   saveEntry()
   {

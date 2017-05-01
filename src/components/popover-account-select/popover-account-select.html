@@ -1,8 +1,8 @@
 <ion-list no-lines class="color_offwhite">
 
-  <button ion-item *ngFor="let account of dbprovider.accounts; let i = index" color="_offwhite" (click)="ItemTapped(i);">
+  <button ion-item *ngFor="let account of _accounts; let i = index" color="_offwhite" (click)="ItemTapped(account.id);">
           <div class="btnitemImageCategory" item-left>
-            <img class="itemImageCategory" [src]="imagesprovider.AccountImages[account.imageindex]"/>
+            <img class="itemImageCategory" [src]="imagesprovider.getAccountImagebyID(account.imageindex)"/>
           </div>
           <ion-note color="_green" item-left>
             <h2 text-wrap>{{account.subject}}</h2>

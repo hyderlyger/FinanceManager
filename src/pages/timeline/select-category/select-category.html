@@ -9,7 +9,7 @@
 <ion-content padding class="color_offwhite">
 
   <ion-row>
-    <div [ngClass]=" category.type == type ? 'colcontainer' : ''" *ngFor=" let category of dbprovider.categories; let i = index">
+    <div [ngClass]=" category.type == type ? 'colcontainer' : ''" *ngFor=" let category of _categories; let i = index">
       <ion-col style="padding:5px;" *ngIf="category.type == type" >
         <div class="btnContainer" [ngClass]=" type == 1 ? 'greenborder' : 'redborder' " >
           <div [ngClass]="selectedCategoryid == category.id ? 'highlight' : '' ">

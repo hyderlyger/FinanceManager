@@ -10,11 +10,13 @@ import { ImagesProvider } from '../../providers/images-provider';
   templateUrl: 'popover-account-select.html'
 })
 export class PopoverAccountSelect {
-
+  _accounts : Array<Account> = [];
   constructor(private viewCtrl: ViewController, private dbprovider : DBProvider, private imagesprovider : ImagesProvider) {
     console.log('Hello PopoverAccountSelect Component');
+    this._accounts = this.dbprovider.accounts;
   }
-  ItemTapped(index){
-      this.viewCtrl.dismiss(index);
+  view
+  ItemTapped(id : string){
+      this.viewCtrl.dismiss(id);
   }
 }

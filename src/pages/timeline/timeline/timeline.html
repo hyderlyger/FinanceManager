@@ -13,7 +13,7 @@
 
     <ion-buttons end class="headersidebuttons">
       <button ion-button color="light" (click)="presentPopover($event)" style="margin-left: -20px;">
-        <img class="ImageCategory" [src]="_selectedAccountImageSource"/>
+        <img class="ImageCategory" [src]="imagesprovider.getAccountImagebyID(_selectedAccount.imageindex)"/>
         <!--<ion-note color="light" style="max-width:50px; font-size: 14px; overflow: hidden;">{{dbprovider.selectedAccount.subject}}</ion-note>-->
         <ion-icon name="ios-arrow-down" style="margin-right: 3px;" class="mediumsmallicom"></ion-icon> 
       </button>
@@ -25,7 +25,7 @@
 <ion-content padding class="color_offwhite padding5">
 
     <ion-list no-lines >
-      <ion-item-group no-lines *ngFor="let amountEntryGroup of (dbprovider.amountEntries | groupamountentriesbydate:dbprovider.selectedAccount.id)">
+      <ion-item-group no-lines *ngFor="let amountEntryGroup of (_amountEntries | groupamountentriesbydate:_selectedAccount.id)">
         <ion-item-divider light class="listgroupheading">
           <!--<div class="listgroupheadingbackline"></div> Problem in Android-->
           <ion-note small color="_black" class="listgroupheadingnote">
@@ -63,8 +63,8 @@
 <ion-footer>
   <ion-toolbar text-center color="_offwhite">
 
-    <button ion-button class="width200 autoFont" [color]=" dbprovider.balance >= 0 ? '_green' : '_red'">
-      Saldo {{ dbprovider.balance | currency:'BRL':true:'1.2-2' | currencybrl }}
+    <button ion-button class="width200 autoFont" [color]=" _balance >= 0 ? '_green' : '_red'">
+      Saldo {{ _balance | currency:'BRL':true:'1.2-2' | currencybrl }}
     </button>
 
   </ion-toolbar>

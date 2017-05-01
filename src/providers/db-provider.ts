@@ -39,9 +39,6 @@ export class DBProvider {
     //TODO - Eliminate Storage ready checks 
     this.LoadLatestUSERfromDB();
   }
-  setdefaults(){
-    this.UpdateSelectedAccount(0);
-  }
   //User
   registerUser( _user : User){
 
@@ -60,7 +57,6 @@ export class DBProvider {
           this.storage.set(this.dbConstants.db_categories, JSON.stringify(this.categories));
           //Need to load from database since we are doing many things in those functions for thr UI to work
           this.LoadAllDatabaseData().then(()=>{
-            this.setdefaults();
             resolve("Accepted");  //Success Case
           });
 
@@ -82,7 +78,6 @@ export class DBProvider {
         if(this.user != null){
             if(this.user.userid == userid && this.user.password == userpass){
               this.LoadAllDatabaseData().then(()=>{
-                this.setdefaults();
                 resolve("Accepted");  //Success Case
               });
             }else
@@ -103,11 +98,7 @@ export class DBProvider {
             this.amountEntries.push(amountEntry);
             this.storage.ready().then(() => {
               this.storage.set(this.dbConstants.db_ammountenteries, JSON.stringify(this.amountEntries));
-
-              this.LoadLatestAMOUNTENTRIESfromDB().then(()=>{
-                resolve(true);
-              });
-
+              resolve(true);
             });
         }
     });
@@ -119,15 +110,11 @@ export class DBProvider {
 
       if(this.amountEntries != null && this.amountEntries.find(item=> item.id == id))
       {
-        var index = this.amountEntries.findIndex(item=> item.id == id);
-        this.amountEntries.splice(index, 1);
+        var index = this.amountEntries.findIndex(item=> item.id == id); //getting the index
+        this.amountEntries.splice(index, 1);  //removing item
         this.storage.ready().then(() => {
             this.storage.set(this.dbConstants.db_ammountenteries, JSON.stringify(this.amountEntries));
-            
-            this.LoadLatestAMOUNTENTRIESfromDB().then(()=>{
-                resolve(true);
-              });
-              
+            resolve(true);
           });
       }else
         resolve(false);
@@ -162,7 +149,7 @@ export class DBProvider {
             if(this.accounts == null) {
               this.accounts = [];
             }else{
-              //this.UpdateSelectedAccount(0); //default selectedAccount selection.
+              this.UpdateSelectedAccount(this.accounts[0].id); //default selectedAccount selection.
             }
             resolve();
         });
@@ -202,10 +189,10 @@ export class DBProvider {
   }
 
   //Misc functions
-  public UpdateSelectedAccount(index : number){   //UPdates the UI Active Account i.e. on the selection
-    if(this.accounts.length>0 && index< this.accounts.length)
+  public UpdateSelectedAccount(accountid : string){   //UPdates the UI Active Account i.e. on the selection
+    if(this.accounts.length>0 && this.accounts.find(item=> item.id == accountid))
     {
-      this.selectedAccount = this.accounts[index];
+      this.selectedAccount = this.accounts.find(item=> item.id == accountid);
       this.calculateBalance();
     }  
   }
