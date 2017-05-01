@@ -15,13 +15,13 @@ export class MenuCategories {
   _categories : Array<Category> = [];
   constructor(public navCtrl: NavController, public navParams: NavParams,
               private dbprovider : DBProvider, private imageprovider : ImagesProvider) {
-                this.ionViewDidEnter();
+                this.ionViewWillEnter();
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MenuCategories');
   }
-  ionViewDidEnter(){
+  ionViewWillEnter(){ //every time gets active
     this._categories = this.dbprovider.categories;
   }
   goback(){

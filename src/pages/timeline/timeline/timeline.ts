@@ -33,8 +33,8 @@ export class Timeline {
   //Overrides
   ionViewDidLoad() {
   }
-  ionViewDidEnter(){
-    console.log("Timeline - ionViewDidEnter");
+  ionViewWillEnter(){ //every time gets active
+    console.log("Timeline - ionViewWillEnter");
     this.updateUIDate();
   }
 

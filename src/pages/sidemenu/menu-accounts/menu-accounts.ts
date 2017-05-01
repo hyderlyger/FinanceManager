@@ -13,13 +13,13 @@ export class MenuAccounts {
   _accounts : Array<Account> = [];
   constructor(public navCtrl: NavController, public navParams: NavParams,
               private dbprovider : DBProvider, private imageprovider : ImagesProvider) {
-                this.ionViewDidEnter();
+                this.ionViewWillEnter();
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MenuAccounts');
   }
-  ionViewDidEnter(){
+  ionViewWillEnter(){ //every time gets active
     this._accounts = this.dbprovider.accounts;
   }
   goback(){

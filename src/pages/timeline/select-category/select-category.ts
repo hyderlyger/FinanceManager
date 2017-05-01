@@ -24,13 +24,13 @@ export class SelectCategory {
               private dbprovider : DBProvider, private imageprovider : ImagesProvider) {
 
                 this.type = navParams.get("type");
-                this.ionViewDidEnter();
+                this.ionViewWillEnter();
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad SelectCategory');
   }
-  ionViewDidEnter(){
+  ionViewWillEnter(){ //every time gets active
     this._categories = this.dbprovider.categories;
 
     if(this._categories.find(item => item.type == this.type))
