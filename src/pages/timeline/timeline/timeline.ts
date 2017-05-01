@@ -27,19 +27,19 @@ export class Timeline {
   _balance : number;
   constructor(public navCtrl: NavController,private popoverCtrl: PopoverController, 
               private dbprovider : DBProvider, private imagesprovider : ImagesProvider, public navParams: NavParams) {
-                this.updateUIDate();
+                this.updateUIData();
   }
 
   //Overrides
   ionViewDidLoad() {
   }
-  ionViewWillEnter(){ //every time gets active
-    console.log("Timeline - ionViewWillEnter");
-    this.updateUIDate();
+  ionViewCanEnter(){ //every time gets active
+    console.log("Timeline - ionViewCanEnter");
+    this.updateUIData();
   }
 
   //UI Data Updates
-  private updateUIDate()
+  private updateUIData()
   {
     this._selectedAccount = this.dbprovider.selectedAccount;
     this._amountEntries = this.dbprovider.amountEntries;
@@ -54,7 +54,7 @@ export class Timeline {
     });
     popover.onDidDismiss((accountid : string) => {
         this.dbprovider.UpdateSelectedAccount(accountid);
-        this.updateUIDate()
+        this.updateUIData()
     });
   }
   
@@ -70,7 +70,7 @@ export class Timeline {
   }
   delete(id: string) {
     this.dbprovider.deleteEntry(id).then((status)=> {
-      this.updateUIDate();
+      this.updateUIData();
     });
   }
 }

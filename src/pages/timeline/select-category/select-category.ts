@@ -51,8 +51,9 @@ export class SelectCategory {
                                                 new Date(this.navParams.get("date")),
                                                 false,  //not a system entry
                                                 this.navParams.get("accountid"),
-                                                this.selectedCategoryid ));
-                                                this.navCtrl.popToRoot();
+                                                this.selectedCategoryid )).then(()=>{
+                                                    this.navCtrl.popToRoot();
+                                                })
     }
   }
 }
