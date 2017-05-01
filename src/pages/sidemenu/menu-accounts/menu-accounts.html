@@ -32,7 +32,7 @@
         </tr>
       </thead>
       
-      <tr class="row verticalcenter" *ngFor="let account of _accounts; let i = index">
+      <tr class="row verticalcenter" *ngFor="let account of dbprovider.accounts; let i = index">
         <td class="leftcol">
           <div class="rowimagecontainer">
             <img class="rowimg " [src]="imageprovider.getAccountImagebyID(account.imageindex)"/>

@@ -24,18 +24,18 @@ export class SelectCategory {
               private dbprovider : DBProvider, private imageprovider : ImagesProvider) {
 
                 this.type = navParams.get("type");
-                this.ionViewWillEnter();
+                this._categories = this.dbprovider.categories;
+
+                if(this._categories.find(item => item.type == this.type))
+                  this.selectedCategoryid = this._categories.find(item => item.type == this.type).id;
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad SelectCategory');
   }
   ionViewWillEnter(){ //every time gets active
-    this._categories = this.dbprovider.categories;
-
-    if(this._categories.find(item => item.type == this.type))
-      this.selectedCategoryid = this._categories.find(item => item.type == this.type).id;
   }
+  
   updateSelection(index : number)
   {
     this.selectedCategoryid =  this._categories[index].id;

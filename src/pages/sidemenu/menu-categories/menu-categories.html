@@ -38,7 +38,7 @@
         </tr>
       </thead>
 
-      <tbody *ngFor="let Revcategory of _categories; let i = index">
+      <tbody *ngFor="let Revcategory of dbprovider.categories; let i = index">
         <tr class="row verticalcenter"  *ngIf="Revcategory.type == 2">
             <td class="leftcol">
               <div class="rowimagecontainer">
@@ -65,7 +65,7 @@
         </tr>
       </thead>
 
-      <tbody *ngFor="let Revcategory of _categories; let i = index">
+      <tbody *ngFor="let Revcategory of dbprovider.categories; let i = index">
         <tr class="row verticalcenter" *ngIf="Revcategory.type == 1">
             <td class="leftcol">
               <div class="rowimagecontainer">

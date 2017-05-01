@@ -23,8 +23,7 @@ export class Timeline {
 
   //_selectedAccountImageSource : string;
   _selectedAccount : Account;
-  _amountEntries : Array<AmountEntry> = [];
-  _balance : number;
+
   constructor(public navCtrl: NavController,private popoverCtrl: PopoverController, 
               private dbprovider : DBProvider, private imagesprovider : ImagesProvider, public navParams: NavParams) {
                 this.updateUIData();
@@ -42,8 +41,6 @@ export class Timeline {
   private updateUIData()
   {
     this._selectedAccount = this.dbprovider.selectedAccount;
-    this._amountEntries = this.dbprovider.amountEntries;
-    this._balance = this.dbprovider.balance;
   }
 
   //PopOver
@@ -70,7 +67,7 @@ export class Timeline {
   }
   delete(id: string) {
     this.dbprovider.deleteEntry(id).then((status)=> {
-      this.updateUIData();
+
     });
   }
 }

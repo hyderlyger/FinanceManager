@@ -10,17 +10,16 @@ import { Account } from '../../../models/account';
   templateUrl: 'menu-accounts.html',
 })
 export class MenuAccounts {
-  _accounts : Array<Account> = [];
+  
   constructor(public navCtrl: NavController, public navParams: NavParams,
               private dbprovider : DBProvider, private imageprovider : ImagesProvider) {
-                this.ionViewWillEnter();
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MenuAccounts');
   }
   ionViewWillEnter(){ //every time gets active
-    this._accounts = this.dbprovider.accounts;
+
   }
   goback(){
     this.navCtrl.pop();
