@@ -1,7 +1,7 @@
 <ion-header >
 
   <ion-navbar [color]=" type == 1 ? '_green' : '_red' " >
-    <ion-title>Add Expense</ion-title>
+    <ion-title>{{ type == 1 ? "Add Revenue" : "Add Expense"}}</ion-title>
   </ion-navbar>
 
 </ion-header>

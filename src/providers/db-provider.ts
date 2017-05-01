@@ -37,9 +37,11 @@ export class DBProvider {
 
     //let uuid = UUID.UUID();
     //TODO - Eliminate Storage ready checks 
-    this.getLatestUSERfromDB();
+    this.LoadLatestUSERfromDB();
   }
-
+  setdefaults(){
+    this.UpdateSelectedAccount(0);
+  }
   //User
   registerUser( _user : User){
 
@@ -58,6 +60,7 @@ export class DBProvider {
           this.storage.set(this.dbConstants.db_categories, JSON.stringify(this.categories));
           //Need to load from database since we are doing many things in those functions for thr UI to work
           this.LoadAllDatabaseData().then(()=>{
+            this.setdefaults();
             resolve("Accepted");  //Success Case
           });
 
@@ -79,6 +82,7 @@ export class DBProvider {
         if(this.user != null){
             if(this.user.userid == userid && this.user.password == userpass){
               this.LoadAllDatabaseData().then(()=>{
+                this.setdefaults();
                 resolve("Accepted");  //Success Case
               });
             }else
@@ -100,7 +104,7 @@ export class DBProvider {
             this.storage.ready().then(() => {
               this.storage.set(this.dbConstants.db_ammountenteries, JSON.stringify(this.amountEntries));
 
-              this.getLatestAMOUNTENTRIESfromDB().then(()=>{
+              this.LoadLatestAMOUNTENTRIESfromDB().then(()=>{
                 resolve(true);
               });
 
@@ -110,25 +114,29 @@ export class DBProvider {
   }
 
   //delete
-  deleteEntry(index: number) {
+  deleteEntry(id: string) {
     return new Promise((resolve)=> {
-      if(this.amountEntries != null)
+
+      if(this.amountEntries != null && this.amountEntries.find(item=> item.id == id))
       {
+        var index = this.amountEntries.findIndex(item=> item.id == id);
         this.amountEntries.splice(index, 1);
         this.storage.ready().then(() => {
             this.storage.set(this.dbConstants.db_ammountenteries, JSON.stringify(this.amountEntries));
             
-            this.getLatestAMOUNTENTRIESfromDB().then(()=>{
+            this.LoadLatestAMOUNTENTRIESfromDB().then(()=>{
                 resolve(true);
               });
               
           });
-      }
+      }else
+        resolve(false);
+
     });
   }
 
   //refresh data
-  getLatestAMOUNTENTRIESfromDB()
+  LoadLatestAMOUNTENTRIESfromDB()
   {
       return new Promise ((resolve)=>{
           this.storage.ready().then(() => {
@@ -145,7 +153,7 @@ export class DBProvider {
       });
       
   }
-  getLatestACCOUNTSfromDB()
+  LoadLatestACCOUNTSfromDB()
   {
     return new Promise ((resolve)=>{
       this.storage.ready().then(() => {
@@ -154,14 +162,14 @@ export class DBProvider {
             if(this.accounts == null) {
               this.accounts = [];
             }else{
-              this.UpdateSelectedAccount(0); //default selectedAccount selection.
+              //this.UpdateSelectedAccount(0); //default selectedAccount selection.
             }
             resolve();
         });
       });
     });
   }
-  getLatestCATEGORIESfromDB()
+  LoadLatestCATEGORIESfromDB()
   {
     return new Promise ((resolve)=>{
       this.storage.ready().then(() => {
@@ -177,7 +185,7 @@ export class DBProvider {
       });
     });
   }
-  getLatestUSERfromDB(){
+  LoadLatestUSERfromDB(){
     return new Promise ((resolve)=>{
       this.storage.ready().then(() => {
           this.storage.get(this.dbConstants.db_user).then( (val) => {
@@ -193,7 +201,14 @@ export class DBProvider {
     });
   }
 
-  //public functions
+  //Misc functions
+  public UpdateSelectedAccount(index : number){   //UPdates the UI Active Account i.e. on the selection
+    if(this.accounts.length>0 && index< this.accounts.length)
+    {
+      this.selectedAccount = this.accounts[index];
+      this.calculateBalance();
+    }  
+  }
   getCategorySubjectbyCategoryID(id:string)
   {
     if(this.categories.find(item=> item.id == id))
@@ -216,29 +231,28 @@ export class DBProvider {
     
   }
 
-  //Helping Functions
+  //Private Functions
   private LoadAllDatabaseData(){
     return new Promise((resolve)=> {
-        Promise.all([ this.getLatestAMOUNTENTRIESfromDB(),
-                      this.getLatestACCOUNTSfromDB(),
-                      this.getLatestCATEGORIESfromDB() ]).then(()=>{
+        Promise.all([ this.LoadLatestAMOUNTENTRIESfromDB(),
+                      this.LoadLatestACCOUNTSfromDB(),
+                      this.LoadLatestCATEGORIESfromDB() ]).then(()=>{
                         resolve();
         });
       });
   }
-  public UpdateSelectedAccount(index : number){   //UPdates the UI Active Account i.e. on the selection
-    if(this.accounts.length>0 && index< this.accounts.length)
-      this.selectedAccount = this.accounts[index];  
-  }
   private calculateBalance() {
-    if(this.amountEntries != null)
+    if(this.amountEntries != null && this.selectedAccount != null)
     {
       this.balance = 0;
         this.amountEntries.forEach(item => {
-          if(item.type == Type.Revenue)
-            this.balance += parseFloat(item.price.toString());
-          else
-            this.balance -= parseFloat(item.price.toString());
+          if(item.accountID == this.selectedAccount.id)
+          {
+            if(item.type == Type.Revenue)
+              this.balance += parseFloat(item.price.toString());
+            else
+              this.balance -= parseFloat(item.price.toString());
+          }
         });
     }
   }
