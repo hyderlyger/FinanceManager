@@ -8,16 +8,27 @@
 
 
 <ion-content padding class="color_offwhite">
+  <div class="entryBox" [ngClass]="type == 1 ? 'backgroundColorGreen' : 'backgroundColorRed' ">
+    <div>
+      <div style="height:10px"></div>
+      <div style="height:35px; font-size:25px;"> {{ price | number:'1.2-2' | currencybrl }} </div>
+      <div style="height:10px"></div>
+    </div>
+    <button ion-button clear icon-only  text-center class="priceremovebutton">
+      <img class="priceremoveimg" src="assets/Images/InOut/icons/01.png"/>
+    </button>
+  </div>
   <ion-list>
     <ion-item>
-      <ion-input type="number" placeholder="Price" [(ngModel)]="price"></ion-input>
+      <!--(change)="onPriceChange();"-->
+      <ion-input type="text" class="priceinput" placeholder="Price" [(ngModel)]="price" ></ion-input>
     </ion-item>
     <ion-item>
       <ion-input type="text" placeholder="Observation" [(ngModel)]="observation"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label style="margin-left: 8px;">Date</ion-label>
-      <ion-datetime displayFormat="MM/DD/YYYY" [(ngModel)]="date"></ion-datetime>
+      <ion-label class="labeldate">Date</ion-label>
+      <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="date"></ion-datetime>
       <!--<ion-input type="date" placeholder="Date" [(ngModel)]="financeitem.timestamp"></ion-input>-->
     </ion-item>
   </ion-list>
@@ -26,7 +37,7 @@
 
 <ion-footer>
   <ion-toolbar text-center color="_offwhite">
-    <button ion-button center [color]=" type == 1 ? '_green' : '_red' " (click)="gotoSelectingCategoryImage();">
+    <button ion-button center class="borderButton" [ngClass]="type == 1 ? 'borderButtonGreen' : 'borderButtonRed' "  (click)="gotoSelectingCategoryImage();">
       Select Category
     </button>
   </ion-toolbar>

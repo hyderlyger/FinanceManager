@@ -41,7 +41,9 @@
         background: #b11623;
         color: white;
     }
-
+.nodefaultuppercase{
+        text-transform: none;
+    }
 
 //Specials
 .headerimg{
@@ -56,6 +58,31 @@
         max-height: 70px;
         margin-left: auto;
         margin-right: auto;
+    }
+
+
+//Border Button Style
+    .backgroundColorRed{
+        background-color: #b11623;
+    }
+    .backgroundColorGreen{
+        background-color: #4fb37c;
+    }
+    .borderButtonRed{
+        color: #b11623;
+    }
+    .borderButtonGreen{
+        color: #4fb37c;
+    }
+    .borderButton{
+        width: 220px;
+        height: 45px;
+        text-transform: none;
+        background-color: transparent;
+        border-left: 2px solid;
+        border-bottom: 2px solid;
+        font-size: 18px;
+        border-radius: 0px;
     }
 
 

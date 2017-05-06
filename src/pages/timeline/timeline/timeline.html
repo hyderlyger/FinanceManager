@@ -13,7 +13,7 @@
 
     <ion-buttons end class="headersidebuttons">
       <button ion-button color="light" (click)="presentPopover($event)" style="margin-left: -20px;">
-        <img class="ImageCategory" [src]="imagesprovider.getAccountImagebyID(dbprovider.selectedAccount.imageindex)"/>
+        <img class="ImageCategory ImageAccount" [src]="imagesprovider.getAccountImagebyID(dbprovider.selectedAccount.imageindex)"/>
         <!--<ion-note color="light" style="max-width:50px; font-size: 14px; overflow: hidden;">{{dbprovider.selectedAccount.subject}}</ion-note>-->
         <ion-icon name="ios-arrow-down" style="margin-right: 3px;" class="mediumsmallicom"></ion-icon> 
       </button>
@@ -63,7 +63,7 @@
 <ion-footer>
   <ion-toolbar text-center color="_offwhite">
 
-    <button ion-button class="width200 autoFont" [color]=" dbprovider.balance >= 0 ? '_green' : '_red'">
+    <button ion-button class="balance autoFont nodefaultuppercase" [color]=" dbprovider.balance >= 0 ? '_green' : '_red'">
       Saldo {{ dbprovider.balance | currency:'BRL':true:'1.2-2' | currencybrl }}
     </button>
 

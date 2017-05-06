@@ -12,6 +12,9 @@ page-timeline {
     .headersidebuttons{
         width: 50px;
     }
+    .ImageAccount{
+        filter: brightness(0) invert(100%);
+    }
     .ImageCategory{
         background-repeat: no-repeat;
         max-width: 39px;
@@ -72,8 +75,11 @@ page-timeline {
         font-size: 14px;
         vertical-align: text-top;
     }
-    .width200{
+    .balance{
         width: 250px;
+        height: 50px;
+        font-size: larger;
+        
     }
     .autoFont{  //auto resize font for balance
         //font-size: 4vi;

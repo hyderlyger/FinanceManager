@@ -1,3 +1,26 @@
 page-add-amount-entry {
 
+    .label-ios.labeldate{
+            color: #9C9C9C;
+        }
+    .label-md.labeldate{
+        margin-left: 8px;
+    }
+    .entryBox{
+        color: white;
+        width: 270px;
+        height: 55px;
+        margin: auto;
+        border-radius: 4px;
+        text-align: center;
+    }
+    .priceremovebutton{
+        float: right;
+        margin-top: -47px;
+        margin-right: 4px;
+    }
+    .priceremoveimg{
+        max-width: 35px;
+        max-height: 35px;
+    }
 }

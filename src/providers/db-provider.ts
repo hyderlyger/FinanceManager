@@ -136,7 +136,7 @@ export class DBProvider {
                 if(this.amountEntries == null) {
                   this.amountEntries = [];
                 }else{
-                  this.calculateBalance()
+                  this.calculateBalanceofSelectedAccount();
                 }
                 resolve();
             });
@@ -198,7 +198,7 @@ export class DBProvider {
     {
       //if issue occurs use -> this.LoadLatestAMOUNTENTRIESfromDB().then(()=>{
       this.selectedAccount = this.accounts.find(item=> item.id == accountid);
-      this.calculateBalance();
+      this.calculateBalanceofSelectedAccount();
     }  
   }
   getCategorySubjectbyCategoryID(id:string)
@@ -233,20 +233,30 @@ export class DBProvider {
         });
       });
   }
-  private calculateBalance() {
+  private calculateBalanceofSelectedAccount() {
     if(this.amountEntries != null && this.selectedAccount != null)
     {
       this.balance = 0;
+      this.balance = this.calculateBalanceOnAccountID(this.selectedAccount.id);
+    }
+  }
+  public calculateBalanceOnAccountID(id :string){
+    var balance = 0;
+    if(this.amountEntries != null && this.accounts.find(item=> item.id == id) != null)
+    {
+      var currentAccount = this.accounts.find(item=> item.id == id);
+      balance = 0;
         this.amountEntries.forEach(item => {
-          if(item.accountID == this.selectedAccount.id)
+          if(item.accountID == currentAccount.id)
           {
             if(item.type == Type.Revenue)
-              this.balance += parseFloat(item.price.toString());
+              balance += parseFloat(item.price.toString());
             else
-              this.balance -= parseFloat(item.price.toString());
+              balance -= parseFloat(item.price.toString());
           }
         });
     }
+    return balance;
   }
   private createDefaultApplicationData(){
     let dateToday = new Date();

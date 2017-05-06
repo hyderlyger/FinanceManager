@@ -26,7 +26,7 @@
           </th>
           <th class="headingright">
             <button ion-button clear icon-only class="headingbutton">
-              <ion-icon color="_black" class="iosbold" name="add"></ion-icon>
+              <ion-icon color="_black" class="iosbold" style="line-height: normal;" name="add"></ion-icon>
             </button>
           </th>
         </tr>
@@ -40,7 +40,7 @@
         </td>
         <td class="rightcol verticalcenter">
           <h3 class="rowtitle verticalcenter">{{account.subject}}</h3>
-          <p class="rowdetail"> {{account.startingbalance | currency:'BRL':true:'1.2-2' | currencybrl }} </p>
+          <p class="rowdetail"> {{dbprovider.calculateBalanceOnAccountID(account.id) | currency:'BRL':true:'1.2-2' | currencybrl }} </p>
         </td>
       </tr>
       

@@ -24,4 +24,5 @@ export class MenuAccounts {
   goback(){
     this.navCtrl.pop();
   }
+  
 }

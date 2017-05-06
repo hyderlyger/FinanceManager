@@ -2,8 +2,9 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Type } from '../../../models/enums';
 import { AlertController } from 'ionic-angular';
-import { SelectCategory } from '../select-category/select-category'
+import { SelectCategory } from '../select-category/select-category';
 
+import {  } from ''
 @IonicPage()
 @Component({
   selector: 'page-add-amount-entry',
@@ -19,6 +20,7 @@ export class AddAmountEntry {
   constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl : AlertController) {
     this.type = navParams.get("type");
     this.date = new Date().toISOString();
+    this.price = 0;
   }
 
   ionViewDidLoad() {
@@ -27,7 +29,7 @@ export class AddAmountEntry {
 
   gotoSelectingCategoryImage()
   {
-    if(this.price && this.observation && this.date)
+    if(this.price && this.date)
     {
       this.navCtrl.push(SelectCategory,{ type: this.type,
                                         price: this.price,
@@ -49,5 +51,10 @@ export class AddAmountEntry {
     alert.present();
   }
 
-
+  onPriceChange(){
+    if(this.price){
+      //this.price = parseFloat(this.price).toFixed();
+    }else
+      this.price = 0;
+  }
 }

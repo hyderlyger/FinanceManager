@@ -1,14 +1,19 @@
 <ion-header >
 
   <ion-navbar [color]=" type == 1 ? '_green' : '_red' " >
-    <ion-title>Select Category</ion-title>
+      <button class="menuheaderbutton" ion-button clear icon-only  text-center left>
+        <img class="headerimg" src="assets/Images/Timeline/icons/whiteLogo.png"/>
+      </button>
+      <button class="menuheaderbutton" style="float: right; margin-right:10px;" ion-button clear icon-only right>
+        <img class="menuheaderbuttonimage" src="assets/Images/InOut/icons/03.png"/>
+      </button>
   </ion-navbar>
 
 </ion-header>
 
 <ion-content padding class="color_offwhite">
-
-  <ion-row>
+ <div style="margin-left: 7%;" [ngClass]=" type == 1 ? 'margintop80percent' : '' ">
+  <ion-row style="margin: auto; width: 275px;">
     <div [ngClass]=" category.type == type ? 'colcontainer' : ''" *ngFor=" let category of _categories; let i = index">
       <ion-col style="padding:5px;" *ngIf="category.type == type" >
         <div class="btnContainer" [ngClass]=" type == 1 ? 'greenborder' : 'redborder' " >
@@ -23,12 +28,12 @@
     </div>
     
   </ion-row>
-<!---->
+ </div>
 </ion-content>
 
 <ion-footer>
   <ion-toolbar text-center color="_offwhite">
-    <button ion-button center [color]=" type == 1 ? '_green' : '_red' " (click)="saveEntry();">
+    <button ion-button center class="borderButton" [ngClass]="type == 1 ? 'borderButtonGreen' : 'borderButtonRed' " (click)="saveEntry();">
       Save Entry
     </button>
   </ion-toolbar>
