@@ -22,7 +22,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding class="color_offwhite padding5">
+<ion-content padding class="color_offwhite">
 
     <ion-list no-lines >
       <ion-item-group no-lines *ngFor="let dateGroup of dbprovider.amountEntriesGroupsAndSubgroups">
@@ -41,7 +41,9 @@
                   <button ion-button clear icon-only color="_black" (click)="toggleSubGroupVisibility(dateGroup.groupid, categorySubGroup.subgroupid);">
                     <ion-icon [name]="categorySubGroup.isvisible == false ? 'ios-arrow-down' : 'ios-arrow-up'" class="mediumsmallicom"></ion-icon>
                   </button>
+                  <div class="btnitemImageCategory">
                     <img class="itemImageCategory" [src]="dbprovider.getCategoryImagebyCategoryID(categorySubGroup.subgroupCategoryID)"/>
+                  </div>
                 </div>
                 <div>
                   <h2 style="display: inline-block;">{{dbprovider.getCategorySubjectbyCategoryID(categorySubGroup.subgroupCategoryID)}}</h2>
