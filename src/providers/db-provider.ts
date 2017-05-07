@@ -9,7 +9,7 @@ import { Category } from '../models/category';
 import { AmountEntry } from '../models/amountEntry';
 import { Type } from '../models/enums';
 //Providers
-import { ImagesProvider } from '../providers/images-provider'
+import { ImagesProvider } from '../providers/images-provider';
 
 @Injectable()
 export class DBProvider {
@@ -27,6 +27,7 @@ export class DBProvider {
   public accounts: Array<Account> = [];
   public categories: Array<Category> = [];
   public amountEntries: Array<AmountEntry> = [];
+  public amountEntriesGroupsAndSubgroups = [];
 
   public balance : number = 0;
   public selectedAccount : Account;
@@ -137,6 +138,7 @@ export class DBProvider {
                   this.amountEntries = [];
                 }else{
                   this.calculateBalanceofSelectedAccount();
+                  this.updateAmountEntriesGroupsAndSubgroups();
                 }
                 resolve();
             });
@@ -199,6 +201,7 @@ export class DBProvider {
       //if issue occurs use -> this.LoadLatestAMOUNTENTRIESfromDB().then(()=>{
       this.selectedAccount = this.accounts.find(item=> item.id == accountid);
       this.calculateBalanceofSelectedAccount();
+      this.updateAmountEntriesGroupsAndSubgroups();
     }  
   }
   getCategorySubjectbyCategoryID(id:string)
@@ -258,6 +261,17 @@ export class DBProvider {
     }
     return balance;
   }
+
+  private updateAmountEntriesGroupsAndSubgroups(){
+
+    if(!this.amountEntries) {
+      this.amountEntriesGroupsAndSubgroups = [];
+    }else{
+      if(this.selectedAccount)
+        this.transform(this.amountEntries,this.selectedAccount.id); //this would update the group object
+    }
+
+  }
   private createDefaultApplicationData(){
     let dateToday = new Date();
     let issystem = true;
@@ -286,5 +300,91 @@ export class DBProvider {
     this.categories.push( new Category( UUID.UUID(), "Aluguel", 0, Type.Revenue, issystem));
     this.categories.push( new Category( UUID.UUID(), "Poupança", 1, Type.Revenue, issystem));
 
+  }
+
+  //Transformation for Group : previously done in pipe "group amount entries by date"
+  transform(value: Array<AmountEntry>, accountID : string) {
+    this.amountEntriesGroupsAndSubgroups = [];
+    var filteredEntries = this.filterEntriesbyAccountID(value, accountID);
+    this.groupContactsUsingArray(filteredEntries);
+  }
+
+  filterEntriesbyAccountID(entries : Array<AmountEntry>, id : string){
+    return entries.filter(item=> item.accountID == id);
+  }
+
+  groupContactsUsingArray( entries : Array<AmountEntry> )
+  {
+    //Sorting Array by latest Date
+    var datesorted = entries.sort(function(a,b){
+      var aa = new Date(a.timestamp).toLocaleDateString();
+      var bb = new Date(b.timestamp).toLocaleDateString();
+
+      var cc = a.categoryID;
+      var dd = b.categoryID;
+
+      if (aa > bb) return -1;
+      else if (aa < bb) return 1;
+      else if (cc > dd) return -1;
+      else if (cc < dd) return 1;
+    });
+
+    let currentDate : Date = new Date(1990); //random old date
+    let currentCatID : string = "00"; //random false id
+    let currentGroup = [];
+    let currentSubGroup = [];
+    let currentSubGroupTotal = {value : 0};
+
+    datesorted.forEach((value, index) => {
+
+        var itemDate : Date = new Date(value.timestamp);  //converting string date to Date object
+
+        //Grouping on date
+        if( itemDate.getDay() != currentDate.getDay() || itemDate.getMonth() != currentDate.getMonth() ||
+            itemDate.getFullYear() != currentDate.getFullYear()){
+
+            currentDate = itemDate;
+            currentCatID = "00";  //resetting the categoryid aswell
+
+            let newGroup = {
+                groupid : UUID.UUID(),
+                date: currentDate,
+                CategoryGroups: []
+            };
+
+            currentGroup = newGroup.CategoryGroups; //pointer to the group
+            this.amountEntriesGroupsAndSubgroups.push(newGroup);
+        }
+
+        //Grouping on Category within a Date
+        if(currentCatID != value.categoryID){
+
+          currentCatID = value.categoryID;
+
+          let newsubgroup = {
+            subgroupid : UUID.UUID(),
+            subgroupCategoryID : currentCatID,
+            subgroupTotal : {value : 0},
+            subgrouptype : value.type,
+            isvisible : false,  //responsible for opening and closing this group
+            CategoryEntries : []
+          }
+          currentSubGroup = newsubgroup.CategoryEntries;  //pointer to the subgroup
+          currentSubGroupTotal = newsubgroup.subgroupTotal; //pointer to the subgroup total
+          currentGroup.push(newsubgroup);
+        }
+
+        //Updating subgroup Total
+        currentSubGroupTotal.value += value.price;
+
+        //Inserting the actual entry
+        currentSubGroup.push(value);
+    });
+  }
+  toggleSubGroupItemVisibility(gid :string , subgid : string)
+  {
+    var group = this.amountEntriesGroupsAndSubgroups.find( item=> item.groupid == gid);
+    var subgroup = group.CategoryGroups.find(item=> item.subgroupid == subgid);
+    subgroup.isvisible = !subgroup.isvisible;
   }
 }

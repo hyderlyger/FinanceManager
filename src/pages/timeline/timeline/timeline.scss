@@ -2,6 +2,9 @@ page-timeline {
     .scroll-content{
     padding: 8px !important;
     }
+    .label-md{
+        margin:0px;
+    }
     .item-md{
         padding-left: 5px !important;
     }
@@ -32,6 +35,12 @@ page-timeline {
             max-height: 30px;
             vertical-align: middle;
         }
+    .itemImageSubGroupCategory{
+            background-repeat: no-repeat;
+            max-width: 20px;
+            max-height: 20px;
+            vertical-align: top;
+        }
     .btnfooterimg{
         width: 60px;
         height: 60px;
@@ -45,8 +54,11 @@ page-timeline {
     .item-ios{
         padding-left: 2px;
     }
-    .ion-item .timelineItem{
+    .height30{
         height: 30px;
+    }
+    .height25{
+        height: 25px;
     }
     .listgroupheading{
         border-style: none;

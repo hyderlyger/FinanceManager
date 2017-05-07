@@ -59,4 +59,7 @@ export class Timeline {
 
     });
   }
+  toggleSubGroupVisibility(groupid, subgroupid){
+    this.dbprovider.toggleSubGroupItemVisibility(groupid, subgroupid);
+  }
 }

@@ -25,7 +25,7 @@
 <ion-content padding class="color_offwhite padding5">
 
     <ion-list no-lines >
-      <ion-item-group no-lines *ngFor="let dateGroup of (dbprovider.amountEntries | groupamountentriesbydate:dbprovider.selectedAccount.id)">
+      <ion-item-group no-lines *ngFor="let dateGroup of dbprovider.amountEntriesGroupsAndSubgroups">
         <ion-item-divider light class="listgroupheading">
           <!--<div class="listgroupheadingbackline"></div> Problem in Android-->
           <ion-note small color="_black" class="listgroupheadingnote">
@@ -34,26 +34,45 @@
 
         </ion-item-divider>
 
-        <ion-item-sliding *ngFor="let categorySubGroup of dateGroup.CategoryGroups ; let i = index">
-            <ion-item class="timelineItem" color="_offwhite">
+        <ion-item *ngFor="let categorySubGroup of dateGroup.CategoryGroups ;">
+
+            <ion-item class="height30" color="_offwhite">
                 <div item-left>
-                  <button ion-button clear icon-only color="_black">
-                    <ion-icon name="ios-arrow-down" class="mediumsmallicom"></ion-icon>
+                  <button ion-button clear icon-only color="_black" (click)="toggleSubGroupVisibility(dateGroup.groupid, categorySubGroup.subgroupid);">
+                    <ion-icon [name]="categorySubGroup.isvisible == false ? 'ios-arrow-down' : 'ios-arrow-up'" class="mediumsmallicom"></ion-icon>
                   </button>
                     <img class="itemImageCategory" [src]="dbprovider.getCategoryImagebyCategoryID(categorySubGroup.subgroupCategoryID)"/>
                 </div>
-                <h2>{{dbprovider.getCategorySubjectbyCategoryID(categorySubGroup.subgroupCategoryID)}}</h2>
-                <ion-note style="margin: 0px;" item-right [color]="categorySubGroup.CategoryEntries[0].type == 1 ? '_green' : '_red'">
-                  <h2 text-wrap class="nospacebreak">{{categorySubGroup.CategoryEntries[0].price | currency:'BRL':true:'1.2-2' | currencybrl}}</h2>
+                <div>
+                  <h2 style="display: inline-block;">{{dbprovider.getCategorySubjectbyCategoryID(categorySubGroup.subgroupCategoryID)}}</h2>
+                  <div [ngClass]="categorySubGroup.subgrouptype == 1 ? 'backgroundColorGreen' : 'backgroundColorRed' " style="padding: 0px 5px; display: inline-block; border-radius:9px; color:white;">
+                    <div>{{categorySubGroup.CategoryEntries.length}}</div>
+                  </div>
+                </div>
+                <ion-note style="margin: 0px;" item-right [color]="categorySubGroup.subgrouptype == 1 ? '_green' : '_red'">
+                  <h2 text-wrap class="nospacebreak">{{categorySubGroup.subgroupTotal.value | currency:'BRL':true:'1.2-2' | currencybrl}}</h2>
                 </ion-note>
             </ion-item>
-            <ion-item-options >
-                <button class="red_itemOption" (click)="delete(categorySubGroup.CategoryEntries[0].id)">
-                    <ion-icon name="trash"></ion-icon>
-                    Delete
-                </button>
-            </ion-item-options>
-        </ion-item-sliding>
+
+            <div *ngIf="categorySubGroup.isvisible == true">
+              <ion-item-sliding style="height: 30px;" *ngFor="let ammountEntry of categorySubGroup.CategoryEntries ;">
+                  <ion-item class="height25" style="margin-top: -8px;" color="_offwhite">
+                      <div item-left style="margin-left:35px;">
+                          <img class="itemImageSubGroupCategory" [src]="dbprovider.getCategoryImagebyCategoryID(ammountEntry.categoryID)"/>
+                      </div>
+                      <!--item-right-->
+                      <h2 text-wrap class="nospacebreak" style="font-size:15px; margin-left: 1px;" [ngClass]="ammountEntry.type == 1 ? 'colorGreen' : 'colorRed' ">{{ammountEntry.price | currency:'BRL':true:'1.2-2' | currencybrl}}</h2>
+                  </ion-item>
+                  <ion-item-options >
+                      <button class="red_itemOption" (click)="delete(ammountEntry.id)">
+                          <ion-icon name="trash"></ion-icon>
+                          Delete
+                      </button>
+                  </ion-item-options>
+              </ion-item-sliding>
+            </div>
+
+        </ion-item>
 
       </ion-item-group>
     </ion-list>
