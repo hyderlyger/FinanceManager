@@ -2,10 +2,6 @@ page-select-category {
     .margintop80percent{
         margin-top: 80%;
     }
-    .colcontainer{
-        height: 85px;
-        width: 90px;
-    }
     .imgg{
         max-width: 50px;
         max-height: 50px;
@@ -28,12 +24,24 @@ page-select-category {
         border-bottom: 2px inset;
         border-top:0px;
         border-right:0px;
-        margin-right:10px;
     }
-    .greenborder{
-        border-color: #4fb37c;
+    tr.spacer{
+        height:10px;
     }
-    .redborder{
-        border-color: #b11623;
+    tr.largespacer{
+        height: 250px;
+    }
+    .entryBox{
+        color: white;
+        width: 270px;
+        height: 50px;
+        margin: auto;
+        border-radius: 4px;
+        text-align: center;
+    }
+    .colcontainer{
+        height: 85px;
+        padding-left: 10px;
+        padding-right: 10px;
     }
 }

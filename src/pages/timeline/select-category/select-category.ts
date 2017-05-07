@@ -17,12 +17,12 @@ import { ImagesProvider } from '../../../providers/images-provider';
 export class SelectCategory {
   type : Type;
   selectedCategoryid : string;
-
+  price : Number;
   _categories : Array<Category>;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, 
               private dbprovider : DBProvider, private imageprovider : ImagesProvider) {
-
+                this.price = this.navParams.get("price");
                 this.type = navParams.get("type");
                 this._categories = this.dbprovider.categories;
 

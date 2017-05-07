@@ -68,15 +68,21 @@
     .backgroundColorGreen{
         background-color: #4fb37c;
     }
-    .borderButtonRed{
+    .colorRed{
         color: #b11623;
     }
-    .borderButtonGreen{
+    .colorGreen{
         color: #4fb37c;
     }
+    .greenborder{
+        border-color: #4fb37c !important;
+    }
+    .redborder{
+        border-color: #b11623 !important;
+    }
     .borderButton{
-        width: 220px;
-        height: 45px;
+        width: 270px;
+        height: 50px;
         text-transform: none;
         background-color: transparent;
         border-left: 2px solid;

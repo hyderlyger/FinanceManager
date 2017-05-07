@@ -1,43 +1,71 @@
 <ion-header >
 
   <ion-navbar [color]=" type == 1 ? '_green' : '_red' " >
-    <ion-title>{{ type == 1 ? "Add Revenue" : "Add Expense"}}</ion-title>
+    <button class="menuheaderbutton" ion-button clear icon-only  text-center left>
+      <img class="headerimg" src="assets/Images/Timeline/icons/whiteLogo.png"/>
+    </button>
+    <button id="Calender" class="menuheaderbutton calenderfont colorRed" ion-button clear icon-only right
+            style="float: right; margin-right:10px; background-image: url('assets/Images/InOut/icons/05.png');  background-size: cover;">
+      <ion-datetime displayFormat="DD" pickerFormat="DD/MM/YYYY" [(ngModel)]="date"></ion-datetime>
+    </button>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding class="color_offwhite">
-  <div class="entryBox" [ngClass]="type == 1 ? 'backgroundColorGreen' : 'backgroundColorRed' ">
-    <div>
-      <div style="height:10px"></div>
-      <div style="height:35px; font-size:25px;"> {{ price | number:'1.2-2' | currencybrl }} </div>
-      <div style="height:10px"></div>
-    </div>
-    <button ion-button clear icon-only  text-center class="priceremovebutton">
-      <img class="priceremoveimg" src="assets/Images/InOut/icons/01.png"/>
-    </button>
-  </div>
-  <ion-list>
-    <ion-item>
-      <!--(change)="onPriceChange();"-->
-      <ion-input type="text" class="priceinput" placeholder="Price" [(ngModel)]="price" ></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-input type="text" placeholder="Observation" [(ngModel)]="observation"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label class="labeldate">Date</ion-label>
-      <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="date"></ion-datetime>
-      <!--<ion-input type="date" placeholder="Date" [(ngModel)]="financeitem.timestamp"></ion-input>-->
-    </ion-item>
-  </ion-list>
+
+  <table style="width: 270px; margin: auto;">
+
+    <tr>
+      <td class="entryBox" [ngClass]="type == 1 ? 'backgroundColorGreen' : 'backgroundColorRed' ">
+        <div>
+          <div style="height:15px"></div>
+          <div style="height:35px; font-size:25px;"> {{ price | number:'1.2-2' | currencybrl }} </div>
+          <div style="height:5px"></div>
+        </div>
+        <button ion-button clear icon-only  text-center class="priceremovebutton" (click)= "performOperation('<');">
+          <img class="img35by35" src="assets/Images/InOut/icons/01.png"/>
+        </button>
+      </td>
+    </tr>
+
+    <tr class="spacer"></tr>
+    <tr>
+      <td class="observationBox borderButton" style="border-color:#B7B7B7; border-left: 0px;">
+        <div class="img35by35" style="float:left; margin-left:10px;">
+          <img class="img35by35 tilt" [src]="type == 1 ? 'assets/Images/InOut/icons/02-1.png' : 'assets/Images/InOut/icons/02.png' " />
+        </div>
+        <ion-input style="float:left; width:200px; margin-left:10px;" type="text" placeholder="Observation" [(ngModel)]="observation"></ion-input>
+      </td>
+    </tr>
+
+    <tr class="spacer" ></tr>
+    <tr>
+      <ion-row>
+
+        <div class="colcontainer" *ngFor=" let item of _calculatorItems; let i = index">
+          <ion-col >
+            <div class="btnContainer" [ngClass]=" type == 1 ? 'greenborder' : 'redborder' " >
+              <div>
+                <button class="imggbtn calenderfont" (click)="performOperation(item);" [ngClass]=" type == 1 ? 'colorGreen' : 'colorRed' " ion-button clear icon-only >
+                  {{item}}
+                </button>
+              </div>
+            </div>
+          </ion-col>
+        </div>
+        
+      </ion-row>
+    </tr>
+
+  </table>
   
 </ion-content>
 
 <ion-footer>
   <ion-toolbar text-center color="_offwhite">
-    <button ion-button center class="borderButton" [ngClass]="type == 1 ? 'borderButtonGreen' : 'borderButtonRed' "  (click)="gotoSelectingCategoryImage();">
+    <button ion-button center class="borderButton" [ngClass]="type == 1 ? 'colorGreen' : 'colorRed' "  (click)="gotoSelectingCategoryImage();">
       Select Category
     </button>
   </ion-toolbar>

@@ -12,28 +12,43 @@
 </ion-header>
 
 <ion-content padding class="color_offwhite">
- <div style="margin-left: 7%;" [ngClass]=" type == 1 ? 'margintop80percent' : '' ">
-  <ion-row style="margin: auto; width: 275px;">
-    <div [ngClass]=" category.type == type ? 'colcontainer' : ''" *ngFor=" let category of _categories; let i = index">
-      <ion-col style="padding:5px;" *ngIf="category.type == type" >
-        <div class="btnContainer" [ngClass]=" type == 1 ? 'greenborder' : 'redborder' " >
-          <div [ngClass]="selectedCategoryid == category.id ? 'highlight' : '' ">
-            <button class="imggbtn" ion-button clear icon-only (click)="updateSelection(i);" >
-              <img class="imgg" [src]="type == 1 ? imageprovider.getCategoryRevenueImagebyID(category.imageindex) : imageprovider.getCategoryExpenseImagebyID(category.imageindex)" />
-            </button>
-          </div>
-        </div>
-      </ion-col>
+  <table style="width: 270px; margin: auto;">
 
-    </div>
-    
-  </ion-row>
- </div>
+    <tr>
+      <td class="entryBox" [ngClass]="type == 1 ? 'backgroundColorGreen' : 'backgroundColorRed' ">
+        <div>
+          <div style="height:15px"></div>
+          <div style="height:35px; font-size:25px;"> {{ price | number:'1.2-2' | currencybrl }} </div>
+          <div style="height:5px"></div>
+        </div>
+      </td>
+    </tr>
+
+    <tr [ngClass]=" type == 1 ? 'largespacer' : 'spacer' " ></tr>
+    <tr>
+      <ion-row>
+        <div [ngClass]=" category.type == type ? 'colcontainer' : ''" *ngFor=" let category of _categories; let i = index">
+          <ion-col *ngIf="category.type == type" >
+            <div class="btnContainer" [ngClass]=" type == 1 ? 'greenborder' : 'redborder' " >
+              <div [ngClass]="selectedCategoryid == category.id ? 'highlight' : '' ">
+                <button class="imggbtn" ion-button clear icon-only (click)="updateSelection(i);" >
+                  <img class="imgg" [src]="type == 1 ? imageprovider.getCategoryRevenueImagebyID(category.imageindex) : imageprovider.getCategoryExpenseImagebyID(category.imageindex)" />
+                </button>
+              </div>
+            </div>
+          </ion-col>
+
+        </div>
+        
+      </ion-row>
+    </tr>
+  </table>
+
 </ion-content>
 
 <ion-footer>
   <ion-toolbar text-center color="_offwhite">
-    <button ion-button center class="borderButton" [ngClass]="type == 1 ? 'borderButtonGreen' : 'borderButtonRed' " (click)="saveEntry();">
+    <button ion-button center class="borderButton" [ngClass]="type == 1 ? 'colorGreen' : 'colorRed' " (click)="saveEntry();">
       Save Entry
     </button>
   </ion-toolbar>

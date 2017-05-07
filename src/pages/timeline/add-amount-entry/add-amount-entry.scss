@@ -1,5 +1,15 @@
 page-add-amount-entry {
+    //core overrites
+    .datetime-text{
+        margin-left: -9px;
+        margin-top: 12px;
+    }
 
+
+    #Calender{
+        width: 35px;
+        height: 35px;
+    }
     .label-ios.labeldate{
             color: #9C9C9C;
         }
@@ -9,7 +19,7 @@ page-add-amount-entry {
     .entryBox{
         color: white;
         width: 270px;
-        height: 55px;
+        height: 50px;
         margin: auto;
         border-radius: 4px;
         text-align: center;
@@ -19,8 +29,45 @@ page-add-amount-entry {
         margin-top: -47px;
         margin-right: 4px;
     }
-    .priceremoveimg{
+    .img35by35{
         max-width: 35px;
         max-height: 35px;
+    }
+    .observationBox{
+        width: 270px;
+        height: 45px;
+        margin: auto;
+        border-radius: 2px;
+    }
+    .tilt{
+        -ms-transform: rotate(15deg);
+        -webkit-transform: rotate(15deg);
+        transform: rotate(15deg);
+    }
+    tr.spacer{
+        height:10px;
+    }
+    .calenderfont{
+        font-size: 21px;
+        font-weight: bolder;
+    }
+    .imggbtn{
+        width: 58px;
+        height: 58px;
+        margin:0px;
+    }
+    .btnContainer{
+        width: 58px;
+        height: 58px;
+        text-align: center;
+        border-left: 2px inset;
+        border-bottom: 2px inset;
+        border-top:0px;
+        border-right:0px;
+    }
+    .colcontainer{
+        height: 68px;
+        padding-left: 5px;
+        padding-right: 4px;
     }
 }

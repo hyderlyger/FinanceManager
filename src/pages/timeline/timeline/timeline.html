@@ -25,30 +25,30 @@
 <ion-content padding class="color_offwhite padding5">
 
     <ion-list no-lines >
-      <ion-item-group no-lines *ngFor="let amountEntryGroup of (dbprovider.amountEntries | groupamountentriesbydate:dbprovider.selectedAccount.id)">
+      <ion-item-group no-lines *ngFor="let dateGroup of (dbprovider.amountEntries | groupamountentriesbydate:dbprovider.selectedAccount.id)">
         <ion-item-divider light class="listgroupheading">
           <!--<div class="listgroupheadingbackline"></div> Problem in Android-->
           <ion-note small color="_black" class="listgroupheadingnote">
-            {{ amountEntryGroup.date.toDateString() }}
+            {{ dateGroup.date.toDateString() }}
           </ion-note>
 
         </ion-item-divider>
 
-        <ion-item-sliding *ngFor="let amountEntry of amountEntryGroup.AccountEntries ; let i = index">
+        <ion-item-sliding *ngFor="let categorySubGroup of dateGroup.CategoryGroups ; let i = index">
             <ion-item class="timelineItem" color="_offwhite">
                 <div item-left>
                   <button ion-button clear icon-only color="_black">
                     <ion-icon name="ios-arrow-down" class="mediumsmallicom"></ion-icon>
                   </button>
-                    <img class="itemImageCategory" [src]="dbprovider.getCategoryImagebyCategoryID(amountEntry.categoryID)"/>
+                    <img class="itemImageCategory" [src]="dbprovider.getCategoryImagebyCategoryID(categorySubGroup.subgroupCategoryID)"/>
                 </div>
-                <h2>{{dbprovider.getCategorySubjectbyCategoryID(amountEntry.categoryID)}}</h2>
-                <ion-note style="margin: 0px;" item-right [color]="amountEntry.type == 1 ? '_green' : '_red'">
-                  <h2 text-wrap class="nospacebreak">{{amountEntry.price | currency:'BRL':true:'1.2-2' | currencybrl}}</h2>
+                <h2>{{dbprovider.getCategorySubjectbyCategoryID(categorySubGroup.subgroupCategoryID)}}</h2>
+                <ion-note style="margin: 0px;" item-right [color]="categorySubGroup.CategoryEntries[0].type == 1 ? '_green' : '_red'">
+                  <h2 text-wrap class="nospacebreak">{{categorySubGroup.CategoryEntries[0].price | currency:'BRL':true:'1.2-2' | currencybrl}}</h2>
                 </ion-note>
             </ion-item>
             <ion-item-options >
-                <button class="red_itemOption" (click)="delete(amountEntry.id)">
+                <button class="red_itemOption" (click)="delete(categorySubGroup.CategoryEntries[0].id)">
                     <ion-icon name="trash"></ion-icon>
                     Delete
                 </button>
