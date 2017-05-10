@@ -18,11 +18,68 @@
         </ion-thumbnail>
     </ion-item>
 
-    <ion-item>
-        <ion-note>
-          <h2 text-center>This is Perfil Menu</h2>
-        </ion-note>
-    </ion-item>
+    <table class="fill100">
+
+      <tbody>
+        <tr class="row verticalcenter">
+            <td class="leftcol">
+              <div class="rowimagecontainer">
+                <img class="rowimg " src="assets/Images/Profile/icons/03.png"/>
+              </div>
+            </td>
+            <td class="rightcol verticalcenter">
+              <ion-input class="rowtitle verticalcenter" type="text" placeholder="User Name" [(ngModel)]="_username"></ion-input>
+            </td>
+        </tr>
+        <tr class="row verticalcenter">
+            <td class="leftcol">
+              <div class="rowimagecontainer">
+                <img class="rowimg " src="assets/Images/Profile/icons/02.png"/>
+              </div>
+            </td>
+            <td class="rightcol verticalcenter">
+              <ion-input class="rowtitle verticalcenter" type="text" placeholder="E-mail" [(ngModel)]="_email"></ion-input>
+            </td>
+        </tr>
+        <tr class="row verticalcenter">
+            <td class="leftcol">
+              <div class="rowimagecontainer">
+                <img class="rowimg " src="assets/Images/Profile/icons/01.png"/>
+              </div>
+            </td>
+            <td class="rightcol verticalcenter">
+              <ion-input class="rowtitle verticalcenter" type="text" placeholder="Atual" [(ngModel)]="_actualpass"></ion-input>
+            </td>
+        </tr>
+        <tr class="row verticalcenter">
+            <td class="leftcol">
+              <div class="rowimagecontainer">
+              </div>
+            </td>
+            <td class="rightcol verticalcenter">
+              <ion-input class="rowtitle verticalcenter" type="text" placeholder="Nova" [(ngModel)]="_newpass"></ion-input>
+            </td>
+        </tr>
+        <tr class="row verticalcenter">
+            <td class="leftcol">
+              <div class="rowimagecontainer">
+              </div>
+            </td>
+            <td class="rightcol verticalcenter">
+              <ion-input class="rowtitle verticalcenter" type="text" placeholder="Repita" [(ngModel)]="_newpass2"></ion-input>
+            </td>
+        </tr>
+        <tr class="row verticalcenter">
+            <td style="margin: 0px; text-align:center; width: 100%;">
+              <button style="width:35px; height:35px;" large ion-button clear icon-only >
+                <img style="max-width:35px; max-height:35px;" src="assets/Images/Profile/icons/04.png"/>
+              </button>
+            </td>
+        </tr>
+      </tbody>
+      
+
+    </table>
     
   </ion-list>
 
