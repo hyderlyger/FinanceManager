@@ -26,20 +26,20 @@
 
 //Cores
 .item{
-    background: #e8e8e8;
+    background: map-get($colors, _offwhite);
 }
 .popover-viewport{
-    background: #b11623;
+    background: map-get($colors, _red);
 }
 .nospacebreak{
         white-space: nowrap;
     }
 .color_offwhite{
-        background: #e8e8e8;
+        background: map-get($colors, _offwhite);
     }
 .red_itemOption{
-        background: #b11623;
-        color: white;
+        background: map-get($colors, _red);
+        color: map-get($colors, _white);
     }
 .nodefaultuppercase{
         text-transform: none;
@@ -63,22 +63,22 @@
 
 //Border Button Style
     .backgroundColorRed{
-        background-color: #b11623;
+        background-color: map-get($colors, _red);
     }
     .backgroundColorGreen{
-        background-color: #4fb37c;
+        background-color: map-get($colors, _green);
     }
     .colorRed{
-        color: #b11623;
+        color: map-get($colors, _red);
     }
     .colorGreen{
-        color: #4fb37c;
+        color: map-get($colors, _green);
     }
     .greenborder{
-        border-color: #4fb37c !important;
+        border-color: map-get($colors, _green) !important;
     }
     .redborder{
-        border-color: #b11623 !important;
+        border-color: map-get($colors, _red) !important;
     }
     .borderButton{
         width: 270px;

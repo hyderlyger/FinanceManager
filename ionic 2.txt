@@ -58,6 +58,8 @@ Debugger (In Package.json):
     "ionic_source_map": "source-map"
   },
 
+Android build error (no gradle wrapper): https://developer.android.com/studio/index.html#downloads download and Replaced C:\Users\username\AppData\Local\Android\sdk\tools with extracted sub-folder tools/ 
+
 Lifecycle of Page:
 http://blog.ionic.io/navigating-lifecycle-events/
 
@@ -91,3 +93,6 @@ myDate: String = new Date().toISOString();	//Ionic uses the ISO 8601 datetime fo
 Pipes:
 https://www.joshmorony.com/how-to-use-pipes-to-manipulate-data-in-ionic-2/
 Note: Eliminate dashes in the 'name'. Causes error "unexpected Uppercase".
+
+CHARTS:
+https://www.joshmorony.com/adding-responsive-charts-graphs-to-ionic-2-applications/
