@@ -30,6 +30,13 @@ usb change to 2.0 for iphone connectivity
 
 ----------------------------------------------------
 
+//VS Code
+
+Collapse All 	-> ctrl + k, ctrl + 0
+Open All 	-> ctrl + k, ctrl + J
+
+----------------------------------------------------
+
 //IONIC 2
 http://blog.teamtreehouse.com/install-node-js-npm-windows
 

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { DBProvider } from '../../../providers/db-provider'
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { DBProvider } from '../../../providers/db-provider';
 
 @IonicPage()
 @Component({
@@ -13,7 +13,8 @@ export class MenuProfile {
   _actualpass : string;
   _newpass : string;
   _newpass2 : string;
-  constructor(public navCtrl: NavController, public navParams: NavParams, private dbprovider : DBProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private dbprovider : DBProvider,
+              private alertCtrl : AlertController) {
     this._username = "";
     this._email = "";
     this._actualpass = "";
@@ -26,5 +27,38 @@ export class MenuProfile {
 
     this._username = this.dbprovider.user.name;
     this._email = this.dbprovider.user.email;
+  }
+  updateUser(){
+    if(this._username && this._email && this._actualpass && this._newpass && this._newpass2){
+      if(this._actualpass == this.dbprovider.user.password){
+        if(this._newpass == this._newpass2){
+          //Updating the user
+          this.dbprovider.updateUser(this._username, this._email, this._newpass).then((state)=>{
+            if(state){
+              this._actualpass = "";
+              this._newpass = "";
+              this._newpass2 = "";
+              this._username = this.dbprovider.user.name;
+              this._email = this.dbprovider.user.email;
+              this.showAlert("Success","Your profile has been updated.","OK");
+            }
+          });
+        }else{
+          this.showAlert("Error","New passwords fields must be identical.","OK");
+        }
+      }else{
+        this.showAlert("Error","Incorrect actual password.","OK");
+      }
+    }else{
+      this.showAlert("Error","All fields are required","OK");
+    }
+  }
+  showAlert(title: string, subTitle: string, buttonText : string){
+    var alert = this.alertCtrl.create({
+        title: title,
+        subTitle: subTitle,
+        buttons: [buttonText]
+      });
+    alert.present();
   }
 }

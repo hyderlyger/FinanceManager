@@ -12,7 +12,7 @@ export class CurrencyBRL implements PipeTransform {
     value = value.replace(/\./g,'*');   //temp *
     value = value.replace(/\,/g,'.');   //replace , -> .
     value = value.replace(/\*/g,'\,');  //replace . -> ,
-    value = value.replace(/\$/,'$ ');    //space after currency
+    value = value.replace(/\$/,'$ ');   //space after currency
     return value;
 
   }

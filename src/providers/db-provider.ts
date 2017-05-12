@@ -21,14 +21,12 @@ export class DBProvider {
         db_categories : "DBCategories",
         db_ammountenteries : "DBAmmountEnteries"
   };
-  
   //public Variables
   public user: User;
   public accounts: Array<Account> = [];
   public categories: Array<Category> = [];
   public amountEntries: Array<AmountEntry> = [];
   public amountEntriesGroupsAndSubgroups = [];
-
   public balance : number = 0;
   public selectedAccount : Account;
 
@@ -37,11 +35,12 @@ export class DBProvider {
     console.log('Hello DBProvider Provider');
 
     //let uuid = UUID.UUID();
-    //TODO - Eliminate Storage ready checks 
     this.LoadLatestUSERfromDB();
   }
-  //User
-  registerUser( _user : User){
+
+
+  //DATABASE INTERACTIONS - USER
+  public registerUser( _user : User){
 
     this.user = _user;  //UI User    
     return new Promise((resolve) => {
@@ -70,8 +69,7 @@ export class DBProvider {
     });
 
   }
-
-  ValidateUser(userid : string, userpass : string){
+  public ValidateUser(userid : string, userpass : string){
     return new Promise((resolve)=> {
 
       if(userid && userpass)
@@ -90,10 +88,25 @@ export class DBProvider {
 
     });
   }
+  public updateUser(username : string, email :string, newpassword : string) { //it is prefered to return all elements seperated
+    return new Promise((resolve)=> {
+      if(this.user != null) {  //Do Validations Here
+            this.user.name = username;
+            this.user.email = email;
+            this.user.password = newpassword;
 
-  //add
-  addEntry(amountEntry : AmountEntry)  //it is prefered to return all elements seperated
-  {
+            this.storage.ready().then(() => {
+              this.storage.set(this.dbConstants.db_user, JSON.stringify(this.user));
+              this.LoadLatestUSERfromDB().then(()=>{
+                resolve(true);
+              });
+            });
+        }
+    });
+  }
+
+  //DATABASE INTERACTIONS - AMOUNTENTRY
+  public addEntry(amountEntry : AmountEntry)  { //it is prefered to return all elements seperated
     return new Promise((resolve)=> {
       if(amountEntry != null && this.amountEntries != null) {  //Do Validations Here
             this.amountEntries.push(amountEntry);
@@ -106,9 +119,7 @@ export class DBProvider {
         }
     });
   }
-
-  //delete
-  deleteEntry(id: string) {
+  public deleteEntry(id: string) {
     return new Promise((resolve)=> {
 
       if(this.amountEntries != null && this.amountEntries.find(item=> item.id == id))
@@ -127,9 +138,17 @@ export class DBProvider {
     });
   }
 
-  //refresh data
-  LoadLatestAMOUNTENTRIESfromDB()
-  {
+  //DATABASE - Load/Reload Latest Data
+  private LoadAllDatabaseData(){
+    return new Promise((resolve)=> {
+        Promise.all([ this.LoadLatestAMOUNTENTRIESfromDB(),
+                      this.LoadLatestACCOUNTSfromDB(),
+                      this.LoadLatestCATEGORIESfromDB() ]).then(()=>{
+                        resolve();
+        });
+      });
+  }
+  private LoadLatestAMOUNTENTRIESfromDB(){
       return new Promise ((resolve)=>{
           this.storage.ready().then(() => {
             this.storage.get(this.dbConstants.db_ammountenteries).then( (val) => {
@@ -146,8 +165,7 @@ export class DBProvider {
       });
       
   }
-  LoadLatestACCOUNTSfromDB()
-  {
+  private LoadLatestACCOUNTSfromDB(){
     return new Promise ((resolve)=>{
       this.storage.ready().then(() => {
         this.storage.get(this.dbConstants.db_accounts).then( (val) => {
@@ -162,8 +180,7 @@ export class DBProvider {
       });
     });
   }
-  LoadLatestCATEGORIESfromDB()
-  {
+  private LoadLatestCATEGORIESfromDB(){
     return new Promise ((resolve)=>{
       this.storage.ready().then(() => {
         this.storage.get(this.dbConstants.db_categories).then( (val) => {
@@ -178,7 +195,7 @@ export class DBProvider {
       });
     });
   }
-  LoadLatestUSERfromDB(){
+  private LoadLatestUSERfromDB(){
     return new Promise ((resolve)=>{
       this.storage.ready().then(() => {
           this.storage.get(this.dbConstants.db_user).then( (val) => {
@@ -194,55 +211,8 @@ export class DBProvider {
     });
   }
 
-  //Misc functions
-  public UpdateSelectedAccount(accountid : string){   //UPdates the UI Active Account i.e. on the selection
-    if(this.accounts.length>0 && this.accounts.find(item=> item.id == accountid))
-    {
-      //if issue occurs use -> this.LoadLatestAMOUNTENTRIESfromDB().then(()=>{
-      this.selectedAccount = this.accounts.find(item=> item.id == accountid);
-      this.calculateBalanceofSelectedAccount();
-      this.updateAmountEntriesGroupsAndSubgroups();
-    }  
-  }
-  getCategorySubjectbyCategoryID(id:string)
-  {
-    if(this.categories.find(item=> item.id == id))
-      return this.categories.find(item=> item.id == id).subject;
-    else
-      return "Unknown Category";
-  }
-  getCategoryImagebyCategoryID(id:string)
-  {
-    if(this.categories.find( item => item.id == id))
-    {
-      var categoryobject = this.categories.find( item => item.id == id);
-      if (categoryobject.type == Type.Revenue)
-        return this.imagesprovider.getCategoryRevenueImagebyID(categoryobject.imageindex);
-      else
-        return this.imagesprovider.getCategoryExpenseImagebyID(categoryobject.imageindex);
-    }else{
-      return "";
-    }
-    
-  }
 
-  //Private Functions
-  private LoadAllDatabaseData(){
-    return new Promise((resolve)=> {
-        Promise.all([ this.LoadLatestAMOUNTENTRIESfromDB(),
-                      this.LoadLatestACCOUNTSfromDB(),
-                      this.LoadLatestCATEGORIESfromDB() ]).then(()=>{
-                        resolve();
-        });
-      });
-  }
-  private calculateBalanceofSelectedAccount() {
-    if(this.amountEntries != null && this.selectedAccount != null)
-    {
-      this.balance = 0;
-      this.balance = this.calculateBalanceOnAccountID(this.selectedAccount.id);
-    }
-  }
+  //Public Functionality
   public calculateBalanceOnAccountID(id :string){
     var balance = 0;
     if(this.amountEntries != null && this.accounts.find(item=> item.id == id) != null)
@@ -261,7 +231,54 @@ export class DBProvider {
     }
     return balance;
   }
+  public UpdateSelectedAccount(accountid : string){   //UPdates the UI Active Account i.e. on the selection
+    if(this.accounts.length>0 && this.accounts.find(item=> item.id == accountid))
+    {
+      //if issue occurs use -> this.LoadLatestAMOUNTENTRIESfromDB().then(()=>{
+      this.selectedAccount = this.accounts.find(item=> item.id == accountid);
+      this.calculateBalanceofSelectedAccount();
+      this.updateAmountEntriesGroupsAndSubgroups();
+    }  
+  }
+  public getCategorySubjectbyCategoryID(id:string){
+    if(this.categories.find(item=> item.id == id))
+      return this.categories.find(item=> item.id == id).subject;
+    else
+      return "Unknown Category";
+  }
+  public getCategoryImagebyCategoryID(id:string){
+    if(this.categories.find( item => item.id == id))
+    {
+      var categoryobject = this.categories.find( item => item.id == id);
+      if (categoryobject.type == Type.Revenue)
+        return this.imagesprovider.getCategoryRevenueImagebyID(categoryobject.imageindex);
+      else
+        return this.imagesprovider.getCategoryExpenseImagebyID(categoryobject.imageindex);
+    }else{
+      return "";
+    }
+    
+  }
+  public transform(value: Array<AmountEntry>, accountID : string) {    //Transformation for Group : previously done in pipe "group amount entries by date"
+    this.amountEntriesGroupsAndSubgroups = [];
+    var filteredEntries = this.filterEntriesbyAccountID(value, accountID);
+    this.groupContactsUsingArray(filteredEntries);
+  }
+  public toggleSubGroupItemVisibility(gid :string , subgid : string){
+    var group = this.amountEntriesGroupsAndSubgroups.find( item=> item.groupid == gid);
+    var subgroup = group.CategoryGroups.find(item=> item.subgroupid == subgid);
+    subgroup.isvisible = !subgroup.isvisible;
+  }
 
+
+  //Private Helper Functions
+  private calculateBalanceofSelectedAccount() {
+    if(this.amountEntries != null && this.selectedAccount != null)
+    {
+      this.balance = 0;
+      this.balance = this.calculateBalanceOnAccountID(this.selectedAccount.id);
+    }
+  }
   private updateAmountEntriesGroupsAndSubgroups(){
 
     if(!this.amountEntries) {
@@ -301,20 +318,10 @@ export class DBProvider {
     this.categories.push( new Category( UUID.UUID(), "Poupança", 1, Type.Revenue, issystem));
 
   }
-
-  //Transformation for Group : previously done in pipe "group amount entries by date"
-  transform(value: Array<AmountEntry>, accountID : string) {
-    this.amountEntriesGroupsAndSubgroups = [];
-    var filteredEntries = this.filterEntriesbyAccountID(value, accountID);
-    this.groupContactsUsingArray(filteredEntries);
-  }
-
-  filterEntriesbyAccountID(entries : Array<AmountEntry>, id : string){
+  private filterEntriesbyAccountID(entries : Array<AmountEntry>, id : string){
     return entries.filter(item=> item.accountID == id);
   }
-
-  groupContactsUsingArray( entries : Array<AmountEntry> )
-  {
+  private groupContactsUsingArray( entries : Array<AmountEntry> ){
     //Sorting Array by latest Date
     var datesorted = entries.sort(function(a,b){
       var aa = new Date(a.timestamp).toLocaleDateString();
@@ -381,10 +388,5 @@ export class DBProvider {
         currentSubGroup.push(value);
     });
   }
-  toggleSubGroupItemVisibility(gid :string , subgid : string)
-  {
-    var group = this.amountEntriesGroupsAndSubgroups.find( item=> item.groupid == gid);
-    var subgroup = group.CategoryGroups.find(item=> item.subgroupid == subgid);
-    subgroup.isvisible = !subgroup.isvisible;
-  }
+
 }

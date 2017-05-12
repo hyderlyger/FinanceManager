@@ -22,7 +22,6 @@ import { Transfer } from '../pages/timeline/transfer/transfer';
 
 //Pipes
 import { CurrencyBRL } from '../pipes/currency-brl';
-import { GroupAmountEntriesbyDate } from '../pipes/group-amount-entriesby-date';
 
 //Plugins
 import { StatusBar } from '@ionic-native/status-bar';
@@ -57,7 +56,6 @@ import { PopoverAccountSelect } from '../components/popover-account-select/popov
     Transfer,
     //Pipes
     CurrencyBRL,
-    GroupAmountEntriesbyDate,
     //Components
     PopoverAccountSelect
   ],
