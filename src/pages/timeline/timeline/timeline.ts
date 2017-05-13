@@ -1,17 +1,19 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
 
+import { MenuPanel } from '../../sidemenu/menu-panel/menu-panel';
 import { AddAmountEntry } from '../add-amount-entry/add-amount-entry';
 import { Transfer } from '../transfer/transfer'
 
 import { Type } from '../../../models/enums';
-import { Account } from '../../../models/account';
+import { EventType } from '../../../models/enums';
 
 import { PopoverController } from 'ionic-angular';
 import { PopoverAccountSelect } from '../../../components/popover-account-select/popover-account-select';
 
 import { DBProvider } from '../../../providers/db-provider';
 import { ImagesProvider } from '../../../providers/images-provider';
+
 
 @IonicPage()
 @Component({
@@ -20,9 +22,18 @@ import { ImagesProvider } from '../../../providers/images-provider';
 })
 export class Timeline {
 
-  constructor(public navCtrl: NavController,private popoverCtrl: PopoverController, 
+  constructor(public navCtrl: NavController,private popoverCtrl: PopoverController, private events : Events, 
               private dbprovider : DBProvider, private imagesprovider : ImagesProvider, public navParams: NavParams) {
 
+                this.events.subscribe(this.dbprovider.event_MenuEvent,(eventtype : EventType)=>{
+                  switch(eventtype){
+                    case EventType.OpenMenuPanel:
+                      this.navCtrl.push(MenuPanel);
+                      break;
+                    default:
+                      break;
+                  }
+                });
   }
 
   //Overrides
@@ -31,7 +42,6 @@ export class Timeline {
   ionViewCanEnter(){ //every time gets active
     console.log("Timeline - ionViewCanEnter");
   }
-
 
   //PopOver
   presentPopover(ev) {

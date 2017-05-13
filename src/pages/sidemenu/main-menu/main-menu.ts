@@ -1,20 +1,23 @@
 import { Component } from '@angular/core';
-import { AlertController } from 'ionic-angular';
+import { AlertController, MenuController, Events } from 'ionic-angular';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-import { MenuProfile } from '../menu-profile/menu-profile'
-import { MenuPanel } from '../menu-panel/menu-panel'
-import { MenuCategories } from '../menu-categories/menu-categories'
-import { MenuAccounts } from '../menu-accounts/menu-accounts'
-import { MenuSettings } from '../menu-settings/menu-settings'
+import { MenuProfile } from '../menu-profile/menu-profile';
+//import { MenuPanel } from '../menu-panel/menu-panel';
+import { MenuCategories } from '../menu-categories/menu-categories';
+import { MenuAccounts } from '../menu-accounts/menu-accounts';
+import { MenuSettings } from '../menu-settings/menu-settings';
 
+import { DBProvider } from '../../../providers/db-provider';
+import { EventType } from '../../../models/enums';
 @IonicPage()
 @Component({
   selector: 'page-main-menu',
   templateUrl: 'main-menu.html',
 })
 export class MainMenu {
-  constructor(public navCtrl: NavController,public alertCtrl: AlertController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController,public alertCtrl: AlertController, public navParams: NavParams,
+              private events : Events, private dbprovider : DBProvider, private menuCtrl : MenuController) {
   }
 
   ionViewDidLoad() {
@@ -33,7 +36,8 @@ export class MainMenu {
     this.navCtrl.push(MenuProfile);
   }
   openPanel(){
-    this.navCtrl.push(MenuPanel);
+    this.events.publish(this.dbprovider.event_MenuEvent,EventType.OpenMenuPanel); //asking root to open Panel
+    this.menuCtrl.close();
   }
   openCategories(){
     this.navCtrl.push(MenuCategories);

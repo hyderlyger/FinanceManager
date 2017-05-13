@@ -21,6 +21,10 @@ export class DBProvider {
         db_categories : "DBCategories",
         db_ammountenteries : "DBAmmountEnteries"
   };
+
+//Event Constants
+  public event_MenuEvent : string = "mymenuevent";
+
   //public Variables
   public user: User;
   public accounts: Array<Account> = [];
