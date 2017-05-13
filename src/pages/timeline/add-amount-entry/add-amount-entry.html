@@ -4,8 +4,8 @@
     <button class="menuheaderbutton" ion-button clear icon-only  text-center left>
       <img class="headerimg" src="assets/Images/Timeline/icons/whiteLogo.png"/>
     </button>
-    <button id="Calender" class="menuheaderbutton calenderfont colorRed" ion-button clear icon-only right
-            style="float: right; margin-right:10px; background-image: url('assets/Images/InOut/icons/05.png');  background-size: cover;">
+    <button id="Calender" class="menuheaderbutton colorRed" ion-button clear icon-only right
+            style="float: right; margin-right:10px; font-size: 21px; font-weight: bolder; background-image: url('assets/Images/InOut/icons/05.png');  background-size: cover;">
       <ion-datetime displayFormat="DD" pickerFormat="DD/MM/YYYY" [(ngModel)]="date"></ion-datetime>
     </button>
   </ion-navbar>
@@ -21,7 +21,7 @@
       <td class="entryBox" [ngClass]="type == 1 ? 'backgroundColorGreen' : (type == 2 ? 'backgroundColorRed' : 'backgroundColorBlue') ">
         <div>
           <div style="height:15px"></div>
-          <div style="height:35px; font-size:25px;"> {{ price | number:'1.2-2' | currencybrl }} </div>
+          <div style="height:35px;"><h5 style="font-size:25px;"> {{ price | number:'1.2-2' | currencybrl }} </h5></div>
           <div style="height:5px"></div>
         </div>
         <button ion-button clear icon-only  text-center class="priceremovebutton" (click)= "performOperation('<');">
