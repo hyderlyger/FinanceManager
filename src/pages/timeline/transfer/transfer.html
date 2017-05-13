@@ -1,24 +1,92 @@
-
 <ion-header >
 
-  <ion-navbar color="_red">
-    <ion-title>Transfer</ion-title>
+  <ion-navbar color="_blue" >
+      <button class="menuheaderbutton" ion-button clear icon-only  text-center left>
+        <img class="headerimg" src="assets/Images/Timeline/icons/whiteLogo.png"/>
+      </button>
   </ion-navbar>
 
 </ion-header>
 
-
 <ion-content padding class="color_offwhite">
-  <ion-note>
-    <h2 text-center> This is Transfer Page</h2>
-    <ion-card>
-      <ion-card-header>
-        Doughnut Chart
-      </ion-card-header>
-      <ion-card-content>
-        <canvas #doughnutCanvas></canvas>
-      </ion-card-content>
-    </ion-card>
-  </ion-note>
+  <table style="width: 270px; margin: auto;">
+
+    <tr>
+      <td class="entryBox backgroundColorBlue">
+        <div>
+          <div style="height:15px"></div>
+          <div style="height:35px; font-size:25px;"> {{ price | number:'1.2-2' | currencybrl }} </div>
+          <div style="height:5px"></div>
+        </div>
+      </td>
+    </tr>
+  </table>
+
+  <table style="width: 270px; margin: auto;">
+
+    <tr class="largespacer" ></tr>
+    <tr class="SelectionBox border2px">
+      <td>
+        <div class="img35by35Container" style="margin-left: 15px;">
+          <img class="img35by35" [src]="imageprovider.getAccountImagebyID(selectedAccountFrom.imageindex)"/>
+        </div>
+      </td>
+      <td>
+        <div>
+          <div style="height:8px"></div>
+          <div style="height:25px; font-size:16px;"> {{ selectedAccountFrom.subject }} </div>
+          <div style="height:2px"></div>
+        </div>
+      </td>
+      <td>
+        <button ion-button clear icon-only text-center color="_blue" style="margin-right: 4px;" (click)= "presentPopover_AccountExpense($event);">
+          <ion-icon name="ios-arrow-down" ></ion-icon> 
+        </button>
+      </td>
+    </tr>
+
+    <tr class="spacer" ></tr>
+    <tr class="SelectionBox">
+      <td>
+      </td>
+      <td>
+        <div class="img35by35Container" >
+          <img class="img35by35" src="assets/Images/Transfer/icons/00.png"/>
+        </div>
+      </td>
+      <td>
+      </td>
+    </tr>
+    
+    <tr class="spacer" ></tr>
+    <tr class="SelectionBox border2px">
+      <td>
+        <div class="img35by35Container" style="margin-left: 15px;">
+          <img class="img35by35" [src]="imageprovider.getAccountImagebyID(selectedAccountTo.imageindex)"/>
+        </div>
+      </td>
+      <td>
+        <div>
+          <div style="height:8px"></div>
+          <div style="height:25px; font-size:16px;"> {{ selectedAccountTo.subject }} </div>
+          <div style="height:2px"></div>
+        </div>
+      </td>
+      <td>
+        <button ion-button clear icon-only text-center color="_blue" style="margin-right: 4px;" (click)= "presentPopover_AccountRevenue($event);">
+          <ion-icon name="ios-arrow-down" ></ion-icon> 
+        </button>
+      </td>
+    </tr>
+
+  </table>
+
 </ion-content>
 
+<ion-footer>
+  <ion-toolbar text-center color="_offwhite">
+    <button ion-button center class="borderButton colorBlue" (click)="saveEntry();">
+      Tranfer
+    </button>
+  </ion-toolbar>
+</ion-footer>

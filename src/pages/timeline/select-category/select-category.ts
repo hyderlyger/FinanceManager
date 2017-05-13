@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
- import { UUID } from 'angular2-uuid';
+import { UUID } from 'angular2-uuid';
 
 import { AmountEntry } from '../../../models/amountEntry';
 import { Category } from '../../../models/category'
@@ -47,7 +47,7 @@ export class SelectCategory {
       this.dbprovider.addEntry(new AmountEntry( UUID.UUID(),
                                                 this.navParams.get("price"),
                                                 this.type,
-                                                this.navParams.get("observations"),
+                                                this.navParams.get("observations") == true ? this.navParams.get("observations") : "",
                                                 new Date(this.navParams.get("date")),
                                                 false,  //not a system entry
                                                 this.navParams.get("accountid"),

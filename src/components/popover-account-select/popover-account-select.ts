@@ -13,6 +13,7 @@ export class PopoverAccountSelect {
   _accounts : Array<Account> = [];
   constructor(private viewCtrl: ViewController, private dbprovider : DBProvider, private imagesprovider : ImagesProvider) {
     console.log('Hello PopoverAccountSelect Component');
+    
     this._accounts = this.dbprovider.accounts;
   }
   view

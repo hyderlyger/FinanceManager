@@ -1,14 +1,12 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Events, PopoverController, AlertController } from 'ionic-angular';
 
 import { MenuPanel } from '../../sidemenu/menu-panel/menu-panel';
 import { AddAmountEntry } from '../add-amount-entry/add-amount-entry';
-import { Transfer } from '../transfer/transfer'
 
 import { Type } from '../../../models/enums';
 import { EventType } from '../../../models/enums';
 
-import { PopoverController } from 'ionic-angular';
 import { PopoverAccountSelect } from '../../../components/popover-account-select/popover-account-select';
 
 import { DBProvider } from '../../../providers/db-provider';
@@ -22,9 +20,11 @@ import { ImagesProvider } from '../../../providers/images-provider';
 })
 export class Timeline {
 
-  constructor(public navCtrl: NavController,private popoverCtrl: PopoverController, private events : Events, 
-              private dbprovider : DBProvider, private imagesprovider : ImagesProvider, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, private popoverCtrl: PopoverController, private events : Events, 
+              private dbprovider : DBProvider, private imagesprovider : ImagesProvider, public navParams: NavParams,
+              private alertCtrl : AlertController) {
 
+                //Event that listens to fullscreen Side Menu Page Changes
                 this.events.subscribe(this.dbprovider.event_MenuEvent,(eventtype : EventType)=>{
                   switch(eventtype){
                     case EventType.OpenMenuPanel:
@@ -42,7 +42,7 @@ export class Timeline {
   ionViewCanEnter(){ //every time gets active
     console.log("Timeline - ionViewCanEnter");
   }
-
+  
   //PopOver
   presentPopover(ev) {
     let popover = this.popoverCtrl.create(PopoverAccountSelect);
@@ -50,6 +50,7 @@ export class Timeline {
       ev: ev
     });
     popover.onDidDismiss((accountid : string) => {
+      if(accountid)
         this.dbprovider.UpdateSelectedAccount(accountid);
     });
   }
@@ -62,8 +63,12 @@ export class Timeline {
         this.navCtrl.push(AddAmountEntry,{type : Type.Expense, selectedaccountid: this.dbprovider.selectedAccount.id});
     }
   goto_transfer(){
-        this.navCtrl.push(Transfer);
-  }
+      if(this.dbprovider.accounts.length>=2){
+        this.navCtrl.push(AddAmountEntry,{type : Type.Transfer, selectedaccountid: this.dbprovider.selectedAccount.id});
+      }else{
+        this.showAlert("Unavailable","You must have atleast 2 accounts to use this feature","Ok");
+      }
+    }
   delete(id: string) {
     this.dbprovider.deleteEntry(id).then((status)=> {
 
@@ -71,5 +76,13 @@ export class Timeline {
   }
   toggleSubGroupVisibility(groupid, subgroupid){
     this.dbprovider.toggleSubGroupItemVisibility(groupid, subgroupid);
+  }
+  showAlert(title: string, subTitle: string, buttonText : string){
+    var alert = this.alertCtrl.create({
+        title: title,
+        subTitle: subTitle,
+        buttons: [buttonText]
+      });
+    alert.present();
   }
 }

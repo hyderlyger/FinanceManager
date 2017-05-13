@@ -3,8 +3,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Type } from '../../../models/enums';
 import { AlertController } from 'ionic-angular';
 import { SelectCategory } from '../select-category/select-category';
+import { Transfer } from '../transfer/transfer';
 
-import {  } from ''
 @IonicPage()
 @Component({
   selector: 'page-add-amount-entry',
@@ -35,18 +35,27 @@ export class AddAmountEntry {
     console.log('ionViewDidLoad AddAmountEntry');
   }
 
-  gotoSelectingCategoryImage()
+  gotoNextPage()
   {
     if(this.price && this.date && this.price >0)
     {
-      this.navCtrl.push(SelectCategory,{ type: this.type,
-                                        price: this.price,
-                                        observation: this.observation, 
-                                        date: this.date,
-                                        accountid: this.navParams.get("selectedaccountid") });   //sending data to next page
+      if(this.type == Type.Transfer){
+        this.navCtrl.push(Transfer,{type: this.type,
+                                    price: this.price,
+                                    observation: this.observation, 
+                                    date: this.date,
+                                    accountid: this.navParams.get("selectedaccountid") });   //sending data to next page
+      }else{
+        this.navCtrl.push(SelectCategory,{type: this.type,
+                                          price: this.price,
+                                          observation: this.observation, 
+                                          date: this.date,
+                                          accountid: this.navParams.get("selectedaccountid") });   //sending data to next page
+      }
+    
     }else{
-      this.showAlert("Missing Field!", "The price must be positive and non-zero","Got It!");
-    }
+        this.showAlert("Missing Field!", "The price must be positive and non-zero","Got It!");
+      }
   }
 
   showAlert(title: string, subTitle: string, buttonText : string){

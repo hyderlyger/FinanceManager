@@ -1,6 +1,6 @@
 <ion-header >
 
-  <ion-navbar [color]=" type == 1 ? '_green' : '_red' " >
+  <ion-navbar [color]=" type == 1 ? '_green' : (type == 2 ? '_red' : '_blue') " >
     <button class="menuheaderbutton" ion-button clear icon-only  text-center left>
       <img class="headerimg" src="assets/Images/Timeline/icons/whiteLogo.png"/>
     </button>
@@ -18,7 +18,7 @@
   <table style="width: 270px; margin: auto;">
 
     <tr>
-      <td class="entryBox" [ngClass]="type == 1 ? 'backgroundColorGreen' : 'backgroundColorRed' ">
+      <td class="entryBox" [ngClass]="type == 1 ? 'backgroundColorGreen' : (type == 2 ? 'backgroundColorRed' : 'backgroundColorBlue') ">
         <div>
           <div style="height:15px"></div>
           <div style="height:35px; font-size:25px;"> {{ price | number:'1.2-2' | currencybrl }} </div>
@@ -34,7 +34,7 @@
     <tr>
       <td class="observationBox borderButton" style="border-color:#B7B7B7; border-left: 0px; font-size:13px;">
         <div class="img35by35" style="float:left; margin-left:10px;">
-          <img class="img35by35 tilt" [src]="type == 1 ? 'assets/Images/InOut/icons/02-1.png' : 'assets/Images/InOut/icons/02.png' " />
+          <img class="img35by35 tilt" [src]="type == 1 ? 'assets/Images/InOut/icons/02-1.png' : (type == 2 ? 'assets/Images/InOut/icons/02.png' : 'assets/Images/InOut/icons/02.png') " />
         </div>
         <ion-input style="float:left; width:200px; margin-left:10px;" type="text" placeholder="Observation" [(ngModel)]="observation"></ion-input>
       </td>
@@ -46,9 +46,9 @@
 
         <div class="colcontainer" *ngFor=" let item of _calculatorItems; let i = index">
           <ion-col >
-            <div class="btnContainer" [ngClass]=" type == 1 ? 'greenborder' : 'redborder' " >
+            <div class="btnContainer" [ngClass]=" type == 1 ? 'greenborder' : (type == 2 ? 'redborder' : 'blueborder') " >
               <div>
-                <button class="imggbtn calenderfont" (click)="performOperation(item);" [ngClass]=" type == 1 ? 'colorGreen' : 'colorRed' " ion-button clear icon-only >
+                <button class="imggbtn calenderfont" (click)="performOperation(item);" [ngClass]=" type == 1 ? 'colorGreen' : (type == 2 ? 'colorRed' : 'colorBlue') " ion-button clear icon-only >
                   {{item}}
                 </button>
               </div>
@@ -65,8 +65,8 @@
 
 <ion-footer>
   <ion-toolbar text-center color="_offwhite">
-    <button ion-button center class="borderButton" [ngClass]="type == 1 ? 'colorGreen' : 'colorRed' "  (click)="gotoSelectingCategoryImage();">
-      Select Category
+    <button ion-button center class="borderButton" [ngClass]="type == 1 ? 'colorGreen' : (type == 2 ? 'colorRed' : 'colorBlue') "  (click)="gotoNextPage();">
+      {{ type == 3 ? "Select Account" : "Select Category" }}
     </button>
   </ion-toolbar>
 </ion-footer>

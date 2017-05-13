@@ -86,6 +86,7 @@ https://www.youtube.com/user/LittlejTFS/featured
 PopOver:
 https://learnionic2.com/2017/03/05/ionic-2-getting-data-from-a-popover-to-your-component-using-ondismiss/
 https://ionicframework.com/docs/api/components/popover/PopoverController/S
+Info : The extra data is in the controller object
 
 Database:
 https://www.pluralsight.com/guides/software-engineering-best-practices/ionic-2-database-management-and-versioning

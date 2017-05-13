@@ -28,9 +28,6 @@
 .item{
     background: map-get($colors, _offwhite);
 }
-.popover-viewport{
-    background: map-get($colors, _red);
-}
 .nospacebreak{
         white-space: nowrap;
     }
@@ -68,17 +65,26 @@
     .backgroundColorGreen{
         background-color: map-get($colors, _green);
     }
+    .backgroundColorBlue{
+        background-color: map-get($colors, _blue);
+    }
     .colorRed{
         color: map-get($colors, _red);
     }
     .colorGreen{
         color: map-get($colors, _green);
     }
+    .colorBlue{
+        color: map-get($colors, _blue);
+    }
     .greenborder{
         border-color: map-get($colors, _green) !important;
     }
     .redborder{
         border-color: map-get($colors, _red) !important;
+    }
+    .blueborder{
+        border-color: map-get($colors, _blue) !important;
     }
     .borderButton{
         width: 270px;

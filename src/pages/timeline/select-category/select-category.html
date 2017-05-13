@@ -27,8 +27,8 @@
     <tr [ngClass]=" type == 1 ? 'largespacer' : 'spacer' " ></tr>
     <tr>
       <ion-row>
-        <div [ngClass]=" category.type == type ? 'colcontainer' : ''" *ngFor=" let category of _categories; let i = index">
-          <ion-col *ngIf="category.type == type" >
+        <div [ngClass]=" category.type == type && category.issystem != true ? 'colcontainer' : ''" *ngFor=" let category of _categories; let i = index">
+          <ion-col *ngIf="category.type == type && category.issystem != true" >
             <div class="btnContainer" [ngClass]=" type == 1 ? 'greenborder' : 'redborder' " >
               <div [ngClass]="selectedCategoryid == category.id ? 'highlight' : '' ">
                 <button class="imggbtn" ion-button clear icon-only (click)="updateSelection(i);" >

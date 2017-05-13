@@ -22,7 +22,7 @@ export class DBProvider {
         db_ammountenteries : "DBAmmountEnteries"
   };
 
-//Event Constants
+  //Event Constants
   public event_MenuEvent : string = "mymenuevent";
 
   //public Variables
@@ -263,6 +263,16 @@ export class DBProvider {
     }
     
   }
+  public getCategoryIDforTransfer(_type : Type){
+    var index = this.imagesprovider.getTransferImageIndex(_type);  //index of relative type
+    return this.categories.find((item)=> item.imageindex == index && item.type == _type).id;
+  }
+  public getAccountbyID(id:string){
+    return this.accounts.find((item)=> item.id == id);
+  }
+  public getDistinctAccountOtherthantheMentionedID(id:string){
+    return this.accounts.find((item)=> item.id != id);
+  }
   public transform(value: Array<AmountEntry>, accountID : string) {    //Transformation for Group : previously done in pipe "group amount entries by date"
     this.amountEntriesGroupsAndSubgroups = [];
     var filteredEntries = this.filterEntriesbyAccountID(value, accountID);
@@ -295,7 +305,7 @@ export class DBProvider {
   }
   private createDefaultApplicationData(){
     let dateToday = new Date();
-    let issystem = true;
+    let issystem = false;
     //Accounts
     this.accounts = []; //Clearing
     this.accounts.push( new Account( UUID.UUID(), "Cartão de Crédito", 9, dateToday, issystem, 0));  //CreditCard
@@ -315,11 +325,12 @@ export class DBProvider {
     this.categories.push( new Category( UUID.UUID(), "Animais", 0, Type.Expense, issystem));
     this.categories.push( new Category( UUID.UUID(), "Carro", 1, Type.Expense, issystem));
     this.categories.push( new Category( UUID.UUID(), "Casa", 11, Type.Expense, issystem));
-
+    this.categories.push( new Category( UUID.UUID(), "Transferir", this.imagesprovider.getTransferImageIndex(Type.Expense), Type.Expense, true));
     //Categories - Revenue
     this.categories.push( new Category( UUID.UUID(), "Salário", 2, Type.Revenue, issystem));
     this.categories.push( new Category( UUID.UUID(), "Aluguel", 0, Type.Revenue, issystem));
     this.categories.push( new Category( UUID.UUID(), "Poupança", 1, Type.Revenue, issystem));
+    this.categories.push( new Category( UUID.UUID(), "Transferir", this.imagesprovider.getTransferImageIndex(Type.Revenue), Type.Revenue, true));
 
   }
   private filterEntriesbyAccountID(entries : Array<AmountEntry>, id : string){
