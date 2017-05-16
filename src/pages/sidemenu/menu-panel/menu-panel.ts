@@ -1,6 +1,9 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Chart } from 'chart.js';
+import { DBProvider } from '../../../providers/db-provider';
+import { Category } from '../../../models/category';
+import { Type } from '../../../models/enums';
 
 @IonicPage()
 @Component({
@@ -9,37 +12,74 @@ import { Chart } from 'chart.js';
 })
 export class MenuPanel {
   @ViewChild('doughnutCanvas') doughnutCanvas;
-  doughnutChart: any;
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  @ViewChild('lineCanvas') lineCanvas;
 
+  date : string;
+  doughnutChart: any;
+  lineChart :  any;
+
+  //Graph Date
+  monthlyCategoryList : Array<myCategory> = []; //each row contains {categories : this.dbprovider.categories[i], Total : 0}
+  TotalRevenue : number;
+  TotalExpense : number;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private dbprovider : DBProvider) {
+      this.date = new Date().toISOString();
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad MenuPanel');
+  generatedoughnutData(){
+    //reset
+    this.TotalRevenue = 0;
+    this.TotalExpense = 0;
+    this.monthlyCategoryList = [];
 
+    //initializing date
+    var currentdate = new Date(this.date);
+    var currentmonth= currentdate.getMonth();
+    var currentyear = currentdate.getFullYear();
+
+    //Collecting the Categories to show
+    for(var i=0; i<12; i++){
+        var newCat = new myCategory(this.dbprovider.categories[i],0);
+        this.monthlyCategoryList.push(newCat);
+    }
+
+    //Generating Data for the Month
+    this.dbprovider.amountEntries.forEach(element => {
+
+        var currentdate = new Date(this.date);
+        var elementdate = new Date(element.timestamp);
+        if( currentmonth == elementdate.getMonth() && currentyear == elementdate.getFullYear()){
+            if(element.type == Type.Expense){
+                var myCat =  this.monthlyCategoryList.find((item)=>item.category.id == element.categoryID);
+                if(myCat){  //exists
+                    myCat.Total += element.price;
+                }
+                this.TotalExpense += element.price;
+            }else if(element.type == Type.Revenue){
+                this.TotalRevenue += element.price;
+            }
+        }
+    });
+    this.updateDatatoTheGraphs();
+  }
+  updateDatatoTheGraphs()
+  {
     this.doughnutChart = new Chart(this.doughnutCanvas.nativeElement, {
     
                 type: 'doughnut',
                 data: {
-                    labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+                    labels: ["Revenue", "Expense"],
                     datasets: [{
-                        label: '# of Votes',
-                        data: [12, 19, 3, 5, 2, 3],
+                        label: 'Finances',
+                        data: [ this.TotalRevenue, this.TotalExpense ],//[50000, 40000],
                         backgroundColor: [
-                            'rgba(255, 99, 132, 0.2)',
-                            'rgba(54, 162, 235, 0.2)',
-                            'rgba(255, 206, 86, 0.2)',
-                            'rgba(75, 192, 192, 0.2)',
-                            'rgba(153, 102, 255, 0.2)',
-                            'rgba(255, 159, 64, 0.2)'
+                            'rgba(79, 179, 124, 0.8)',
+                            'rgba(177, 22, 35, 0.8)',
                         ],
                         hoverBackgroundColor: [
-                            "#FF6384",
-                            "#36A2EB",
-                            "#FFCE56",
-                            "#FF6384",
-                            "#36A2EB",
-                            "#FFCE56"
+                            "#4fb37c",
+                            "#b11623",
                         ]
                     }]
                 },
@@ -51,4 +91,98 @@ export class MenuPanel {
     
             });
   }
+
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad MenuPanel');
+
+    this.generatedoughnutData();
+
+        this.lineChart = new Chart(this.lineCanvas.nativeElement, {
+ 
+            type: 'line',
+            data: {
+                labels: ["January", "February", "March", "April", "May", "June", "July"],
+                datasets: [
+                    {
+                        label: "My First dataset",
+                        fill: true,
+                        lineTension: 0.1,
+                        backgroundColor: "rgba(75,192,192,0.4)",
+                        borderColor: "rgba(75,192,192,1)",
+                        borderCapStyle: 'butt',
+                        borderDash: [],
+                        borderDashOffset: 0.0,
+                        borderJoinStyle: 'miter',
+                        pointBorderColor: "rgba(75,192,192,1)",
+                        pointBackgroundColor: "#fff",
+                        pointBorderWidth: 1,
+                        pointHoverRadius: 5,
+                        pointHoverBackgroundColor: "rgba(75,192,192,1)",
+                        pointHoverBorderColor: "rgba(220,220,220,1)",
+                        pointHoverBorderWidth: 2,
+                        pointRadius: 1,
+                        pointHitRadius: 10,
+                        data: [10, 59, 80, 81, 56, 55, 200],
+                        spanGaps: false,
+                    },
+                    {
+                        label: "My Second dataset",
+                        fill: true,
+                        lineTension: 0.1,
+                        backgroundColor: "rgba(255,100,100,100)",
+                        borderColor: "rgba(255,0,0,0)",
+                        borderCapStyle: 'butt',
+                        borderDash: [],
+                        borderDashOffset: 0.0,
+                        borderJoinStyle: 'miter',
+                        pointBorderColor: "rgba(255,0,0,0)",
+                        pointBackgroundColor: "#fff",
+                        pointBorderWidth: 1,
+                        pointHoverRadius: 5,
+                        pointHoverBackgroundColor: "rgba(255,100,100,100)",
+                        pointHoverBorderColor: "rgba(255,0,0,0)",
+                        pointHoverBorderWidth: 2,
+                        pointRadius: 1,
+                        pointHitRadius: 10,
+                        data: [1, 20, 30, 40, 50, 60, 90],
+                        spanGaps: false,
+                    }
+                ],
+                // options: {
+                //     responsive: true,
+                //     maintainAspectRatio: false,
+                // }
+            }
+ 
+        });
+  }
+  swipe(ev){
+    debugger;
+  }
+
+  NextMonth(){
+      var currentdate= new Date(this.date);
+      currentdate.setMonth(currentdate.getMonth()+1);
+      this.date = currentdate.toISOString();
+      this.generatedoughnutData();
+  }
+  PreviousMonth(){
+      var currentdate= new Date(this.date);
+      currentdate.setMonth(currentdate.getMonth()-1);
+      this.date = currentdate.toISOString();
+      this.generatedoughnutData();
+  }
+  onTimeChange(newval){
+      this.date = newval;
+      this.generatedoughnutData();
+  }
+}
+
+export class myCategory {
+    public constructor( public category : Category, 
+                        public Total : number )
+                        {
+                            
+
+    }
 }

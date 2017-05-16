@@ -46,13 +46,13 @@
                   </div>
                 </div>
                 <div>
-                  <h5 style="display: inline-block;">{{dbprovider.getCategorySubjectbyCategoryID(categorySubGroup.subgroupCategoryID)}}</h5>
-                  <div [ngClass]="categorySubGroup.subgrouptype == 1 ? 'backgroundColorGreen' : 'backgroundColorRed' " style="padding: 0px 5px; display: inline-block; border-radius:9px; color:white;">
+                  <h5 style="display: inline-block; font-size: 1.6rem;">{{dbprovider.getCategorySubjectbyCategoryID(categorySubGroup.subgroupCategoryID)}}</h5>
+                  <div [ngClass]="categorySubGroup.subgrouptype == 1 ? 'backgroundColorGreen' : 'backgroundColorRed' " style="padding: 0px 5px; display: inline-block; border-radius:9px; font-size: 14px; color:white;">
                     <div>{{categorySubGroup.CategoryEntries.length}}</div>
                   </div>
                 </div>
                 <ion-note style="margin: 0px;" item-right [color]="categorySubGroup.subgrouptype == 1 ? '_green' : '_red'">
-                  <h5 text-wrap class="nospacebreak">{{categorySubGroup.subgroupTotal.value | currency:'BRL':true:'1.2-2' | currencybrl}}</h5>
+                  <h5 text-wrap class="nospacebreak" style="font-size: 1.6rem;">{{categorySubGroup.subgroupTotal.value | currency:'BRL':true:'1.2-2' | currencybrl}}</h5>
                 </ion-note>
             </ion-item>
 
@@ -60,10 +60,10 @@
               <ion-item-sliding style="height: 30px;" *ngFor="let ammountEntry of categorySubGroup.CategoryEntries ;">
                   <ion-item class="height25" style="margin-top: -8px;" color="_offwhite">
                       <div item-left style="margin-left:35px;">
-                          <img class="itemImageSubGroupCategory" [src]="dbprovider.getCategoryImagebyCategoryID(ammountEntry.categoryID)"/>
+                          <img class="itemImageSubGroupCategory" [src]="ammountEntry.type == 1 ? 'assets/Images/Timeline/icons/Positivo.png' : 'assets/Images/Timeline/icons/Negativo.png'"/>
                       </div>
                       <!--item-right-->
-                      <h5 text-wrap class="nospacebreak" style="font-size:15px; margin-left: 1px;" [ngClass]="ammountEntry.type == 1 ? 'colorGreen' : 'colorRed' ">{{ammountEntry.price | currency:'BRL':true:'1.2-2' | currencybrl}}</h5>
+                      <h5 text-wrap class="nospacebreak" style="font-size:15px; margin-left: 1px; margin-top: 0px;" [ngClass]="ammountEntry.type == 1 ? 'colorGreen' : 'colorRed' ">{{ammountEntry.price | currency:'BRL':true:'1.2-2' | currencybrl}}</h5>
                   </ion-item>
                   <ion-item-options *ngIf="ammountEntry.issystem == false">
                       <button class="red_itemOption" (click)="delete(ammountEntry.id)">

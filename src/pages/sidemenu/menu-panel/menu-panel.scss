@@ -1,7 +1,42 @@
 page-menu-panel {
+    .scroll-content{
+        padding: 0px;
+    }
     h5{
         text-transform: none;
         color: #383838;
         font-size: 15px;
     }
+    .img40by40Container{
+        width: 35px;
+        margin: auto;
+        vertical-align: middle;
+        height: 100%;
+    }
+    .img40by40{
+        max-width: 35px;
+        max-height: 35px;
+        margin: auto;
+    }
+    .img40by40desc{
+        margin-top: 0px;
+        margin-bottom: 0px;
+        font-size: 0.85em;
+    }
+    .card{
+        margin:0px;
+        width:100%;
+        box-shadow:none;
+    }
+    .card-content{
+        padding:0px;
+    }
+    .card-header{
+        padding:0px;
+    }
+    .categorytd{
+        width:25%; 
+        text-align: center;
+    }
+
 }

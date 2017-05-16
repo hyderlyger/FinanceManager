@@ -20,13 +20,16 @@
     src: url('assets/fonts/Agency FB.ttf'); /*URL to font*/
 }
 
-ion-note, ion-input, button, ion-datetime, ion-label, h5, h6, p{
+ion-note, ion-input, [ion-button], ion-datetime, ion-label, h5, h6, p{
     font-family: 'AgenxyFB';
     text-transform: none;
 }
 
 
 //Cores
+ion-datetime {
+    position: relative; //Fix for Whole page button
+}
 .input-cover {  //Keyboard fix for android
     position: static;
 }

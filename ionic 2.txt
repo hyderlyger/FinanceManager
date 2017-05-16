@@ -95,7 +95,7 @@ UUID:
 https://www.npmjs.com/package/angular2-uuid
 
 DATE:
-https://ionicframework.com/docs/api/components/datetime/DateTime/
+Formats: https://ionicframework.com/docs/api/components/datetime/DateTime/
 myDate: String = new Date().toISOString();	//Ionic uses the ISO 8601 datetime format for its value. The value is simply a string
 
 Pipes:

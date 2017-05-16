@@ -59,6 +59,7 @@ export class DBProvider {
           this.createDefaultApplicationData();
           this.storage.set(this.dbConstants.db_accounts, JSON.stringify(this.accounts));
           this.storage.set(this.dbConstants.db_categories, JSON.stringify(this.categories));
+          this.storage.set(this.dbConstants.db_ammountenteries, JSON.stringify(this.amountEntries));
           //Need to load from database since we are doing many things in those functions for thr UI to work
           this.LoadAllDatabaseData().then(()=>{
             resolve("Accepted");  //Success Case
@@ -304,6 +305,7 @@ export class DBProvider {
 
   }
   private createDefaultApplicationData(){
+
     let dateToday = new Date();
     let issystem = false;
     //Accounts
@@ -339,8 +341,8 @@ export class DBProvider {
   private groupContactsUsingArray( entries : Array<AmountEntry> ){
     //Sorting Array by latest Date
     var datesorted = entries.sort(function(a,b){
-      var aa = new Date(a.timestamp).toLocaleDateString();
-      var bb = new Date(b.timestamp).toLocaleDateString();
+      var aa = new Date(a.timestamp); //.toLocaleDateString();
+      var bb = new Date(b.timestamp); //.toLocaleDateString();
 
       var cc = a.categoryID;
       var dd = b.categoryID;
