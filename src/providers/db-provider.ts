@@ -364,7 +364,7 @@ export class DBProvider {
         var itemDate : Date = new Date(value.timestamp);  //converting string date to Date object
 
         //Grouping on date
-        if( itemDate.getDay() != currentDate.getDay() || itemDate.getMonth() != currentDate.getMonth() ||
+        if( itemDate.getDate() != currentDate.getDate() || itemDate.getMonth() != currentDate.getMonth() ||
             itemDate.getFullYear() != currentDate.getFullYear()){
 
             currentDate = itemDate;
