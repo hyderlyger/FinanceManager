@@ -37,7 +37,7 @@
       </thead>
 
       <tbody *ngFor="let Revcategory of dbprovider.categories; let i = index">
-        <tr class="row verticalcenter"  *ngIf="Revcategory.type == 2">
+        <tr class="row verticalcenter"  *ngIf="Revcategory.type == 2 && Revcategory.issystem != true">
             <td class="leftcol">
               <div class="rowimagecontainer">
                 <img class="rowimg " [src]="imageprovider.getCategoryExpenseImagebyID(Revcategory.imageindex)"/>
@@ -64,7 +64,7 @@
       </thead>
 
       <tbody *ngFor="let Revcategory of dbprovider.categories; let i = index">
-        <tr class="row verticalcenter" *ngIf="Revcategory.type == 1">
+        <tr class="row verticalcenter" *ngIf="Revcategory.type == 1 && Revcategory.issystem != true">
             <td class="leftcol">
               <div class="rowimagecontainer">
                 <img class="rowimg " [src]="imageprovider.getCategoryRevenueImagebyID(Revcategory.imageindex)"/>

@@ -1,9 +1,11 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, PopoverController } from 'ionic-angular';
 import { Chart } from 'chart.js';
 import { DBProvider } from '../../../providers/db-provider';
+import { ImagesProvider } from '../../../providers/images-provider';
 import { Category } from '../../../models/category';
 import { Type } from '../../../models/enums';
+import { PopoverAccountSelect } from '../../../components/popover-account-select/popover-account-select';
 
 @IonicPage()
 @Component({
@@ -23,7 +25,8 @@ export class MenuPanel {
   TotalRevenue : number;
   TotalExpense : number;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private dbprovider : DBProvider) {
+  constructor(  public navCtrl: NavController, public navParams: NavParams, private dbprovider : DBProvider,
+                private imagesprovider : ImagesProvider, private popoverCtrl: PopoverController ) {
       this.date = new Date().toISOString();
   }
 
@@ -46,25 +49,27 @@ export class MenuPanel {
 
     //Generating Data for the Month
     this.dbprovider.amountEntries.forEach(element => {
-
-        var currentdate = new Date(this.date);
-        var elementdate = new Date(element.timestamp);
-        if( currentmonth == elementdate.getMonth() && currentyear == elementdate.getFullYear()){
-            if(element.type == Type.Expense){
-                var myCat =  this.monthlyCategoryList.find((item)=>item.category.id == element.categoryID);
-                if(myCat){  //exists
-                    myCat.Total += element.price;
+        if(element.accountID == this.dbprovider.selectedAccount.id) // For selected Account
+        {
+            var currentdate = new Date(this.date);
+            var elementdate = new Date(element.timestamp);
+            if( currentmonth == elementdate.getMonth() && currentyear == elementdate.getFullYear()){
+                if(element.type == Type.Expense){
+                    var myCat =  this.monthlyCategoryList.find((item)=>item.category.id == element.categoryID);
+                    if(myCat){  //exists
+                        myCat.Total += element.price;
+                    }
+                    this.TotalExpense += element.price;
+                }else if(element.type == Type.Revenue){
+                    this.TotalRevenue += element.price;
                 }
-                this.TotalExpense += element.price;
-            }else if(element.type == Type.Revenue){
-                this.TotalRevenue += element.price;
             }
         }
     });
-    this.updateDatatoTheGraphs();
   }
-  updateDatatoTheGraphs()
+  updateGraphsData()
   {
+    this.generatedoughnutData();
     this.doughnutChart = new Chart(this.doughnutCanvas.nativeElement, {
     
                 type: 'doughnut',
@@ -85,19 +90,13 @@ export class MenuPanel {
                 },
               options: {
                     animation:{
-                    animateScale:true
-                    }
+                        animateScale:true
+                        }
                 }
     
             });
-  }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad MenuPanel');
-
-    this.generatedoughnutData();
-
-        this.lineChart = new Chart(this.lineCanvas.nativeElement, {
+    this.lineChart = new Chart(this.lineCanvas.nativeElement, {
  
             type: 'line',
             data: {
@@ -156,25 +155,41 @@ export class MenuPanel {
  
         });
   }
-  swipe(ev){
-    debugger;
+
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad MenuPanel');
+    this.updateGraphsData();
+  }
+
+  //PopOver
+  presentPopover(ev) {
+    let popover = this.popoverCtrl.create(PopoverAccountSelect);
+    popover.present({
+      ev: ev
+    });
+    popover.onDidDismiss((accountid : string) => {
+      if(accountid){
+        this.dbprovider.UpdateSelectedAccount(accountid);
+        this.updateGraphsData();
+      }
+    });
   }
 
   NextMonth(){
       var currentdate= new Date(this.date);
       currentdate.setMonth(currentdate.getMonth()+1);
       this.date = currentdate.toISOString();
-      this.generatedoughnutData();
+      this.updateGraphsData();
   }
   PreviousMonth(){
       var currentdate= new Date(this.date);
       currentdate.setMonth(currentdate.getMonth()-1);
       this.date = currentdate.toISOString();
-      this.generatedoughnutData();
+      this.updateGraphsData();
   }
   onTimeChange(newval){
       this.date = newval;
-      this.generatedoughnutData();
+      this.updateGraphsData();
   }
 }
 

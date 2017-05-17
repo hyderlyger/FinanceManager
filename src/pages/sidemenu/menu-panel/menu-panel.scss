@@ -7,15 +7,48 @@ page-menu-panel {
         color: #383838;
         font-size: 15px;
     }
+    canvas.donut {
+        margin-left: 7.5% !important;
+        margin-right: 7.5% !important;
+        width:85% !important; 
+        height:85% !important;
+    }
+    .toolbar-title{
+        text-align: center;
+    }
+
+
+    .headerimg{
+        margin-left: auto;
+        margin-right:auto;
+    }
+    .headersidebuttons{
+        width: 50px;
+    }
+    .ImageAccount{
+        filter: brightness(0) invert(100%);
+    }
+    .ImageCategory{
+        background-repeat: no-repeat;
+        max-width: 39px;
+        max-height: 30px;
+        vertical-align: middle;
+        margin-right: 1px;
+    }
+
+    .fill100{
+        height:100%;
+        width:100%;
+    }
     .img40by40Container{
-        width: 35px;
+        width: 30px;
         margin: auto;
         vertical-align: middle;
         height: 100%;
     }
     .img40by40{
-        max-width: 35px;
-        max-height: 35px;
+        max-width: 30px;
+        max-height: 30px;
         margin: auto;
     }
     .img40by40desc{

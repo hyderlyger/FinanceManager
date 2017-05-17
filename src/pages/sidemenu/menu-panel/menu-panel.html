@@ -1,15 +1,23 @@
 <ion-header>
   <ion-navbar color="_red">
-    <button class="menuheaderbutton" style="float: right;" ion-button clear icon-only right>
-      <img class="menuheaderbuttonimage" src="assets/Images/Timeline/icons/whiteLogo.png"/>
-    </button>
-  </ion-navbar>
-</ion-header>
- <!--menuClose-->
- 
-<ion-content class="color_offwhite">
+    
+    <ion-title>
+      <button ion-button clear icon-only text-center>
+        <img class="headerimg" src="assets/Images/Timeline/icons/whiteLogo.png"/>
+      </button>
+    </ion-title>
 
-  <table style="height: 10%; width:100%;">
+    <ion-buttons end class="headersidebuttons">
+      <button ion-button color="light" (click)="presentPopover($event)" style="margin-left: -20px;">
+        <img class="ImageCategory ImageAccount" [src]="imagesprovider.getAccountImagebyID(dbprovider.selectedAccount.imageindex)"/>
+        <!--<ion-note color="light" style="max-width:50px; font-size: 14px; overflow: hidden;">{{dbprovider.selectedAccount.subject}}</ion-note>-->
+        <ion-icon name="ios-arrow-down" style="margin-right: 3px;" class="mediumsmallicom"></ion-icon> 
+      </button>
+    </ion-buttons>
+
+  </ion-navbar>
+  
+  <table style="width:100%; height: 40px;">
     <tr>
       <td style="width:25%;">
         <button style="float:right;" ion-button clear icon-only color="_black" (click)="PreviousMonth();">
@@ -26,10 +34,15 @@
       </td>
     </tr>
   </table>
-  <div style="height:58%; width:100%;">
+</ion-header>
+ <!--menuClose-->
 
-    <div style="height:17.5%;">
-      <table style="height: 100%; width:100%;">
+<ion-content class="color_offwhite">
+
+  <div class="fill100" style="margin-top:5px;">
+
+    <div style="height:12%;">
+      <table class="fill100">
         <tr>
           <td class="categorytd" *ngFor="let categoryitem of monthlyCategoryList.slice(0,4)">
               <img class="img40by40" [src]="dbprovider.getCategoryImagebyCategoryID(categoryitem.category.id)"/>
@@ -39,42 +52,32 @@
       </table>
     </div>
 
-    <div style="height:65%;">
-      <table style="height: 100%; width:100%;">
-        <tr style="height: 100%; width:100%;">
-          <td style="width:20%; text-align: center;">
-
-            <table style="height: 100%; width:100%;">
-              <tr style="height:50%" *ngFor="let categoryitem of monthlyCategoryList.slice(4,6)"><td>
-                  <img class="img40by40" [src]="dbprovider.getCategoryImagebyCategoryID(categoryitem.category.id)"/>
-                  <p class="img40by40desc">{{categoryitem.Total | currency:'BRL':true:'1.2-2' | currencybrl}}</p>
-              </td></tr>
-            </table>
-
-          </td>
-          <td style="height:100%; width:60%;">
+    <div style="height:64%;">
+      <table class="fill100">
+        <tr class="fill100">
+          <td class="fill100">
             <ion-card color="_offwhite" style="height:100%;">
-              <ion-card-content style="height:100%; width:88%; margin:auto;">
-                <canvas  #doughnutCanvas></canvas>
+              <ion-card-content style=" margin:auto;">
+                <canvas #doughnutCanvas class="donut"></canvas>
               </ion-card-content>
             </ion-card>
-          </td>
-          <td style="width:20%; text-align: center;">
-
-            <table style="height: 100%; width:100%;">
-              <tr style="height:50%" *ngFor="let categoryitem of monthlyCategoryList.slice(6,8)"><td>
-                  <img class="img40by40" [src]="dbprovider.getCategoryImagebyCategoryID(categoryitem.category.id)"/>
-                  <p class="img40by40desc">{{categoryitem.Total | currency:'BRL':true:'1.2-2' | currencybrl}}</p>
-              </td></tr>
-            </table>
-
           </td>
         </tr>
       </table>
     </div>
 
-    <div style="height:17.5%;">
-      <table style="height: 100%; width:100%;">
+    <div style="height:12%;">
+      <table class="fill100">
+        <tr>
+          <td class="categorytd" *ngFor="let categoryitem of monthlyCategoryList.slice(4,8)">
+              <img class="img40by40" [src]="dbprovider.getCategoryImagebyCategoryID(categoryitem.category.id)"/>
+              <p class="img40by40desc">{{categoryitem.Total | currency:'BRL':true:'1.2-2' | currencybrl}}</p>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div style="height:12%;">
+      <table class="fill100">
         <tr>
           <td class="categorytd" *ngFor="let categoryitem of monthlyCategoryList.slice(8,12)">
               <img class="img40by40" [src]="dbprovider.getCategoryImagebyCategoryID(categoryitem.category.id)"/>
@@ -86,7 +89,7 @@
   </div>
   
 
-  <ion-card color="_offwhite" style="height:30%; margin-top:2%;">
+  <ion-card color="_offwhite" style="height:30%; width:100%; margin-top:5%; margin-bottom:5%;">
     <ion-card-content>
       <canvas #lineCanvas></canvas>
     </ion-card-content>
