@@ -147,6 +147,10 @@ export class MenuPanel {
   updateGraphsData()
   {
     this.generatedoughnutData();
+    //previous chart flash back issue
+    if(this.doughnutChart!=null){
+        this.doughnutChart.destroy();
+    }
     this.doughnutChart = new Chart(this.doughnutCanvas.nativeElement, {
     
                 type: 'doughnut',
