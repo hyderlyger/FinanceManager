@@ -20,14 +20,91 @@ export class MenuPanel {
   doughnutChart: any;
   lineChart :  any;
 
-  //Graph Date
-  monthlyCategoryList : Array<myCategory> = []; //each row contains {categories : this.dbprovider.categories[i], Total : 0}
+  //Donut Graph Data
+  monthlyCategoryList : Array<monthlyCategoryTotal> = []; //each row contains {categories : this.dbprovider.categories[i], Total : 0}
   TotalRevenue : number;
   TotalExpense : number;
+  //Line Graph Data
+  LineGraphLabels : Array<string>;
+  RevenueDailyTotals : Array<number>;
+  ExpenseDailyTotals : Array<number>;
 
   constructor(  public navCtrl: NavController, public navParams: NavParams, private dbprovider : DBProvider,
                 private imagesprovider : ImagesProvider, private popoverCtrl: PopoverController ) {
       this.date = new Date().toISOString();
+  }
+
+  generatelineData(){
+    //reset
+    this.LineGraphLabels = [];
+    this.RevenueDailyTotals = [];
+    this.ExpenseDailyTotals = [];
+
+    //readying data array
+    var dailyTotalsList : Array<dailyTotals> = [];
+
+    var currentdate = new Date(this.date);
+    var currentmonth= currentdate.getMonth();
+    var currentyear = currentdate.getFullYear();
+
+    //initializing data Array i.e push for each day in current month
+    var iteratingDateObject = new Date(this.date);
+    iteratingDateObject.setDate(1); //setting to 1st
+    var startingmonth = iteratingDateObject.getMonth();
+    while(iteratingDateObject.getMonth() == startingmonth){
+        let currentDate: Date = new Date(iteratingDateObject);
+        dailyTotalsList.push(new dailyTotals(currentDate,0,0));
+        iteratingDateObject.setDate(iteratingDateObject.getDate() + 1);
+    }
+
+    //Getting meaningfull data from dbprovider
+    var CurrentMonthGroupList = this.dbprovider.amountEntriesGroupsAndSubgroups.filter( item=> 
+                            currentmonth == new Date(item.date).getMonth() && 
+                            currentyear == new Date(item.date).getFullYear() );
+
+    //Making meaningfull data calculations
+    if(CurrentMonthGroupList){
+        /*
+        //Sorting Array by oldest Date
+        var datesorted = CurrentMonthGroupList.sort(function(a,b){
+            var aa = new Date(a.timestamp);
+            var bb = new Date(b.timestamp);
+
+            var cc = a.categoryID;
+            var dd = b.categoryID;
+
+            if (aa > bb) return 1;
+            else if (aa < bb) return -1;
+            else if (cc > dd) return 1;
+            else if (cc < dd) return -1;
+        });
+        */
+
+        //Putting Group Totals in graph array
+        CurrentMonthGroupList.forEach(group => {
+            let matchedDayTotal = dailyTotalsList.find(item=> item.Date.getMonth() == new Date(group.date).getMonth()
+                                     && item.Date.getFullYear() == new Date(group.date).getFullYear()
+                                     && item.Date.getDate() == new Date(group.date).getDate() );
+            if(matchedDayTotal){
+                group.CategoryGroups.forEach(subgroup => {
+                    if(subgroup.subgrouptype ==  Type.Revenue){
+                        matchedDayTotal.TotalRevenue += subgroup.subgroupTotal.value;
+                    }else if(subgroup.subgrouptype ==  Type.Expense){
+                        matchedDayTotal.TotalExpense += subgroup.subgroupTotal.value;
+                    }
+                });
+            }
+        });
+    }
+
+    if(dailyTotalsList){
+        dailyTotalsList.forEach( day => {
+            this.LineGraphLabels.push(day.Date.getDate().toString());
+            this.RevenueDailyTotals.push(day.TotalRevenue);
+            this.ExpenseDailyTotals.push(day.TotalExpense);
+        });
+    }
+
   }
 
   generatedoughnutData(){
@@ -43,7 +120,7 @@ export class MenuPanel {
 
     //Collecting the Categories to show
     for(var i=0; i<12; i++){
-        var newCat = new myCategory(this.dbprovider.categories[i],0);
+        var newCat = new monthlyCategoryTotal(this.dbprovider.categories[i],0);
         this.monthlyCategoryList.push(newCat);
     }
 
@@ -77,7 +154,7 @@ export class MenuPanel {
                     labels: ["Revenue", "Expense"],
                     datasets: [{
                         label: 'Finances',
-                        data: [ this.TotalRevenue, this.TotalExpense ],//[50000, 40000],
+                        data: [ this.TotalRevenue, this.TotalExpense ],
                         backgroundColor: [
                             'rgba(79, 179, 124, 0.7)',
                             'rgba(177, 22, 35, 0.7)',
@@ -96,11 +173,15 @@ export class MenuPanel {
     
             });
 
+    this.generatelineData();
+    //previous chart flash back issue
+    if(this.lineChart!=null){
+        this.lineChart.destroy();
+    }
     this.lineChart = new Chart(this.lineCanvas.nativeElement, {
- 
             type: 'line',
             data: {
-                labels: ["January", "February", "March", "April", "May", "June", "July"],
+                labels: this.LineGraphLabels,//["January", "February", "March", "April", "May", "June", "July"],
                 datasets: [
                     {
                         label: "Revenue",
@@ -121,7 +202,7 @@ export class MenuPanel {
                         pointHoverBorderWidth: 2,
                         pointRadius: 1,
                         pointHitRadius: 10,
-                        data: [10, 59, 80, 81, 56, 55, 200],
+                        data: this.RevenueDailyTotals,//[10, 59, 80, 81, 56, 55, 200],
                         spanGaps: false,
                     },
                     {
@@ -143,7 +224,7 @@ export class MenuPanel {
                         pointHoverBorderWidth: 2,
                         pointRadius: 1,
                         pointHitRadius: 10,
-                        data: [1, 20, 30, 40, 50, 60, 90],
+                        data: this.ExpenseDailyTotals,//[1, 20, 30, 40, 50, 60, 90],
                         spanGaps: false,
                     }
                 ],
@@ -193,11 +274,16 @@ export class MenuPanel {
   }
 }
 
-export class myCategory {
+export class monthlyCategoryTotal {
     public constructor( public category : Category, 
                         public Total : number )
                         {
-                            
-
+    }
+}
+export class dailyTotals {
+    public constructor( public Date : Date,
+                        public TotalExpense : number,
+                        public TotalRevenue : number )
+                        {
     }
 }
