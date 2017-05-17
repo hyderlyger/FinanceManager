@@ -7,12 +7,6 @@ page-menu-panel {
         color: #383838;
         font-size: 15px;
     }
-    canvas.donut {
-        margin-left: 7.5% !important;
-        margin-right: 7.5% !important;
-        width:85% !important; 
-        height:85% !important;
-    }
     .toolbar-title{
         text-align: center;
     }
@@ -55,6 +49,7 @@ page-menu-panel {
         margin-top: 0px;
         margin-bottom: 0px;
         font-size: 0.85em;
+        color: map-get($colors, _darksilver);
     }
     .card{
         margin:0px;
@@ -70,6 +65,12 @@ page-menu-panel {
     .categorytd{
         width:25%; 
         text-align: center;
+    }
+    canvas.donut {
+        margin-left: 7.5% !important;
+        margin-right: 7.5% !important;
+        width:85% !important; 
+        height:85% !important;
     }
 
 }
