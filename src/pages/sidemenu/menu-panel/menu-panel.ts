@@ -32,6 +32,7 @@ export class MenuPanel {
   constructor(  public navCtrl: NavController, public navParams: NavParams, private dbprovider : DBProvider,
                 private imagesprovider : ImagesProvider, private popoverCtrl: PopoverController ) {
       this.date = new Date().toISOString();
+
   }
 
   generatelineData(){
@@ -83,10 +84,17 @@ export class MenuPanel {
     }
 
     if(dailyTotalsList){
+        let i = 3;
         dailyTotalsList.forEach( day => {
-            this.LineGraphLabels.push(day.Date.getDate().toString());
+            //Gaps in the labels
+            if(i % 3 == 0)
+                this.LineGraphLabels.push(day.Date.getDate().toString());
+            else
+                this.LineGraphLabels.push("");
+
             this.RevenueDailyTotals.push(day.TotalRevenue);
             this.ExpenseDailyTotals.push(day.TotalExpense);
+            i++;
         });
     }
 
@@ -215,12 +223,7 @@ export class MenuPanel {
                         data: this.ExpenseDailyTotals,//[1, 20, 30, 40, 50, 60, 90],
                         spanGaps: false,
                     }
-                ],
-                 options: {
-                     //legend:{ display: true,labels:{fontSize:10} } 
-                     //responsive: true,
-                     //maintainAspectRatio: false,
-                 }
+                ]
             }
  
         });
