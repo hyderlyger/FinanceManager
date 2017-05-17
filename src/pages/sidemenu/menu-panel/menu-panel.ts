@@ -64,21 +64,6 @@ export class MenuPanel {
 
     //Making meaningfull data calculations
     if(CurrentMonthGroupList){
-        /*
-        //Sorting Array by oldest Date
-        var datesorted = CurrentMonthGroupList.sort(function(a,b){
-            var aa = new Date(a.timestamp);
-            var bb = new Date(b.timestamp);
-
-            var cc = a.categoryID;
-            var dd = b.categoryID;
-
-            if (aa > bb) return 1;
-            else if (aa < bb) return -1;
-            else if (cc > dd) return 1;
-            else if (cc < dd) return -1;
-        });
-        */
 
         //Putting Group Totals in graph array
         CurrentMonthGroupList.forEach(group => {
@@ -128,7 +113,6 @@ export class MenuPanel {
     this.dbprovider.amountEntries.forEach(element => {
         if(element.accountID == this.dbprovider.selectedAccount.id) // For selected Account
         {
-            var currentdate = new Date(this.date);
             var elementdate = new Date(element.timestamp);
             if( currentmonth == elementdate.getMonth() && currentyear == elementdate.getFullYear()){
                 if(element.type == Type.Expense){
@@ -232,10 +216,11 @@ export class MenuPanel {
                         spanGaps: false,
                     }
                 ],
-                // options: {
-                //     responsive: true,
-                //     maintainAspectRatio: false,
-                // }
+                 options: {
+                     //legend:{ display: true,labels:{fontSize:10} } 
+                     //responsive: true,
+                     //maintainAspectRatio: false,
+                 }
             }
  
         });
