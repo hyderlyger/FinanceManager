@@ -375,7 +375,7 @@ export class DBProvider {
                 date: currentDate,
                 CategoryGroups: []
             };
-
+            
             currentGroup = newGroup.CategoryGroups; //pointer to the group
             this.amountEntriesGroupsAndSubgroups.push(newGroup);
         }

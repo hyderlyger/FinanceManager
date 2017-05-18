@@ -19,10 +19,17 @@ import { ImagesProvider } from '../../../providers/images-provider';
   templateUrl: 'timeline.html',
 })
 export class Timeline {
+filterdate : string;
+filterdateRaw : Date;
+isfilterdateActive : Boolean;
 
   constructor(public navCtrl: NavController, private popoverCtrl: PopoverController, private events : Events, 
               private dbprovider : DBProvider, private imagesprovider : ImagesProvider, public navParams: NavParams,
               private alertCtrl : AlertController) {
+
+                this.filterdateRaw = new Date();
+                this.filterdate = this.filterdateRaw.toISOString();
+                this.isfilterdateActive = false;
 
                 //Event that listens to fullscreen Side Menu Page Changes
                 this.events.subscribe(this.dbprovider.event_MenuEvent,(eventtype : EventType)=>{
@@ -84,5 +91,10 @@ export class Timeline {
         buttons: [buttonText]
       });
     alert.present();
+  }
+  onfilterdateChange(val){
+    this.filterdate = val;
+    this.filterdateRaw = new Date(val);
+    this.isfilterdateActive = true;
   }
 }
