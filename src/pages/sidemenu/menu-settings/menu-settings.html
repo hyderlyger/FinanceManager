@@ -18,11 +18,143 @@
         </ion-thumbnail>
     </ion-item>
 
-    <ion-item>
-        <ion-note>
-          <h5 text-center>This is Opções Menu</h5>
-        </ion-note>
-    </ion-item>
+    <table class="fill100">
+      
+      <thead style="background-color: #bebebe;">
+        <tr class="verticalcenter" style="height:28px;">
+          <th class="headingleft">
+            <div style="margin-left: 15%;">Definições Gerais</div>
+          </th>
+        </tr>
+      </thead>
+
+      <tbody >
+        <button class="rowbutton verticalcenter fill100" ion-button clear icon-only>
+          <tbody class="fill100">
+            <tr class="row verticalcenter">
+                <td class="leftcol">
+                  <div class="rowimagecontainer">
+                    <img class="rowimg " src="assets/Images/Options/icons/03.png"/>
+                  </div>
+                </td>
+                <td class="rightcol verticalcenter">
+                  <h6 class="rowtitle verticalcenter">Avaliar aplicativo</h6>
+                </td>
+            </tr>
+          </tbody>
+        </button>
+        <button class="rowbutton verticalcenter fill100" ion-button clear icon-only>
+          <tbody class="fill100">
+            <tr class="row verticalcenter" >
+                <td class="leftcol">
+                  <div class="rowimagecontainer">
+                    <img class="rowimg " src=""/>
+                  </div>
+                </td>
+                <td class="rightcol verticalcenter">
+                  <h6 class="rowtitle verticalcenter">Sobre O Meu Gestor</h6>
+                </td>
+            </tr>
+          </tbody>
+        </button>
+        <tr class="spacer"></tr>
+      </tbody>
+
+      <thead style="background-color: #bebebe;">
+        <tr class="verticalcenter" style="height:28px;">
+          <th class="headingleft">
+            <div style="margin-left: 15%;">Sincronização</div>
+          </th>
+        </tr>
+      </thead>
+
+      <tbody >
+        <button class="rowbutton verticalcenter fill100" ion-button clear icon-only (click)="SyncDropbox();">
+          <tbody class="fill100">
+            <tr class="row verticalcenter">
+                <td class="leftcol">
+                  <div class="rowimagecontainer">
+                    <img class="rowimg " src="assets/Images/Options/icons/06.png"/>
+                  </div>
+                </td>
+                <td class="rightcol verticalcenter">
+                  <h6 class="rowtitle verticalcenter">Sincronizar Dropbox</h6>
+                </td>
+            </tr>
+          </tbody>
+        </button>
+        <tr class="spacer"></tr>
+      </tbody>
+      
+      
+      <thead style="background-color: #bebebe;">
+        <tr class="verticalcenter" style="height:28px;">
+          <th class="headingleft">
+            <div style="margin-left: 15%;">Backup de dados</div>
+          </th>
+        </tr>
+      </thead>
+
+      <tbody >
+        <!--<button class="rowbutton verticalcenter fill100" ion-button clear icon-only>
+          <tbody class="fill100">
+            <tr class="row verticalcenter">
+                <td class="leftcol">
+                  <div class="rowimagecontainer">
+                    <img class="rowimg " src="assets/Images/Options/icons/02.png"/>
+                  </div>
+                </td>
+                <td class="rightcol verticalcenter">
+                  <h6 class="rowtitle verticalcenter">Criar backup</h6>
+                </td>
+            </tr>
+          </tbody>
+        </button>
+        <button class="rowbutton verticalcenter fill100" ion-button clear icon-only>
+          <tbody class="fill100">
+            <tr class="row verticalcenter">
+                <td class="leftcol">
+                  <div class="rowimagecontainer">
+                    <img class="rowimg " src="assets/Images/Options/icons/01.png"/>
+                  </div>
+                </td>
+                <td class="rightcol verticalcenter">
+                  <h6 class="rowtitle verticalcenter">Restaurar dados</h6>
+                </td>
+            </tr>
+          </tbody>
+        </button>-->
+        <button class="rowbutton verticalcenter fill100" ion-button clear icon-only (click)="DeleteAllData();">
+          <tbody class="fill100">
+            <tr class="row verticalcenter">
+                <td class="leftcol">
+                  <div class="rowimagecontainer">
+                    <img class="rowimg " src="assets/Images/Options/icons/05.png"/>
+                  </div>
+                </td>
+                <td class="rightcol verticalcenter">
+                  <h6 class="rowtitle verticalcenter grey">Apagar dados</h6>
+                </td>
+            </tr>
+          </tbody>
+        </button>
+        <button class="rowbutton verticalcenter fill100" ion-button clear icon-only>
+          <tbody class="fill100">
+            <tr class="row verticalcenter">
+                <td class="leftcol">
+                  <div class="rowimagecontainer">
+                    <img class="rowimg " src="assets/Images/Options/icons/04.png"/>
+                  </div>
+                </td>
+                <td class="rightcol verticalcenter">
+                  <h6 class="rowtitle verticalcenter">Exportar para arquivos</h6>
+                </td>
+            </tr>
+          </tbody>
+        </button>
+      </tbody>
+
+    </table>
     
   </ion-list>
 

@@ -104,3 +104,11 @@ Note: Eliminate dashes in the 'name'. Causes error "unexpected Uppercase".
 
 CHARTS:
 https://www.joshmorony.com/adding-responsive-charts-graphs-to-ionic-2-applications/
+
+Dropbox:
+https://www.joshmorony.com/integrating-ionic-2-with-the-dropbox-api-part-1/
+https://www.joshmorony.com/integrating-ionic-2-with-the-dropbox-api-part-2/
+
+HTTP:
+https://www.joshmorony.com/using-http-to-fetch-remote-data-from-a-server-in-ionic-2/
+Hint: Add Http module to appmodule

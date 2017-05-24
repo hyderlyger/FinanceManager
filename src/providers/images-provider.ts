@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
 
 import { Type } from '../models/enums'; 
+import { Color } from '../models/enums'; 
 
 //Note: INDEXES ARE OUR KEYS HERE
 
@@ -107,4 +108,50 @@ export class ImagesProvider {
     else if (type == Type.Expense)
       return 12;
   }
+
+  getColorbyExpenseCategoryImageIndex(index : number, Opacity : number){
+    var _color = null;
+    switch(index){
+        case 0:
+            _color = new Color("rgba(106, 74, 60, "+Opacity+")","#6A4A3C"); //Brown
+            break;
+        case 1:
+            _color = new Color("rgba(204, 51, 63, "+Opacity+")","#CC333F"); //Red
+            break;
+        case 2:
+            _color = new Color("rgba(254, 67, 101, "+Opacity+")","#FE4365"); //Pink
+            break;
+        case 3:
+            _color = new Color("rgba(130, 174, 154, "+Opacity+")","#82AE9A"); //Blue
+            break;
+        case 4:
+            _color = new Color("rgba(125, 182, 0, "+Opacity+")","#7DB600"); //Green
+            break;
+        case 5:
+            _color = new Color("rgba(85, 98, 112, "+Opacity+")","#556270"); //Grey
+            break;
+        case 6:
+            _color = new Color("rgba(13, 103, 89, "+Opacity+")","#0D6759"); //Greenish
+            break;
+        case 7:
+            _color = new Color("rgba(136, 88, 162, "+Opacity+")","#8858A2"); //Purple
+            break;
+        case 8:
+            _color = new Color("rgba(233, 127, 2, "+Opacity+")","#E97F02"); //Yellow
+            break;
+        case 9:
+            _color = new Color("rgba(149, 121, 0, "+Opacity+")","#957900"); //Mehndi xD
+            break;
+        case 10:
+            _color = new Color("rgba(232, 29, 39, "+Opacity+")","#E81D27"); //Red toot
+            break;
+        case 11:
+            _color = new Color("rgba(0, 160, 176, "+Opacity+")","#00A0B0"); //Bluish
+            break;
+        default:
+            break;
+    }
+    return _color;
+  }
+  
 }

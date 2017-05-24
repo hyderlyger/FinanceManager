@@ -6,3 +6,9 @@ export enum Type {
 export enum EventType{
     OpenMenuPanel = 1
 }
+export class Color {
+    public constructor( public rgb : string,
+                        public hex : string )
+                        {
+    }
+}

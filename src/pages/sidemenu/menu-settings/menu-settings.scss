@@ -1,7 +1,71 @@
 page-menu-settings {
+    .fill100{
+        width : 100%;
+    }
     h5{
         text-transform: none;
         color: #383838;
         font-size: 15px;
+    }
+    .leftcol{
+        width : 14%;
+        margin-left: 3%;
+    }
+    .rightcol{
+        width : 83%;
+        text-align: left;
+    }
+    .rowimagecontainer{
+        width:23px; 
+        height:23px; 
+        text-align: center;
+    }
+    .rowimg{
+        max-width : 23px;
+        max-height : 23px;
+    }
+
+    .rowtitle{
+        font-size: 13px;
+        font-weight: bolder;
+        margin-left: 6px !important;
+        color: #383838 !important;
+    }
+    .verticalcenter{
+        vertical-align: middle;
+        margin-top: auto;
+        margin-bottom: auto;
+    }
+    .rowbutton{
+        height:23px;
+        margin-top: 5px;
+    }
+    .row{
+        height:23px;
+    }
+
+    .headingleft{
+        width : 80%;
+        text-align: left;
+        vertical-align: middle;
+    }
+    .headingright{
+        width : 20%;
+        text-align: center;
+    }
+    .headingbutton{
+        max-height: 14px;
+        max-width: 14px;
+    }
+    .spacer{
+        height:20px;
+    }
+    //Ios specific
+    .ios {
+        page-menu-settings{
+            .iosbold{
+                font-weight: bolder;    //check working
+            }
+        }
     }
 }

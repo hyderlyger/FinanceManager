@@ -2,6 +2,7 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
+import { HttpModule } from '@angular/http';
 
 //Menus
 import { MainMenu } from '../pages/sidemenu/main-menu/main-menu';
@@ -32,6 +33,7 @@ import { IonicStorageModule } from '@ionic/storage';
 import { AuthProvider } from '../providers/auth-provider';
 import { DBProvider } from '../providers/db-provider';
 import { ImagesProvider } from '../providers/images-provider';
+import { DropboxProvider } from '../providers/dropbox-provider';
 
 //Components
 import { PopoverAccountSelect } from '../components/popover-account-select/popover-account-select';
@@ -61,6 +63,7 @@ import { PopoverAccountSelect } from '../components/popover-account-select/popov
   ],
   imports: [
     BrowserModule,
+    HttpModule,
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot()
   ],
@@ -91,7 +94,8 @@ import { PopoverAccountSelect } from '../components/popover-account-select/popov
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthProvider,
     DBProvider,
-    ImagesProvider
+    ImagesProvider,
+    DropboxProvider
   ]
 })
 export class AppModule {}

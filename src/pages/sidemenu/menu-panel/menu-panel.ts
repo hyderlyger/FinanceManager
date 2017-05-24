@@ -5,6 +5,7 @@ import { DBProvider } from '../../../providers/db-provider';
 import { ImagesProvider } from '../../../providers/images-provider';
 import { Category } from '../../../models/category';
 import { Type } from '../../../models/enums';
+import { Color } from '../../../models/enums';
 import { PopoverAccountSelect } from '../../../components/popover-account-select/popover-account-select';
 
 @IonicPage()
@@ -113,7 +114,7 @@ export class MenuPanel {
 
     //Collecting the Categories to show
     for(var i=0; i<12; i++){
-        var newCat = new monthlyCategoryTotal(this.dbprovider.categories[i],0);
+        var newCat = new monthlyCategoryTotal(this.dbprovider.categories[i], this.imagesprovider.getColorbyExpenseCategoryImageIndex(this.dbprovider.categories[i].imageindex,0.7),0);  //0.7 Opasity
         this.monthlyCategoryList.push(newCat);
     }
 
@@ -135,10 +136,24 @@ export class MenuPanel {
             }
         }
     });
+    this.monthlyCategoryList.sort(function(a, b){return b.Total-a.Total});  //sorting highest to lowest
   }
   updateGraphsData()
   {
     this.generatedoughnutData();
+    var DonutLabels : Array<string> = [];
+    var DonutPrices : Array<number> = [];
+    var DonutBackgroundColors : Array<string> = [];
+    var DonutHoverColors : Array<string> = [];
+
+    this.monthlyCategoryList.forEach((cat)=>{
+        DonutLabels.push(cat.category.subject);
+        DonutPrices.push(cat.Total);
+        DonutBackgroundColors.push(cat.color.rgb);
+        DonutHoverColors.push(cat.color.hex);
+    });
+
+
     //previous chart flash back issue
     if(this.doughnutChart!=null){
         this.doughnutChart.destroy();
@@ -147,27 +162,31 @@ export class MenuPanel {
     
                 type: 'doughnut',
                 data: {
-                    labels: ["Revenue", "Expense"],
+                    labels: DonutLabels,//["Revenue", "Expense"],
                     datasets: [{
                         label: 'Finances',
-                        data: [ this.TotalRevenue, this.TotalExpense ],
-                        backgroundColor: [
+                        data: DonutPrices,//[ this.TotalRevenue, this.TotalExpense ],
+                        backgroundColor: DonutBackgroundColors,/*[
                             'rgba(79, 179, 124, 0.7)',
                             'rgba(177, 22, 35, 0.7)',
-                        ],
-                        hoverBackgroundColor: [
+                        ],*/
+                        hoverBackgroundColor: DonutHoverColors /*[
                             "#4fb37c",
                             "#b11623",
-                        ]
+                        ]*/
                     }]
                 },
               options: {
                     animation:{
                         animateScale:true
-                        }
+                    },
+                    legend: {
+                        display: false
+                    }
                 }
     
             });
+
 
     this.generatelineData();
     //previous chart flash back issue
@@ -224,7 +243,24 @@ export class MenuPanel {
                         spanGaps: false,
                     }
                 ]
-            }
+            },
+            options: {
+                    animation:{
+                        animateScale:true
+                    },
+                    scales: {
+                        xAxes: [{
+                                gridLines: {
+                                    display:false
+                                }
+                            }],
+                        yAxes: [{
+                                gridLines: {
+                                    display:false
+                                }   
+                            }]
+                    }
+                }
  
         });
   }
@@ -264,10 +300,12 @@ export class MenuPanel {
       this.date = newval;
       this.updateGraphsData();
   }
+
 }
 
 export class monthlyCategoryTotal {
-    public constructor( public category : Category, 
+    public constructor( public category : Category,
+                        public color : Color, 
                         public Total : number )
                         {
     }

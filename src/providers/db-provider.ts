@@ -55,14 +55,10 @@ export class DBProvider {
           //Adding User Data
           this.storage.set(this.dbConstants.db_user, JSON.stringify(this.user));
 
-          //Adding Initial Application Data
-          this.createDefaultApplicationData();
-          this.storage.set(this.dbConstants.db_accounts, JSON.stringify(this.accounts));
-          this.storage.set(this.dbConstants.db_categories, JSON.stringify(this.categories));
-          this.storage.set(this.dbConstants.db_ammountenteries, JSON.stringify(this.amountEntries));
-          //Need to load from database since we are doing many things in those functions for thr UI to work
-          this.LoadAllDatabaseData().then(()=>{
-            resolve("Accepted");  //Success Case
+          //Ensuring Empty Database
+          this.deleteAllCustomData().then((result)=>{
+            //if(result)
+              resolve("Accepted");  //Success Case
           });
 
         }).catch(() => {
@@ -140,6 +136,19 @@ export class DBProvider {
       }else
         resolve(false);
 
+    });
+  }
+  public deleteAllCustomData(){
+    return new Promise((resolve)=>{
+      //Adding Initial Application Data
+      this.createDefaultApplicationData();
+      this.storage.set(this.dbConstants.db_accounts, JSON.stringify(this.accounts));
+      this.storage.set(this.dbConstants.db_categories, JSON.stringify(this.categories));
+      this.storage.set(this.dbConstants.db_ammountenteries, JSON.stringify(this.amountEntries));
+      //Need to load from database since we are doing many things in those functions for the UI to work
+      this.LoadAllDatabaseData().then(()=>{
+        resolve(true);  //Success Case
+      });
     });
   }
 
@@ -305,6 +314,10 @@ export class DBProvider {
 
   }
   private createDefaultApplicationData(){
+    //clearing
+    this.amountEntries = [];
+    this.amountEntriesGroupsAndSubgroups = [];
+    this.balance = 0;
 
     let dateToday = new Date();
     let issystem = false;
