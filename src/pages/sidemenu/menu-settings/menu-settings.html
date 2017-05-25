@@ -69,7 +69,7 @@
       </thead>
 
       <tbody >
-        <button class="rowbutton verticalcenter fill100" ion-button clear icon-only (click)="SyncDropbox();">
+        <button class="rowbutton verticalcenter fill100" ion-button clear icon-only (click)="RestoreDropbox();">
           <tbody class="fill100">
             <tr class="row verticalcenter">
                 <td class="leftcol">
@@ -78,7 +78,7 @@
                   </div>
                 </td>
                 <td class="rightcol verticalcenter">
-                  <h6 class="rowtitle verticalcenter">Sincronizar Dropbox</h6>
+                  <h6 class="rowtitle verticalcenter">Restore Dropbox</h6>
                 </td>
             </tr>
           </tbody>
@@ -138,7 +138,7 @@
             </tr>
           </tbody>
         </button>
-        <button class="rowbutton verticalcenter fill100" ion-button clear icon-only>
+        <button class="rowbutton verticalcenter fill100" ion-button clear icon-only (click)="BackupDropbox();">
           <tbody class="fill100">
             <tr class="row verticalcenter">
                 <td class="leftcol">
@@ -147,7 +147,8 @@
                   </div>
                 </td>
                 <td class="rightcol verticalcenter">
-                  <h6 class="rowtitle verticalcenter">Exportar para arquivos</h6>
+                  <!--para arquivos-->
+                  <h6 class="rowtitle verticalcenter">Exportar Dropbox</h6>  
                 </td>
             </tr>
           </tbody>

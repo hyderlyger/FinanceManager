@@ -15,7 +15,7 @@ import { ImagesProvider } from '../providers/images-provider';
 export class DBProvider {
   
   //Database Constants
-  private dbConstants = {
+  public dbConstants = {
         db_user : "DBUser",
         db_accounts : "DBAccounts",
         db_categories : "DBCategories",
@@ -41,7 +41,6 @@ export class DBProvider {
     //let uuid = UUID.UUID();
     this.LoadLatestUSERfromDB();
   }
-
 
   //DATABASE INTERACTIONS - USER
   public registerUser( _user : User){
@@ -153,7 +152,7 @@ export class DBProvider {
   }
 
   //DATABASE - Load/Reload Latest Data
-  private LoadAllDatabaseData(){
+  public LoadAllDatabaseData(){
     return new Promise((resolve)=> {
         Promise.all([ this.LoadLatestAMOUNTENTRIESfromDB(),
                       this.LoadLatestACCOUNTSfromDB(),
@@ -225,6 +224,36 @@ export class DBProvider {
     });
   }
 
+  //DATABASE - Restore Database
+  public RestoreTable(dbTablekey : string, newjsonDatatoOvewrite : string){
+    return new Promise(resolve=>{
+      switch(dbTablekey)
+      {
+        case this.dbConstants.db_ammountenteries:
+              this.storage.ready().then(() => {
+                this.storage.set(this.dbConstants.db_ammountenteries, newjsonDatatoOvewrite);
+                resolve();
+              });
+              break;
+        case this.dbConstants.db_accounts:
+              this.storage.ready().then(() => {
+                this.storage.set(this.dbConstants.db_accounts, newjsonDatatoOvewrite);
+                resolve();
+              });
+              break;
+        case this.dbConstants.db_categories:
+              this.storage.ready().then(() => {
+                this.storage.set(this.dbConstants.db_categories, newjsonDatatoOvewrite);
+                resolve();
+              });
+              break;
+        default:
+              resolve();
+              break;
+      }
+    })
+    
+  }
 
   //Public Functionality
   public calculateBalanceOnAccountID(id :string){

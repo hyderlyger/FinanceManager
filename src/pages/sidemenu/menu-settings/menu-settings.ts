@@ -6,15 +6,14 @@ import { DBProvider } from '../../../providers/db-provider';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { Observable } from 'rxjs/Observable';
 
+
 @IonicPage()
 @Component({
   selector: 'page-menu-settings',
   templateUrl: 'menu-settings.html',
 })
 export class MenuSettings {
-
-  folders: any;
-
+  
   constructor(public navCtrl: NavController, public navParams: NavParams, private dropboxprovider : DropboxProvider,
               private loadingCtrl: LoadingController, private dbprovider : DBProvider, private alertCtrl : AlertController) {
 
@@ -22,7 +21,6 @@ export class MenuSettings {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MenuSettings');
-
   }
   CreateBackup(){
     alert('Create Backup');
@@ -67,26 +65,49 @@ export class MenuSettings {
     });
   }
   
-  SyncDropbox(){
+  BackupDropbox(){
 
-    this.dropboxprovider.setAccessToken("eaPCGJGRTGYAAAAAAAAAtKM0DU-eYaotNT6W13L4bKu8PWjCCqkaY4xKfY9tqms5");
-      this.folders = [];
- 
-      let loading = this.loadingCtrl.create({
-        content: 'Syncing from Dropbox...'
-      });
- 
-      loading.present();
- 
-      this.dropboxprovider.getFolders().subscribe(data => {
-        this.folders = data.entries;
-        loading.dismiss();
-      }, (err) => {
-        loading.dismiss();
-        console.log(err);
-      });
+    let loading = this.loadingCtrl.create({
+      content: 'Backing up to Dropbox...'
+    });
+    loading.present();
 
+    this.dropboxprovider.saveDatabase().then(result => {
+
+      loading.dismiss();
+      this.showAlert("Sincronizar Dropbox","Synced!","Done");
+
+    }).catch((err) => {
+
+      loading.dismiss();
+      console.log(err);
+
+    });
+    
   }
+
+  RestoreDropbox(){
+    let loading = this.loadingCtrl.create({
+      content: 'Restoring from Dropbox...'
+    });
+    loading.present();
+
+    this.dropboxprovider.restoreDatabase().then((result : string) => {
+
+      loading.dismiss();
+      if(result == "true")
+        this.showAlert("Restore Dropbox","Restored!","Done");
+      else
+        this.showAlert("Restore Dropbox",result,"Done");
+
+    }).catch((err) => {
+
+      loading.dismiss();
+      console.log(err);
+
+    });
+  }
+
   showAlert(title: string, subTitle: string, buttonText : string){
     var alert = this.alertCtrl.create({
         title: title,
@@ -96,3 +117,4 @@ export class MenuSettings {
     alert.present();
   }
 }
+
