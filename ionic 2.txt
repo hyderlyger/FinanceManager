@@ -48,16 +48,16 @@ TODOLIST
 https://www.thepolyglotdeveloper.com/2016/06/create-a-simple-todo-list-app-using-ionic-2-for-android-and-ios/
 
 ERRROR FIXES && Helping stuff
-C:\> cd /d D:\foo\bar\
+command prompt switch drive :- C:\> cd /d D:\foo\bar\
 ionic g page myPage
-IonicModule -> IonicPageModule
+fix error: IonicModule -> IonicPageModule
 IONIC for MAC => script error fix => npm install @ionic/app-scripts@latest --save-dev
 Multiple Buttons in title :  <ion-buttons end>
       <button>
         <ion-icon name="menu"></ion-icon>
       </button>
     </ion-buttons>
-Whole list-item click : <button ion-item (click)="onClick()">
+Whole list-item click : <button ion-item (click)="onClick();">
 Provider without service? solution: remove "public http: Http" from constructor
 
 Debugger (In Package.json):
@@ -112,3 +112,7 @@ https://www.joshmorony.com/integrating-ionic-2-with-the-dropbox-api-part-2/
 HTTP:
 https://www.joshmorony.com/using-http-to-fetch-remote-data-from-a-server-in-ionic-2/
 Hint: Add Http module to appmodule
+
+Device Debugging Android:
+Install debugging tool for cordova and run "ionic run android -l" on command prompt
+Make sure both "Path" Environment Variables are set like: "C:\Users\Haider-Office\AppData\Local\Android\sdk\tools;C:\Users\Haider-Office\AppData\Local\Android\sdk\platform-tools\"

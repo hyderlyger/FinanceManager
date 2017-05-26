@@ -38,6 +38,9 @@ import { DropboxProvider } from '../providers/dropbox-provider';
 //Components
 import { PopoverAccountSelect } from '../components/popover-account-select/popover-account-select';
 
+
+import { InAppBrowser } from '@ionic-native/in-app-browser';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -95,7 +98,8 @@ import { PopoverAccountSelect } from '../components/popover-account-select/popov
     AuthProvider,
     DBProvider,
     ImagesProvider,
-    DropboxProvider
+    DropboxProvider,
+    InAppBrowser
   ]
 })
 export class AppModule {}

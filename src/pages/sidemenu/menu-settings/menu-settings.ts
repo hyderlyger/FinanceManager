@@ -66,45 +66,56 @@ export class MenuSettings {
   }
   
   BackupDropbox(){
-
-    let loading = this.loadingCtrl.create({
-      content: 'Backing up to Dropbox...'
-    });
-    loading.present();
-
-    this.dropboxprovider.saveDatabase().then(result => {
-
-      loading.dismiss();
-      this.showAlert("Sincronizar Dropbox","Synced!","Done");
-
-    }).catch((err) => {
-
-      loading.dismiss();
-      console.log(err);
-
-    });
     
+
+    this.dropboxprovider.login().then((success) => {
+      
+      let loading = this.loadingCtrl.create({
+        content: 'Backing up to Dropbox...'
+      });
+      loading.present();
+
+      this.dropboxprovider.saveDatabase().then(result => {
+
+        loading.dismiss();
+        this.showAlert("Sincronizar Dropbox","Synced!","Done");
+
+      }).catch((err) => {
+
+        loading.dismiss();
+        console.log(err);
+
+      });
+
+    }, (err) => {
+      console.log(err);
+    });
   }
 
   RestoreDropbox(){
-    let loading = this.loadingCtrl.create({
-      content: 'Restoring from Dropbox...'
-    });
-    loading.present();
+    this.dropboxprovider.login().then((success) => {
 
-    this.dropboxprovider.restoreDatabase().then((result : string) => {
+      let loading = this.loadingCtrl.create({
+        content: 'Restoring from Dropbox...'
+      });
+      loading.present();
 
-      loading.dismiss();
-      if(result == "true")
-        this.showAlert("Restore Dropbox","Restored!","Done");
-      else
-        this.showAlert("Restore Dropbox",result,"Done");
+      this.dropboxprovider.restoreDatabase().then((result : string) => {
 
-    }).catch((err) => {
+        loading.dismiss();
+        if(result == "true")
+          this.showAlert("Restore Dropbox","Restored!","Done");
+        else
+          this.showAlert("Restore Dropbox",result,"Done");
 
-      loading.dismiss();
-      console.log(err);
+      }).catch((err) => {
 
+        loading.dismiss();
+
+      });
+      
+    }, (err) => {
+      this.showAlert("Restore Dropbox",err,"Close");
     });
   }
 
