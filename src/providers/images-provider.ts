@@ -27,9 +27,9 @@ export class ImagesProvider {
     this.AccountImages.push( root + accountdir + "05.png");    
     this.AccountImages.push( root + accountdir + "06.png");    
     this.AccountImages.push( root + accountdir + "07.png");    
-    this.AccountImages.push( root + accountdir + "08.png");    
-    this.AccountImages.push( root + accountdir + "09.png");    
-    this.AccountImages.push( root + accountdir + "10.png");    //index 9
+    this.AccountImages.push( root + accountdir + "10.png");    //index 7
+    //this.AccountImages.push( root + accountdir + "08.png");    
+    //this.AccountImages.push( root + accountdir + "09.png");
 
     //Category - Revenue
     var categorydirRev = "Category/Icons/Rendimento/";
@@ -82,9 +82,10 @@ export class ImagesProvider {
     else
       "";
   }
-  // getAllAccountsImages() {
-  //   return this.AccountImages;  //check if private makes a problem
-  // }
+   getUseableAccountsImages() {
+     //let clonedArray : Array<string> = JSON.parse(JSON.stringify(this.AccountImages));
+     return this.AccountImages;  //check if private makes a problem
+   }
 
   getCategoryRevenueImagebyID(_id : number){
     if(_id>=0 && _id< this.CategoryRevenueImages.length)
@@ -108,7 +109,8 @@ export class ImagesProvider {
     else if (type == Type.Expense)
       return 12;
   }
-
+  
+  //For Graph
   getColorbyExpenseCategoryImageIndex(index : number, Opacity : number){
     var _color = null;
     switch(index){

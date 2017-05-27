@@ -25,29 +25,30 @@
             <div style="margin-left: 15%;">Account</div>
           </th>
           <th class="headingright">
-            <button ion-button clear icon-only class="headingbutton">
+            <button ion-button clear icon-only class="headingbutton" (click)="addAccountPage();">
               <ion-icon color="_black" class="iosbold" name="add"></ion-icon>
             </button>
           </th>
         </tr>
       </thead>
       
-      <tr class="row verticalcenter" *ngFor="let account of dbprovider.accounts; let i = index">
-        <td class="leftcol">
-          <div class="rowimagecontainer">
-            <img class="rowimg " [src]="imageprovider.getAccountImagebyID(account.imageindex)"/>
-          </div>
-        </td>
-        <td class="rightcol verticalcenter">
-          <h6 class="rowtitle verticalcenter">{{account.subject}}</h6>
-          <p class="rowdetail"> {{dbprovider.calculateBalanceOnAccountID(account.id) | currency:'BRL':true:'1.2-2' | currencybrl }} </p>
-        </td>
-      </tr>
-      
-      
+      <button class="rowbutton verticalcenter fill100" ion-button clear icon-only *ngFor="let account of dbprovider.accounts; let i = index" (click)="editAccountPage(account.id);">
+        <tbody class="fill100">
+          <tr class="row verticalcenter" >
+            <td class="leftcol">
+              <div class="rowimagecontainer">
+                <img class="rowimg " [src]="imageprovider.getAccountImagebyID(account.imageindex)"/>
+              </div>
+            </td>
+            <td class="rightcol verticalcenter">
+              <h6 class="rowtitle verticalcenter">{{account.subject}}</h6>
+              <p class="rowdetail"> {{dbprovider.calculateBalanceOnAccountID(account.id) | currency:'BRL':true:'1.2-2' | currencybrl }} </p>
+            </td>
+          </tr>
+        </tbody>
+      </button>
 
     </table>
-
 
   </ion-list>
 

@@ -4,7 +4,9 @@ export enum Type {
     Transfer
 }
 export enum EventType{
-    OpenMenuPanel = 1
+    OpenMenuPanel = 1,
+    OpenAddEditAccount,
+    OpenAddEditCategory
 }
 export class Color {
     public constructor( public rgb : string,

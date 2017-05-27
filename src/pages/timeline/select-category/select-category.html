@@ -8,21 +8,23 @@
         <img class="menuheaderbuttonimage" src="assets/Images/InOut/icons/03.png"/>
       </button>
   </ion-navbar>
-
-</ion-header>
-
-<ion-content padding class="color_offwhite">
   <table style="width: 270px; margin: auto;">
-
+    <tr class="spacer"></tr>
     <tr>
       <td class="entryBox" [ngClass]="type == 1 ? 'backgroundColorGreen' : 'backgroundColorRed' ">
         <div>
           <div style="height:15px"></div>
-          <div style="height:35px;"><h5 style="font-size:25px;"> {{ price | number:'1.2-2' | currencybrl }} </h5> </div>
+          <div style="height:35px;"><h5 style="font-size:25px; margin:0px"> {{ price | number:'1.2-2' | currencybrl }} </h5> </div>
           <div style="height:5px"></div>
         </div>
       </td>
     </tr>
+    <tr class="spacer"></tr>
+  </table>
+</ion-header>
+
+<ion-content class="color_offwhite">
+  <table style="width: 270px; margin: auto;">
 
     <tr [ngClass]=" type == 1 ? 'largespacer' : 'spacer' " ></tr>
     <tr>

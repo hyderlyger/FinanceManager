@@ -1,18 +1,22 @@
+//System
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { HttpModule } from '@angular/http';
 
-//Menus
+//Pages
+//--Menus
 import { MainMenu } from '../pages/sidemenu/main-menu/main-menu';
 import { MenuProfile } from '../pages/sidemenu/menu-profile/menu-profile'
 import { MenuPanel } from '../pages/sidemenu/menu-panel/menu-panel'
 import { MenuCategories } from '../pages/sidemenu/menu-categories/menu-categories'
 import { MenuAccounts } from '../pages/sidemenu/menu-accounts/menu-accounts'
 import { MenuSettings } from '../pages/sidemenu/menu-settings/menu-settings'
-
-//Pages
+//--MenuExtra
+import { AddEditAccount } from '../pages/sidemenuextra/add-edit-account/add-edit-account';
+import { AddEditCategory } from '../pages/sidemenuextra/add-edit-category/add-edit-category';
+//--Timeine
 import { LoginPage } from '../pages/login/login-page/login-page'
 import { RegisterationInfoPage } from '../pages/login/registeration-info-page/registeration-info-page';
 import { RegisterationCredentialsPage } from '../pages/login/registeration-credentials-page/registeration-credentials-page';
@@ -34,12 +38,10 @@ import { AuthProvider } from '../providers/auth-provider';
 import { DBProvider } from '../providers/db-provider';
 import { ImagesProvider } from '../providers/images-provider';
 import { DropboxProvider } from '../providers/dropbox-provider';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 //Components
 import { PopoverAccountSelect } from '../components/popover-account-select/popover-account-select';
-
-
-import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 @NgModule({
   declarations: [
@@ -51,7 +53,10 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
     MenuCategories,
     MenuAccounts,
     MenuSettings,
-    //Pages
+    //MenuExtrasPages
+    AddEditAccount,
+    AddEditCategory,
+    //TimelinePages
     LoginPage,
     RegisterationInfoPage,
     RegisterationCredentialsPage,
@@ -80,7 +85,10 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
     MenuCategories,
     MenuAccounts,
     MenuSettings,
-    //Pages
+    //MenuExtrasPages
+    AddEditAccount,
+    AddEditCategory,
+    //TimelinePages
     LoginPage,
     RegisterationInfoPage,
     RegisterationCredentialsPage,
@@ -99,7 +107,7 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
     DBProvider,
     ImagesProvider,
     DropboxProvider,
-    InAppBrowser
+    InAppBrowser  //for dropbox auth
   ]
 })
 export class AppModule {}

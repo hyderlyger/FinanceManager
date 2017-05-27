@@ -108,7 +108,7 @@ export class DBProvider {
   //DATABASE INTERACTIONS - AMOUNTENTRY
   public addEntry(amountEntry : AmountEntry)  { //it is prefered to return all elements seperated
     return new Promise((resolve)=> {
-      if(amountEntry != null && this.amountEntries != null) {  //Do Validations Here
+      if(amountEntry != null && this.amountEntries) {  //Do Validations Here
             this.amountEntries.push(amountEntry);
             this.storage.ready().then(() => {
               this.storage.set(this.dbConstants.db_ammountenteries, JSON.stringify(this.amountEntries));
@@ -122,7 +122,7 @@ export class DBProvider {
   public deleteEntry(id: string) {
     return new Promise((resolve)=> {
 
-      if(this.amountEntries != null && this.amountEntries.find(item=> item.id == id))
+      if(this.amountEntries && this.amountEntries.find(item=> item.id == id))
       {
         var index = this.amountEntries.findIndex(item=> item.id == id); //getting the index
         this.amountEntries.splice(index, 1);  //removing item
@@ -148,6 +148,30 @@ export class DBProvider {
       this.LoadAllDatabaseData().then(()=>{
         resolve(true);  //Success Case
       });
+    });
+  }
+  public addOrUpdateAccount(_account : Account) {
+    return new Promise((resolve)=> {
+
+      if(_account != null && ((_account.id && this.accounts.find(item=> item.id == _account.id)) || !_account.id) )
+      {
+        if(_account.id){
+          var index = this.accounts.findIndex(item=> item.id == _account.id); //getting the index
+          this.accounts[index] = _account;  //update
+        }else{
+          _account.id = UUID.UUID();
+          this.accounts.push(_account); //add
+        }
+
+        this.storage.ready().then(() => {
+            this.storage.set(this.dbConstants.db_accounts, JSON.stringify(this.accounts));
+            this.LoadLatestACCOUNTSfromDB().then(()=>{
+              resolve(true);
+            });
+          });
+      }else
+        resolve(false);
+
     });
   }
 
@@ -261,7 +285,7 @@ export class DBProvider {
     if(this.amountEntries != null && this.accounts.find(item=> item.id == id) != null)
     {
       var currentAccount = this.accounts.find(item=> item.id == id);
-      balance = 0;
+      balance = parseFloat(currentAccount.startingbalance.toString());
         this.amountEntries.forEach(item => {
           if(item.accountID == currentAccount.id)
           {
@@ -352,7 +376,7 @@ export class DBProvider {
     let issystem = false;
     //Accounts
     this.accounts = []; //Clearing
-    this.accounts.push( new Account( UUID.UUID(), "Cartão de Crédito", 9, dateToday, issystem, 0));  //CreditCard
+    this.accounts.push( new Account( UUID.UUID(), "Cartão de Crédito", 7, dateToday, issystem, 0));  //CreditCard
     this.accounts.push( new Account( UUID.UUID(), "Dinheiro", 1, dateToday, issystem, 0));           //Cash
     
     this.categories = []; //Clearing

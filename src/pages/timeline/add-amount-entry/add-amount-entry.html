@@ -10,18 +10,13 @@
     </button>
   </ion-navbar>
 
-</ion-header>
-
-
-<ion-content padding class="color_offwhite">
-
   <table style="width: 270px; margin: auto;">
-
+    <tr class="spacer"></tr>
     <tr>
       <td class="entryBox" [ngClass]="type == 1 ? 'backgroundColorGreen' : (type == 2 ? 'backgroundColorRed' : 'backgroundColorBlue') ">
         <div>
           <div style="height:15px"></div>
-          <div style="height:35px;"><h5 style="font-size:25px;"> {{ price | number:'1.2-2' | currencybrl }} </h5></div>
+          <div style="height:35px;"><h5 style="font-size:25px; margin: 0px;"> {{ price | number:'1.2-2' | currencybrl }} </h5></div>
           <div style="height:5px"></div>
         </div>
         <button ion-button clear icon-only  text-center class="priceremovebutton" (click)= "performOperation('<');">
@@ -29,8 +24,14 @@
         </button>
       </td>
     </tr>
-
     <tr class="spacer"></tr>
+  </table>
+</ion-header>
+
+
+<ion-content padding class="color_offwhite">
+
+<table style="width: 270px; margin: auto;">
     <tr>
       <td class="observationBox borderButton" style="border-color:#B7B7B7; border-left: 0px; font-size:13px;">
         <div class="img35by35" style="float:left; margin-left:10px;">

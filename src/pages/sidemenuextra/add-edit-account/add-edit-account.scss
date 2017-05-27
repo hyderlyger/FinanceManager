@@ -1,4 +1,25 @@
-page-select-category {
+page-add-edit-account {
+    .datetime-text{
+        text-align: center;
+        padding: 0px;
+        margin:0px;
+    }
+    .text-input{
+        text-align: center;
+        padding: 5px;
+        margin:0px;
+    }
+    .text-input::-moz-placeholder {
+        color: map-get($colors, _silver);
+    }
+    .text-input:-ms-input-placeholder {
+        color: map-get($colors, _silver);
+    }
+    .text-input::-webkit-input-placeholder {
+        text-indent: 0;
+        color: map-get($colors, _silver);
+    }
+
     .imgg{
         max-width: 50px;
         max-height: 50px;
@@ -40,5 +61,13 @@ page-select-category {
         height: 85px;
         padding-left: 10px;
         padding-right: 10px;
+    }
+    .labelheading{
+        margin:0px;
+        word-wrap: break-word;
+        font-weight: bold;
+    }
+    .inputborder{
+        border-bottom: 1px solid;
     }
 }

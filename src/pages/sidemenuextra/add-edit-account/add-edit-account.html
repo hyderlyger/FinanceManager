@@ -1,0 +1,72 @@
+<ion-header >
+
+  <ion-navbar [color]=" type == 1 ? '_green' : '_red' " >
+      <button class="menuheaderbutton" ion-button clear icon-only  text-center left>
+        <img class="headerimg" src="assets/Images/Timeline/icons/whiteLogo.png"/>
+      </button>
+  </ion-navbar>
+  <table style="width: 270px; margin: auto;">
+    <tr class="spacer"></tr>
+    <tr>
+      <td class="entryBox backgroundColorBlue">
+        <div>
+          <div style="height:5px"></div>
+          <div style="height:38px;"><ion-input color="_white" style="font-size: 2.5rem; font-weight: bold;" type="text" placeholder="Categoria Subject" [(ngModel)]="_account.subject"></ion-input> </div>
+          <div style="height:5px"></div>
+        </div>
+      </td>
+    </tr>
+    <tr class="spacer"></tr>
+  </table>
+</ion-header>
+
+<ion-content class="color_offwhite">
+  <table style="width: 270px; margin: auto;">
+
+    <tr class="spacer" ></tr>
+    <tr class="colorBlack" style="height:70px;">
+      <td style="width:45%; text-align: center;">
+          <h5 class="labelheading">Saldo inicial</h5>
+          <ion-input class="inputborder" style="font-size: 1.8rem;" type="number" color="_black" placeholder="Enter" [(ngModel)]="_account.startingbalance"></ion-input>
+      </td>
+      <td style="width:10%;"></td>
+
+      <td style="width:45%; text-align: center;">
+          <h5 class="labelheading">Date initial</h5>
+          <ion-datetime class="inputborder" color="_black" style="font-size: 1.8rem; padding: 5px;" displayFormat="DD/MM/YYYY" [(ngModel)]="_startingdate"></ion-datetime>
+      </td>
+    </tr>
+    
+  </table>
+
+  <table style="width: 270px; margin: auto;">
+    <tr class="spacer" ></tr>
+    <tr>
+      <ion-row>
+        <div class="colcontainer" *ngFor=" let imgsrc of _accountImagesArray; let imgindex = index">
+          <ion-col >
+            <div class="btnContainer blueborder" >
+              <div [ngClass]="_account.imageindex == imgindex ? 'highlight' : '' ">
+                <button class="imggbtn" ion-button clear icon-only (click)="updateSelection(imgindex);" >
+                  <img class="imgg" [src]="imgsrc" />
+                </button>
+              </div>
+            </div>
+          </ion-col>
+
+        </div>
+        
+      </ion-row>
+    </tr>
+
+  </table>
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar text-center color="_offwhite">
+    <button ion-button center class="borderButton colorBlue" (click)="saveEntry();">
+      Save Account
+    </button>
+  </ion-toolbar>
+</ion-footer>

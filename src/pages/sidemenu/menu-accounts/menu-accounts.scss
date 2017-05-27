@@ -23,6 +23,7 @@ page-menu-accounts {
     .rowimg{
         max-width : 30px;
         max-height : 30px;
+        vertical-align: middle;
     }
 
     .rowtitle{
@@ -44,9 +45,12 @@ page-menu-accounts {
         margin-top: auto;
         margin-bottom: auto;
     }
-    .row{
+    .rowbutton{
         height:30px;
         margin-top: 5px;
+    }
+    .row{
+        height:30px;
     }
 
     .headingleft{

@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Events, MenuController } from 'ionic-angular';
 
 import { Category } from '../../../models/category';
 
 import { DBProvider } from '../../../providers/db-provider';
 import { ImagesProvider } from '../../../providers/images-provider';
+
+import { EventType } from '../../../models/enums';
 
 @IonicPage()
 @Component({
@@ -12,8 +14,9 @@ import { ImagesProvider } from '../../../providers/images-provider';
   templateUrl: 'menu-categories.html',
 })
 export class MenuCategories {
-  constructor(public navCtrl: NavController, public navParams: NavParams,
-              private dbprovider : DBProvider, private imageprovider : ImagesProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private events : Events,
+              private dbprovider : DBProvider, private imageprovider : ImagesProvider,
+              private menuCtrl : MenuController) {
                 
   }
 
@@ -22,7 +25,8 @@ export class MenuCategories {
   }
   ionViewWillEnter(){ //every time gets active
   }
-  goback(){
-    this.navCtrl.pop();
+  newCategoryPage(){
+    this.events.publish(this.dbprovider.event_MenuEvent,EventType.OpenAddEditCategory); //asking root timeline to open Page
+    this.menuCtrl.close();
   }
 }

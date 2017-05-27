@@ -4,7 +4,7 @@ import { MenuAccounts } from './menu-accounts';
 
 @NgModule({
   declarations: [
-    MenuAccounts,
+    MenuAccounts
   ],
   imports: [
     IonicPageModule.forChild(MenuAccounts),

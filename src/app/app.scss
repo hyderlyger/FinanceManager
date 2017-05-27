@@ -85,6 +85,9 @@ ion-datetime {
     .colorBlue{
         color: map-get($colors, _blue);
     }
+    .colorBlack{
+        color: map-get($colors, _black);
+    }
     .greenborder{
         border-color: map-get($colors, _green) !important;
     }

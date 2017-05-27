@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Events, PopoverController, AlertController } from 'ionic-angular';
 
 import { MenuPanel } from '../../sidemenu/menu-panel/menu-panel';
+import { AddEditAccount } from '../../sidemenuextra/add-edit-account/add-edit-account';
+import { AddEditCategory } from '../../sidemenuextra/add-edit-category/add-edit-category';
 import { AddAmountEntry } from '../add-amount-entry/add-amount-entry';
 
 import { Type } from '../../../models/enums';
@@ -31,18 +33,28 @@ isfilterdateActive : Boolean;
                 this.filterdate = this.filterdateRaw.toISOString();
                 this.isfilterdateActive = false;
 
-                //Event that listens to fullscreen Side Menu Page Changes
-                this.events.subscribe(this.dbprovider.event_MenuEvent,(eventtype : EventType)=>{
-                  switch(eventtype){
-                    case EventType.OpenMenuPanel:
-                      this.navCtrl.push(MenuPanel);
-                      break;
-                    default:
-                      break;
-                  }
-                });
+                this.listenToPageEvents(); //Event that listens to fullscreen Side Menu Page Changes
   }
 
+  //EventListning 
+  listenToPageEvents(){ //Event that listens to fullscreen Side Menu Page Changes
+    
+    this.events.subscribe(this.dbprovider.event_MenuEvent,(eventtype : EventType, args)=>{
+      switch(eventtype){
+        case EventType.OpenMenuPanel:
+          this.navCtrl.push(MenuPanel);
+          break;
+        case EventType.OpenAddEditAccount:
+          this.navCtrl.push(AddEditAccount, args);
+          break;
+        case EventType.OpenAddEditCategory:
+          this.navCtrl.push(AddEditCategory);
+          break;
+        default:
+          break;
+      }
+    });
+  }
   //Overrides
   ionViewDidLoad() {
   }
@@ -78,7 +90,7 @@ isfilterdateActive : Boolean;
     }
   delete(id: string) {
     this.dbprovider.deleteEntry(id).then((status)=> {
-
+      //nothing here yet
     });
   }
   toggleSubGroupVisibility(groupid, subgroupid){
