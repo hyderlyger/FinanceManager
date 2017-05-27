@@ -1,9 +1,11 @@
 <ion-header >
 
-  <ion-navbar [color]=" type == 1 ? '_green' : '_red' " >
-      <button class="menuheaderbutton" ion-button clear icon-only  text-center left>
+  <ion-navbar color="_blue" >
+    <ion-title>
+      <button style="margin-left: -45px;" ion-button clear icon-only text-center>
         <img class="headerimg" src="assets/Images/Timeline/icons/whiteLogo.png"/>
       </button>
+    </ion-title>
   </ion-navbar>
   <table style="width: 270px; margin: auto;">
     <tr class="spacer"></tr>
@@ -24,7 +26,7 @@
   <table style="width: 270px; margin: auto;">
 
     <tr class="spacer" ></tr>
-    <tr class="colorBlack" style="height:70px;">
+    <tr class="colorBlack" style="height:60px;">
       <td style="width:45%; text-align: center;">
           <h5 class="labelheading">Saldo inicial</h5>
           <ion-input class="inputborder" style="font-size: 1.8rem;" type="number" color="_black" placeholder="Enter" [(ngModel)]="_account.startingbalance"></ion-input>
@@ -66,7 +68,7 @@
 <ion-footer>
   <ion-toolbar text-center color="_offwhite">
     <button ion-button center class="borderButton colorBlue" (click)="saveEntry();">
-      Save Account
+      {{ _account.id ? "Update Account" : "Add Account"}}
     </button>
   </ion-toolbar>
 </ion-footer>

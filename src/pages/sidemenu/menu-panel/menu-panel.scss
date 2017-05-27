@@ -72,5 +72,7 @@ page-menu-panel {
         width:80% !important; 
         height:80% !important;
     }
-
+    .borderBottom{
+        border-bottom: 1px solid map-get($colors, _darksilver);
+    }
 }

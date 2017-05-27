@@ -1,4 +1,7 @@
 page-add-edit-account {
+    .toolbar-title{
+        text-align: center;
+    }
     .datetime-text{
         text-align: center;
         padding: 0px;
@@ -6,7 +9,7 @@ page-add-edit-account {
     }
     .text-input{
         text-align: center;
-        padding: 5px;
+        padding: 6px;
         margin:0px;
     }
     .text-input::-moz-placeholder {
@@ -19,6 +22,8 @@ page-add-edit-account {
         text-indent: 0;
         color: map-get($colors, _silver);
     }
+
+
 
     .imgg{
         max-width: 50px;
