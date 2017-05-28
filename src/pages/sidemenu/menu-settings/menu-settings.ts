@@ -6,6 +6,7 @@ import { DBProvider } from '../../../providers/db-provider';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { Observable } from 'rxjs/Observable';
 
+import { DeveloperPage } from '../../sidemenuextra/developer-page/developer-page';
 
 @IonicPage()
 @Component({
@@ -118,7 +119,9 @@ export class MenuSettings {
       this.showAlert("Restore Dropbox",err,"Close");
     });
   }
-
+  openDeveloperPage(){
+    this.navCtrl.push(DeveloperPage);
+  }
   showAlert(title: string, subTitle: string, buttonText : string){
     var alert = this.alertCtrl.create({
         title: title,

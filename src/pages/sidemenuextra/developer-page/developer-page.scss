@@ -1,0 +1,71 @@
+page-developer-page {
+    .text-input{
+        height: 23px;
+        margin: 0px;
+    }
+    h5{
+        text-transform: none;
+        color: #383838;
+        font-size: 15px;
+    }
+    .fill100{
+        width : 100%;
+    }
+    .leftcol{
+        width : 20%;
+        margin-left: 5%;
+    }
+    .rightcol{
+        width : 70%;
+        text-align: left;
+        margin-right: 5%;
+    }
+    .rowimagecontainer{
+        width:23px; 
+        height:23px; 
+        text-align: center;
+    }
+    .rowimg{
+        max-width : 23px;
+        max-height : 23px;
+    }
+
+    .rowtitle{
+        font-size: 1.4rem;
+        font-weight: 500;
+        color : map-get($colors, _green);
+        //border-bottom: 1px solid map-get($colors, _darksilver);
+    }
+    .verticalcenter{
+        vertical-align: middle;
+        margin-top: auto;
+        margin-bottom: auto;
+    }
+    .row{
+        height:23px;
+        margin-top:20px; 
+    }
+
+    .headingleft{
+        width : 80%;
+        text-align: left;
+        vertical-align: middle;
+    }
+    .headingright{
+        width : 20%;
+        text-align: center;
+    }
+    .headingbutton{
+        max-height: 14px;
+        max-width: 14px;
+    }
+
+    //Ios specific
+    .ios {
+        page-developer-page{
+            .iosbold{
+                font-weight: bolder;    //check working
+            }
+        }
+    }
+}

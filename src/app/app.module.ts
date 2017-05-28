@@ -16,6 +16,7 @@ import { MenuSettings } from '../pages/sidemenu/menu-settings/menu-settings'
 //--MenuExtra
 import { AddEditAccount } from '../pages/sidemenuextra/add-edit-account/add-edit-account';
 import { AddEditCategory } from '../pages/sidemenuextra/add-edit-category/add-edit-category';
+import { DeveloperPage } from '../pages/sidemenuextra/developer-page/developer-page';
 //--Timeine
 import { LoginPage } from '../pages/login/login-page/login-page'
 import { RegisterationInfoPage } from '../pages/login/registeration-info-page/registeration-info-page';
@@ -58,6 +59,7 @@ import { PopoverRecurrenceType } from '../components/popover-recurrence-type/pop
     //MenuExtrasPages
     AddEditAccount,
     AddEditCategory,
+    DeveloperPage,
     //LoginPages
     LoginPage,
     RegisterationInfoPage,
@@ -93,6 +95,7 @@ import { PopoverRecurrenceType } from '../components/popover-recurrence-type/pop
     //MenuExtrasPages
     AddEditAccount,
     AddEditCategory,
+    DeveloperPage,
     //LoginPages
     LoginPage,
     RegisterationInfoPage,
