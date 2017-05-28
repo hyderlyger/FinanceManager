@@ -24,38 +24,39 @@ export class DropboxProvider {
     //this.setAccessToken('eaPCGJGRTGYAAAAAAAAAtKM0DU-eYaotNT6W13L4bKu8PWjCCqkaY4xKfY9tqms5');  //my access token
   }
  
-  setAccessToken(token) {
-    this.accessToken = token;
-  }
   login(){
  
     return new Promise((resolve, reject) => {
+      if(this.accessToken) //already authenticated
+        resolve(true);
+      else{
+        let browser = this.iab.create(this.url, '_blank');
   
-      let browser = this.iab.create(this.url, '_blank');
-  
-      let listener = browser.on('loadstart').subscribe((event: any) => {
-  
-        //Ignore the dropbox authorize screen
-        if(event.url.indexOf('oauth2/authorize') > -1){
-          return;
-        }
-  
-        //Check the redirect uri
-        if(event.url.indexOf("#access_token") > -1){ //this.redirectURI) > -1 ){
-          let token = event.url.split('=')[1].split('&')[0];
-          this.accessToken = token;
-          resolve(event.url);
-          listener.unsubscribe();
-          browser.close();
-        } else 
-        if(event.url.indexOf("access_denied") > -1)  {
-          listener.unsubscribe();
-          browser.close();
-          reject("Could not authenticate. Please try again.");
-        }
-  
-      });
-  
+        let listener = browser.on('loadstart').subscribe((event: any) => {
+    
+          //Ignore the dropbox authorize screen
+          if(event.url.indexOf('oauth2/authorize') > -1){
+            return;
+          }
+    
+          //Check the redirect uri
+          if(event.url.indexOf("#access_token") > -1){ //this.redirectURI) > -1 ){
+            let token = event.url.split('=')[1].split('&')[0];
+            this.accessToken = token;
+            resolve(event.url);
+            listener.unsubscribe();
+            browser.close();
+          } else 
+          if(event.url.indexOf("access_denied") > -1)  {
+            listener.unsubscribe();
+            browser.close();
+            reject("Could not authenticate. Please try again.");
+          }
+    
+        });
+
+      }
+
     });
   
   }

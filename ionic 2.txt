@@ -115,7 +115,7 @@ Hint: Add Http module to appmodule
 
 Device Debugging Android:
 Install debugging tool for cordova and run "ionic run android -l" on command prompt
-Make sure both "Path" Environment Variables are set like: "C:\Users\Haider-Office\AppData\Local\Android\sdk\tools;C:\Users\Haider-Office\AppData\Local\Android\sdk\platform-tools\"
+Make sure both the 2 "Path" Environment Variables are set like: "C:\Users\Haider-Office\AppData\Local\Android\sdk\tools;C:\Users\Haider-Office\AppData\Local\Android\sdk\platform-tools\"
 
 EVENTS:
 https://ionicframework.com/docs/api/util/Events/

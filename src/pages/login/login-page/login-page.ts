@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { Timeline } from '../../timeline/timeline/timeline';
 import { RegisterationInfoPage } from '../registeration-info-page/registeration-info-page';
 
@@ -15,7 +15,7 @@ export class LoginPage {
   userpass : string = "";
   error : string = "";
   constructor(public navCtrl: NavController, public navParams: NavParams,
-               public authProvider : AuthProvider) {
+               public authProvider : AuthProvider, private loadingCtrl: LoadingController) {
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
@@ -23,7 +23,13 @@ export class LoginPage {
   trylogin(){
     if(this.userid && this.userpass)
     {
+      let loading = this.loadingCtrl.create({
+        content: 'Logging in...'
+      });
+      loading.present();
+
       this.authProvider.authenticateUser(this.userid, this.userpass).then((result : string)=>{
+        loading.dismiss();
         if(result == "Accepted")
           this.navCtrl.setRoot(Timeline);
         else

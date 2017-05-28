@@ -16,7 +16,8 @@ import { DeveloperPage } from '../../sidemenuextra/developer-page/developer-page
 export class MenuSettings {
   
   constructor(public navCtrl: NavController, public navParams: NavParams, private dropboxprovider : DropboxProvider,
-              private loadingCtrl: LoadingController, private dbprovider : DBProvider, private alertCtrl : AlertController) {
+              private loadingCtrl: LoadingController, private dbprovider : DBProvider,
+              private alertCtrl : AlertController) {
 
   }
 
