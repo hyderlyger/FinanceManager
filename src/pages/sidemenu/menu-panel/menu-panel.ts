@@ -5,7 +5,7 @@ import { DBProvider } from '../../../providers/db-provider';
 import { ImagesProvider } from '../../../providers/images-provider';
 import { Category } from '../../../models/category';
 import { Type } from '../../../models/enums';
-import { Color } from '../../../models/enums';
+import { Color } from '../../../models/helpers';
 import { PopoverAccountSelect } from '../../../components/popover-account-select/popover-account-select';
 
 @IonicPage()

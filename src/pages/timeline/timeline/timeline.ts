@@ -48,7 +48,7 @@ isfilterdateActive : Boolean;
           this.navCtrl.push(AddEditAccount, args);
           break;
         case EventType.OpenAddEditCategory:
-          this.navCtrl.push(AddEditCategory);
+          this.navCtrl.push(AddEditCategory, args);
           break;
         default:
           break;
@@ -96,6 +96,11 @@ isfilterdateActive : Boolean;
   toggleSubGroupVisibility(groupid, subgroupid){
     this.dbprovider.toggleSubGroupItemVisibility(groupid, subgroupid);
   }
+  onfilterdateChange(val){
+    this.filterdate = val;
+    this.filterdateRaw = new Date(val);
+    this.isfilterdateActive = true;
+  }
   showAlert(title: string, subTitle: string, buttonText : string){
     var alert = this.alertCtrl.create({
         title: title,
@@ -103,10 +108,5 @@ isfilterdateActive : Boolean;
         buttons: [buttonText]
       });
     alert.present();
-  }
-  onfilterdateChange(val){
-    this.filterdate = val;
-    this.filterdateRaw = new Date(val);
-    this.isfilterdateActive = true;
   }
 }

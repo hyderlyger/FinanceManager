@@ -27,25 +27,30 @@
             <div style="margin-left: 15%;">Despesas</div>
           </th>
           <th class="headingright">
-            <button ion-button clear icon-only class="headingbutton">
+            <button ion-button clear icon-only class="headingbutton" (click)="addCategoryPage(2);">
               <ion-icon color="_black" class="iosbold" name="add"></ion-icon>
             </button>
           </th>
         </tr>
       </thead>
 
-      <tbody *ngFor="let Revcategory of dbprovider.categories; let i = index">
-        <tr class="row verticalcenter"  *ngIf="Revcategory.type == 2 && Revcategory.issystem != true">
-            <td class="leftcol">
-              <div class="rowimagecontainer">
-                <img class="rowimg " [src]="imageprovider.getCategoryExpenseImagebyID(Revcategory.imageindex)"/>
-              </div>
-            </td>
-            <td class="rightcol verticalcenter">
-              <h6 class="rowtitle verticalcenter {{Revcategory.type == 1 ? 'colorGreen' : 'colorRed'}}">{{Revcategory.subject}}</h6>
-            </td>
-        </tr>
-      </tbody>
+      <span *ngFor="let category of dbprovider.categories; let i = index">
+        <button class="rowbutton verticalcenter fill100" ion-button clear icon-only *ngIf="category.type == 2 && category.issystem != true" (click)="editCategoryPage(category.id, category.type);">
+          <tbody class="fill100">
+            <tr class="row verticalcenter">
+                <td class="leftspacer"></td>
+                <td class="leftcol">
+                  <div class="rowimagecontainer">
+                    <img class="rowimg " [src]="imageprovider.getCategoryExpenseImagebyID(category.imageindex)"/>
+                  </div>
+                </td>
+                <td class="rightcol verticalcenter">
+                  <h6 class="rowtitle verticalcenter {{category.type == 1 ? 'colorGreen' : 'colorRed'}}">{{category.subject}}</h6>
+                </td>
+            </tr>
+          </tbody>
+        </button>
+      </span>
 
 
       <thead style="background-color: #bebebe;">
@@ -54,27 +59,31 @@
             <div style="margin-left: 15%;">Rendimentos</div>
           </th>
           <th class="headingright">
-            <button ion-button clear icon-only class="headingbutton">
+            <button ion-button clear icon-only class="headingbutton" (click)="addCategoryPage(1);">
               <ion-icon color="_black" class="iosbold" name="add"></ion-icon>
             </button>
           </th>
         </tr>
       </thead>
 
-      <tbody *ngFor="let Revcategory of dbprovider.categories; let i = index">
-        <tr class="row verticalcenter" *ngIf="Revcategory.type == 1 && Revcategory.issystem != true">
-            <td class="leftcol">
-              <div class="rowimagecontainer">
-                <img class="rowimg " [src]="imageprovider.getCategoryRevenueImagebyID(Revcategory.imageindex)"/>
-              </div>
-            </td>
-            <td class="rightcol verticalcenter">
-              <h6 class="rowtitle verticalcenter {{Revcategory.type == 1 ? 'colorGreen' : 'colorRed'}}">{{Revcategory.subject}}</h6>
-            </td>
-        </tr>
-      </tbody>
+      <span *ngFor="let category of dbprovider.categories; let i = index">
+        <button class="rowbutton verticalcenter fill100" ion-button clear icon-only *ngIf="category.type == 1 && category.issystem != true" (click)="editCategoryPage(category.id, category.type);">
+          <tbody class="fill100">
+            <tr class="row verticalcenter" >
+                <td class="leftspacer"></td>
+                <td class="leftcol">
+                  <div class="rowimagecontainer">
+                    <img class="rowimg " [src]="imageprovider.getCategoryRevenueImagebyID(category.imageindex)"/>
+                  </div>
+                </td>
+                <td class="rightcol verticalcenter">
+                  <h6 class="rowtitle verticalcenter {{category.type == 1 ? 'colorGreen' : 'colorRed'}}">{{category.subject}}</h6>
+                </td>
+            </tr>
+          </tbody>
+        </button>
+      </span>
       
-
     </table>
     
   </ion-list>

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
 
 import { Type } from '../models/enums'; 
-import { Color } from '../models/enums'; 
+import { Color } from '../models/helpers'; 
 
 //Note: INDEXES ARE OUR KEYS HERE
 
@@ -52,10 +52,9 @@ export class ImagesProvider {
     this.CategoryExpenseImages.push(root + categorydirExp + "10.png");
     this.CategoryExpenseImages.push(root + categorydirExp + "11.png");
     this.CategoryExpenseImages.push(root + categorydirExp + "12.png");  
-    this.CategoryExpenseImages.push(root + categorydirExp + "00.png");  //index 12  //Tranfer Img
 
     var categorydirExpExtras = "Category/Icons/Despesas/Extras/"; //Extras
-    this.CategoryExpenseImages.push(root + categorydirExpExtras + "extra01.png");   //index 13
+    this.CategoryExpenseImages.push(root + categorydirExpExtras + "extra01.png");   //index 12
     this.CategoryExpenseImages.push(root + categorydirExpExtras + "extra02.png");
     this.CategoryExpenseImages.push(root + categorydirExpExtras + "extra03.png");
     this.CategoryExpenseImages.push(root + categorydirExpExtras + "extra04.png");
@@ -72,8 +71,9 @@ export class ImagesProvider {
     this.CategoryExpenseImages.push(root + categorydirExpExtras + "extra16.png");
     this.CategoryExpenseImages.push(root + categorydirExpExtras + "extra17.png");
     this.CategoryExpenseImages.push(root + categorydirExpExtras + "extra18.png");
-    this.CategoryExpenseImages.push(root + categorydirExpExtras + "extra19.png");    //index 30
+    this.CategoryExpenseImages.push(root + categorydirExpExtras + "extra19.png");    //index 29
 
+    this.CategoryExpenseImages.push(root + categorydirExp + "00.png");  //index 30  //Tranfer Img
   }
   
   getAccountImagebyID(_id : number){
@@ -87,27 +87,27 @@ export class ImagesProvider {
      return this.AccountImages;  //check if private makes a problem
    }
 
-  getCategoryRevenueImagebyID(_id : number){
+   getCategoryRevenueImagebyID(_id : number){
     if(_id>=0 && _id< this.CategoryRevenueImages.length)
       return this.CategoryRevenueImages[_id];
   }
-  // getAllCategoryRevenueImages() {
-  //   return this.CategoryRevenueImages;  //check if private makes a problem
-  // }
+   getUseableCategoryImages(type : Type) {
+    if(type == Type.Revenue)
+        return this.CategoryRevenueImages.slice(0,3);
+    else(type == Type.Expense)
+        return this.CategoryExpenseImages.slice(0,30);
+   }
   
   getCategoryExpenseImagebyID(_id : number){
     if(_id>=0 && _id< this.CategoryExpenseImages.length)
       return this.CategoryExpenseImages[_id];
   }
-  // getAllCategoryExpenseImages() {
-  //   return this.CategoryExpenseImages;  //check if private makes a problem
-  // }
   
   getTransferImageIndex(type : Type){ //hemper function to provide transfer img index
     if(type == Type.Revenue)
       return 3;
     else if (type == Type.Expense)
-      return 12;
+      return 30;
   }
   
   //For Graph

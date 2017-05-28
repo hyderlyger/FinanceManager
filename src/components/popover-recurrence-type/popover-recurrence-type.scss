@@ -1,0 +1,16 @@
+popover-recurrence-type {
+    .item.active, .item.activated, .item-complex.active .item-content, .item-complex.activated .item-content {
+        border-color: map-get($colors, _blue);
+        background-color: map-get($colors, _blue);
+    }
+    .btnitemImageCategory{
+        width: 25px;
+        height: 25px;
+    }
+    .itemImageCategory{
+        background-repeat: no-repeat;
+        max-width: 25px;
+        max-height: 25px;
+        vertical-align: middle;
+    }
+}

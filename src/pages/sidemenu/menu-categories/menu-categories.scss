@@ -7,9 +7,12 @@ page-menu-categories {
         color: #383838;
         font-size: 15px;
     }
+    .leftspacer{
+        width : 5%;
+    }
     .leftcol{
         width : 20%;
-        margin-left: 5%;
+        margin: auto;
     }
     .rightcol{
         width : 75%;
@@ -23,21 +26,27 @@ page-menu-categories {
     .rowimg{
         max-width : 23px;
         max-height : 23px;
+        vertical-align: middle;
     }
 
     .rowtitle{
         font-size: 13px;
         font-weight: bolder;
-        margin-left: 10px;
     }
     .verticalcenter{
         vertical-align: middle;
         margin-top: auto;
         margin-bottom: auto;
     }
+    .rowbutton{
+        height:30px;
+        margin-top: 0px;
+        margin-right: 0px;
+        margin-bottom: 0px;
+        margin-left: 3px;
+    }
     .row{
-        height:23px;
-        margin-top: 5px;
+        height:30px;
     }
 
     .headingleft{

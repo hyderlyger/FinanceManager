@@ -1,18 +1,57 @@
-<!--
-  Generated template for the AddEditCategory page.
+<ion-header >
 
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
-<ion-header>
-
-  <ion-navbar>
-    <ion-title>AddEditCategory</ion-title>
+  <ion-navbar [color]="_category.type == 1 ? '_green' : '_red' " >
+    <ion-title>
+      <button style="margin-left: -45px;" ion-button clear icon-only text-center>
+        <img class="headerimg" src="assets/Images/Timeline/icons/whiteLogo.png"/>
+      </button>
+    </ion-title>
   </ion-navbar>
-
+  <table style="width: 270px; margin: auto;">
+    <tr class="spacer"></tr>
+    <tr>
+      <td class="entryBox" [ngClass]="_category.type == 1 ? 'backgroundColorGreen' : 'backgroundColorRed' ">
+        <div>
+          <div style="height:5px"></div>
+          <div style="height:38px;"><ion-input color="_white" style="font-size: 2.5rem; font-weight: bold;" type="text" placeholder="Categoria Subject" [(ngModel)]="_category.subject"></ion-input> </div>
+          <div style="height:5px"></div>
+        </div>
+      </td>
+    </tr>
+    <tr class="spacer"></tr>
+  </table>
 </ion-header>
 
+<ion-content class="color_offwhite">
+  
+  <table style="width: 270px; margin: auto;">
+    <tr class="spacer" ></tr>
+    <tr>
+      <ion-row>
+        <div class="colcontainer" *ngFor=" let imgsrc of _categoryImagesArray; let imgindex = index">
+          <ion-col >
+            <div class="btnContainer" [ngClass]=" _category.type == 1 ? 'greenborder' : 'redborder' " >
+              <div [ngClass]="_category.imageindex == imgindex ? 'highlight' : '' ">
+                <button class="imggbtn" ion-button clear icon-only (click)="updateSelection(imgindex);" >
+                  <img class="imgg" [src]="imgsrc" />
+                </button>
+              </div>
+            </div>
+          </ion-col>
 
-<ion-content padding>
+        </div>
+        
+      </ion-row>
+    </tr>
+
+  </table>
 
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar text-center color="_offwhite">
+    <button ion-button center class="borderButton" [ngClass]="_category.type == 1 ? 'colorGreen' : 'colorRed' " (click)="saveEntry();">
+      {{ _category.id ? "Update Category" : "Add Category"}}
+    </button>
+  </ion-toolbar>
+</ion-footer>

@@ -1,0 +1,39 @@
+<ion-content padding class="color_offwhite">
+
+  <table class="fill50" style="margin: auto;">
+    <tr style="height:8px;"></tr>
+    <tr class="SelectionBox border1px">
+      <td style="width: 35px;"></td>
+      <td>
+        <div>
+          <div style="height:4px"></div>
+          <div style="height:25px; font-size:16px;"><h5 class="heading" style="margin: 0px;">{{_recurrenceTypes[_repeatType]}}</h5></div>
+          <div style="height:2px"></div>
+        </div>
+      </td>
+      <td style="width: 35px;">
+        <button ion-button clear icon-only text-center color="_black" style="margin: 1px;" (click)= "presentPopover($event);">
+          <ion-icon name="ios-arrow-down" ></ion-icon> 
+        </button>
+      </td>
+    </tr>
+  </table>
+
+  <table class="fill50">
+    <tr style="height:35px;">
+      <td style="display:inline-flex;">
+        <span style="margin: auto;"><h5 class="heading" style="margin: 0px;">Repetir</h5></span>
+        <span style="margin: auto;"><ion-input type="number" class="inputt heading" color="_black" placeholder="" [(ngModel)]="_repeatCount"></ion-input></span>
+        <span style="margin: auto;"><h5 class="heading" style="margin: 0px;">{{_recurrenceTypesPlural[_repeatType]}}</h5></span>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <button style="width:30px; height:30px; float:right; margin-right:5px; margin-top:-20px;" large ion-button clear icon-only (click)="saveRecurrence();">
+          <img style="max-width:30px; max-height:30px;" src="assets/Images/Profile/icons/04.png"/>
+        </button>
+      </td>
+    </tr>
+  </table>
+
+</ion-content>

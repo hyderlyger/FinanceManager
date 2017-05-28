@@ -24,6 +24,7 @@ import { Timeline } from '../pages/timeline/timeline/timeline';
 import { AddAmountEntry } from '../pages/timeline/add-amount-entry/add-amount-entry';
 import { SelectCategory } from '../pages/timeline/select-category/select-category';
 import { Transfer } from '../pages/timeline/transfer/transfer';
+import { ModalRecurrence } from '../pages/timeline/modal-recurrence/modal-recurrence';
 
 //Pipes
 import { CurrencyBRL } from '../pipes/currency-brl';
@@ -42,6 +43,7 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 //Components
 import { PopoverAccountSelect } from '../components/popover-account-select/popover-account-select';
+import { PopoverRecurrenceType } from '../components/popover-recurrence-type/popover-recurrence-type';
 
 @NgModule({
   declarations: [
@@ -56,18 +58,21 @@ import { PopoverAccountSelect } from '../components/popover-account-select/popov
     //MenuExtrasPages
     AddEditAccount,
     AddEditCategory,
-    //TimelinePages
+    //LoginPages
     LoginPage,
     RegisterationInfoPage,
     RegisterationCredentialsPage,
+    //TimelinePages
     Timeline,
     AddAmountEntry,
     SelectCategory,
     Transfer,
+    ModalRecurrence,
     //Pipes
     CurrencyBRL,
     //Components
-    PopoverAccountSelect
+    PopoverAccountSelect,
+    PopoverRecurrenceType
   ],
   imports: [
     BrowserModule,
@@ -88,16 +93,19 @@ import { PopoverAccountSelect } from '../components/popover-account-select/popov
     //MenuExtrasPages
     AddEditAccount,
     AddEditCategory,
-    //TimelinePages
+    //LoginPages
     LoginPage,
     RegisterationInfoPage,
     RegisterationCredentialsPage,
+    //TimelinePages
     Timeline,
     AddAmountEntry,
     SelectCategory,
     Transfer,
+    ModalRecurrence,
     //Components
-    PopoverAccountSelect
+    PopoverAccountSelect,
+    PopoverRecurrenceType
   ],
   providers: [
     StatusBar,

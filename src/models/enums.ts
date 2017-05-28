@@ -8,9 +8,8 @@ export enum EventType{
     OpenAddEditAccount,
     OpenAddEditCategory
 }
-export class Color {
-    public constructor( public rgb : string,
-                        public hex : string )
-                        {
-    }
+export enum RecurrenceType{
+    Daily = 0,
+    Weekly,
+    Monthly
 }

@@ -34,6 +34,9 @@ export class DBProvider {
   public balance : number = 0;
   public selectedAccount : Account;
 
+  //UserAccessLevel
+  public isUserAccessLevelPreminum : Boolean = true;
+
   //CONSTRUCTOR
   constructor(private storage : Storage , private imagesprovider : ImagesProvider) {
     console.log('Hello DBProvider Provider');
@@ -166,6 +169,30 @@ export class DBProvider {
         this.storage.ready().then(() => {
             this.storage.set(this.dbConstants.db_accounts, JSON.stringify(this.accounts));
             this.LoadLatestACCOUNTSfromDB().then(()=>{
+              resolve(true);
+            });
+          });
+      }else
+        resolve(false);
+
+    });
+  }
+  public addOrUpdateCategory(_category : Category) {
+    return new Promise((resolve)=> {
+
+      if(_category != null && ((_category.id && this.categories.find(item=> item.id == _category.id)) || !_category.id) )
+      {
+        if(_category.id){
+          var index = this.categories.findIndex(item=> item.id == _category.id); //getting the index
+          this.categories[index] = _category;  //update
+        }else{
+          _category.id = UUID.UUID();
+          this.categories.push(_category); //add
+        }
+
+        this.storage.ready().then(() => {
+            this.storage.set(this.dbConstants.db_categories, JSON.stringify(this.categories));
+            this.LoadLatestCATEGORIESfromDB().then(()=>{
               resolve(true);
             });
           });

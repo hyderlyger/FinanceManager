@@ -1,0 +1,12 @@
+<ion-list no-lines class="color_offwhite">
+
+  <button ion-item *ngFor="let type of _recurrenceTypes; let i = index" color="_offwhite" (click)="ItemTapped(i);">
+          <!--<div class="btnitemImageCategory" item-left>
+            <img class="itemImageCategory" [src]="imagesprovider.getAccountImagebyID(account.imageindex)"/>
+          </div>-->
+          <ion-note color="_black" item-left>
+            <h5 text-wrap>{{type}}</h5>
+          </ion-note>
+  </button>
+  
+</ion-list>

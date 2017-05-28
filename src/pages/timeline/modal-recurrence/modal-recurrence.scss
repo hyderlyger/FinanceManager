@@ -1,0 +1,30 @@
+page-modal-recurrence {
+    .text-input{
+        border-bottom: 1px solid map-get($colors, _darksilver);
+        padding-left: 10px;
+    }
+
+    .fill50{
+        width:100%;
+        height:35px;
+    }
+    .heading{
+        font-size:1.9rem;
+        color: map-get($colors ,_black )
+    }
+    .inputt{
+        width:60px; 
+        margin-left:5px; 
+        margin-right:5px;
+    }
+    .SelectionBox{
+        color: map-get($colors, _black);
+        width: 270px;
+        height: 35px;
+        margin: auto;
+        text-align: center;
+    }
+    .border1px{
+        border: 1px solid map-get($colors, _darksilver);
+    }
+}
