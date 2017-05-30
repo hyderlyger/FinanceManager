@@ -119,3 +119,6 @@ Make sure both the 2 "Path" Environment Variables are set like: "C:\Users\Haider
 
 EVENTS:
 https://ionicframework.com/docs/api/util/Events/
+
+Email:
+https://ionicframework.com/docs/native/email-composer/
