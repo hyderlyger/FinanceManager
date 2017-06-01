@@ -15,7 +15,7 @@ export class RegisterationInfoPage {
   error : string = "";
   constructor(public navCtrl: NavController, public navParams: NavParams, private datePicker: DatePicker) {
     this.dobRaw = new Date();
-    this.dob = this.dobRaw.toISOString();
+    this.dob = this.formatddmmyy(this.dobRaw);
   }
 
   ionViewDidLoad() {
@@ -51,7 +51,22 @@ export class RegisterationInfoPage {
   onfilterdateChange(val){
     if(val){
       this.dobRaw = new Date(val);
-      this.dob = this.dobRaw.toISOString();
+      this.dob = this.formatddmmyy(this.dobRaw);
     }
+  }
+  formatddmmyy(today : Date){
+    var dd = today.getDate();
+    var mm = today.getMonth()+1; //January is 0!
+
+    let ddfixed : string,mmfixed : string;
+
+    var yyyy = today.getFullYear();
+    if(dd<10){
+        ddfixed='0'+dd;
+    } 
+    if(mm<10){
+        mmfixed='0'+mm;
+    } 
+    return ddfixed+'/'+mmfixed+'/'+yyyy;
   }
 }
