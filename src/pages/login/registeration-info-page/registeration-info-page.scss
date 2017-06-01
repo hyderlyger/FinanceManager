@@ -1,12 +1,22 @@
 page-registeration-info-page {
     //system overrides
     .inputtextcolor{
-        color: #8B8D91;
+        color: map-get($colors , _offwhite );
     }
     .text-input{
-        color: #8B8D91;   //for Date input text
+        color: map-get($colors , _offwhite );   //for Date input text
     }
-    
+    .text-input::-moz-placeholder {
+        color: #8B8D91;
+    }
+    .text-input:-ms-input-placeholder {
+        color: #8B8D91;
+    }
+    .text-input::-webkit-input-placeholder {
+        text-indent: 0;
+        color: #8B8D91;
+    }
+
     //layout
     .fillcomplete{
         width:100%;

@@ -129,3 +129,15 @@ https://ionicframework.com/docs/api/util/Events/
 
 Email:
 https://ionicframework.com/docs/native/email-composer/
+
+Placeholder Color Change:
+.text-input::-moz-placeholder {
+        color: #8B8D91;
+    }
+    .text-input:-ms-input-placeholder {
+        color: #8B8D91;
+    }
+    .text-input::-webkit-input-placeholder {
+        text-indent: 0;
+        color: #8B8D91;
+    }
