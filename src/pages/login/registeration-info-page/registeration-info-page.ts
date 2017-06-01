@@ -61,12 +61,14 @@ export class RegisterationInfoPage {
     let ddfixed : string,mmfixed : string;
 
     var yyyy = today.getFullYear();
-    if(dd<10){
+    if(dd<10)
         ddfixed='0'+dd;
-    } 
-    if(mm<10){
+    else
+        ddfixed= dd.toString();
+    if(mm<10)
         mmfixed='0'+mm;
-    } 
+    else
+        mmfixed= mm.toString();
     return ddfixed+'/'+mmfixed+'/'+yyyy;
   }
 }
