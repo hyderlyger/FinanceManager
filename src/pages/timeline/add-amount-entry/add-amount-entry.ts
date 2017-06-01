@@ -4,6 +4,7 @@ import { Type } from '../../../models/enums';
 import { AlertController } from 'ionic-angular';
 import { SelectCategory } from '../select-category/select-category';
 import { Transfer } from '../transfer/transfer';
+import { DatePicker } from '@ionic-native/date-picker';
 
 @IonicPage()
 @Component({
@@ -14,7 +15,8 @@ export class AddAmountEntry {
 
   type : Type;
   observation : string;
-  date : string;
+  dateShort : number;
+  date : Date;
   price : number;
 
   //Calculator stuff
@@ -23,9 +25,11 @@ export class AddAmountEntry {
   ispoint : Boolean;
   _calculatorItems = [ "1", "2", "3", "+", "4", "5", "6", "-", "7", "8", "9", "x", ".", "0", "=", "/"  ];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl : AlertController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl : AlertController,
+              private datePicker: DatePicker) {
     this.type = navParams.get("type");
-    this.date = new Date().toISOString();
+    this.date = new Date();
+    this.dateShort = this.date.getDate();
     this.price = 0;
     this.previousPrice = 0;
     this.ispoint = false;
@@ -147,4 +151,21 @@ export class AddAmountEntry {
     this.operation = "";
     this.ispoint = false;
   }
+
+  showDatePicker(){
+    this.datePicker.show({
+          date: new Date(),
+          mode: 'date',
+          androidTheme: this.datePicker.ANDROID_THEMES.THEME_HOLO_DARK
+        }).then(
+          date => {
+              this.ondateChange(date);
+          }, err =>{
+
+          }
+      );
+  }
+  ondateChange(val){
+    this.date = new Date(val);
+    this.dateShort = this.date.getDate();  }
 }

@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { HttpModule } from '@angular/http';
+import { DatePicker } from '@ionic-native/date-picker';
 
 //Pages
 //--Menus
@@ -118,7 +119,8 @@ import { PopoverRecurrenceType } from '../components/popover-recurrence-type/pop
     DBProvider,
     ImagesProvider,
     DropboxProvider,
-    InAppBrowser  //for dropbox auth
+    InAppBrowser,  //for dropbox auth
+    DatePicker
   ]
 })
 export class AppModule {}

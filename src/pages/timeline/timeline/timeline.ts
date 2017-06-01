@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Events, PopoverController, AlertController } from 'ionic-angular';
+import { DatePicker } from '@ionic-native/date-picker';
 
 import { MenuPanel } from '../../sidemenu/menu-panel/menu-panel';
 import { AddEditAccount } from '../../sidemenuextra/add-edit-account/add-edit-account';
@@ -21,16 +22,16 @@ import { ImagesProvider } from '../../../providers/images-provider';
   templateUrl: 'timeline.html',
 })
 export class Timeline {
-filterdate : string;
+filterdate : number;
 filterdateRaw : Date;
 isfilterdateActive : Boolean;
 
   constructor(public navCtrl: NavController, private popoverCtrl: PopoverController, private events : Events, 
               private dbprovider : DBProvider, private imagesprovider : ImagesProvider, public navParams: NavParams,
-              private alertCtrl : AlertController) {
+              private alertCtrl : AlertController, private datePicker: DatePicker) {
 
                 this.filterdateRaw = new Date();
-                this.filterdate = this.filterdateRaw.toISOString();
+                this.filterdate = this.filterdateRaw.getDate();
                 this.isfilterdateActive = false;
 
                 this.listenToPageEvents(); //Event that listens to fullscreen Side Menu Page Changes
@@ -57,6 +58,7 @@ isfilterdateActive : Boolean;
   }
   //Overrides
   ionViewDidLoad() {
+    this.isfilterdateActive = false; // resetting
   }
   ionViewCanEnter(){ //every time gets active
     console.log("Timeline - ionViewCanEnter");
@@ -96,11 +98,25 @@ isfilterdateActive : Boolean;
   toggleSubGroupVisibility(groupid, subgroupid){
     this.dbprovider.toggleSubGroupItemVisibility(groupid, subgroupid);
   }
+  showDatePicker(){
+    this.datePicker.show({
+          date: new Date(),
+          mode: 'date',
+          androidTheme: this.datePicker.ANDROID_THEMES.THEME_HOLO_DARK
+        }).then(
+          date => {
+              this.onfilterdateChange(date);
+          }, err =>{
+
+          }
+      );
+  }
   onfilterdateChange(val){
-    this.filterdate = val;
     this.filterdateRaw = new Date(val);
+    this.filterdate = this.filterdateRaw.getDate();
     this.isfilterdateActive = true;
   }
+
   showAlert(title: string, subTitle: string, buttonText : string){
     var alert = this.alertCtrl.create({
         title: title,

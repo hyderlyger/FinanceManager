@@ -35,5 +35,16 @@ export class AuthProvider {
                         resolve(msg);
                     });
                   });
-  } 
+  }
+
+  getUserNameifAny(){
+    return new Promise (resolve =>{
+      this.dbProvider.GetUserID().then ( id => {
+        if(id)
+          resolve (id);
+        else
+          resolve("");
+      });
+    });
+  }
 }

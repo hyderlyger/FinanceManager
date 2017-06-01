@@ -4,9 +4,9 @@
     <button class="menuheaderbutton" ion-button clear icon-only  text-center left>
       <img class="headerimg" src="assets/Images/Timeline/icons/whiteLogo.png"/>
     </button>
-    <button id="Calender" class="menuheaderbutton colorRed" ion-button clear icon-only right
-            style="float: right; margin-right:10px; font-size: 21px; font-weight: bolder; background-image: url('assets/Images/InOut/icons/05.png');  background-size: cover;">
-      <ion-datetime displayFormat="DD" pickerFormat="DD/MM/YYYY" [(ngModel)]="date"></ion-datetime>
+    <button id="Calender" class="menuheaderbutton colorRed" ion-button clear icon-only right (click) = "showDatePicker();"
+            style="float: right; margin-right:10px; background-image: url('assets/Images/InOut/icons/05.png');  background-size: cover;">
+      <h5 style="margin-top: 50%; font-size: 2.2rem; font-weight: bolder;">{{dateShort}}</h5>
     </button>
   </ion-navbar>
 

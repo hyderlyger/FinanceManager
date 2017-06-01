@@ -19,6 +19,12 @@ export class LoginPage {
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
+
+    this.authProvider.getUserNameifAny().then( (id : string) => {
+      if(id)
+        this.userid = id; //showing the user id if an account exists
+    }); 
+    
   }
   trylogin(){
     if(this.userid && this.userpass)

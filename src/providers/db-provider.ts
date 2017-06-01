@@ -35,14 +35,14 @@ export class DBProvider {
   public selectedAccount : Account;
 
   //UserAccessLevel
-  public isUserAccessLevelPreminum : Boolean = false;
+  public isUserAccessLevelPreminum : Boolean = true;
 
   //CONSTRUCTOR
   constructor(private storage : Storage , private imagesprovider : ImagesProvider) {
     console.log('Hello DBProvider Provider');
 
     //let uuid = UUID.UUID();
-    this.LoadLatestUSERfromDB();
+    //this.LoadLatestUSERfromDB();  //now doing in authprovider
   }
 
   //DATABASE INTERACTIONS - USER
@@ -89,6 +89,14 @@ export class DBProvider {
       }else
         resolve("UserID & Password fields are required");
 
+    });
+  }
+  public GetUserID(){
+    return new Promise (resolve =>{
+      this.LoadLatestUSERfromDB().then( ()=>{
+        let userID = this.user.id;
+        resolve(userID);
+      });
     });
   }
   public updateUser(username : string, email :string, newpassword : string) { //it is prefered to return all elements seperated
@@ -264,11 +272,6 @@ export class DBProvider {
       this.storage.ready().then(() => {
           this.storage.get(this.dbConstants.db_user).then( (val) => {
               this.user = JSON.parse(val);
-              if(this.user == null) {
-                this.user = null;
-              }else{
-                // Nothing
-              }
               resolve();
           });
         });
