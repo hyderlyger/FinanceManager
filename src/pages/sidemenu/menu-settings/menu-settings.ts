@@ -24,29 +24,42 @@ export class MenuSettings {
   ionViewDidLoad() {
     console.log('ionViewDidLoad MenuSettings');
   }
-  CreateBackup(){
-    alert('Create Backup');
-  }
-  RestoreBackup(){
-    alert('Restore Backup');
-  }
-  ExportExcel(){
-    alert('ExportExcel');
-  }
+  // DeleteAllData(){
+
+  //   let confirm = this.alertCtrl.create({
+  //     title: 'Delete your Data?',
+  //     message: 'Do you agree to delete all your data and restore this app to initial state?',
+  //     buttons: [
+  //       {
+  //         text: 'Disagree',
+  //         handler: () => {
+  //           console.log('Disagree clicked');
+  //         }
+  //       },
+  //       {
+  //         text: 'Agree',
+  //         handler: () => {
+  //           this.DeleteAllDataConfirmed();
+  //         }
+  //       }
+  //     ]
+  //   });
+  //   confirm.present();
+  // }
   DeleteAllData(){
 
     let confirm = this.alertCtrl.create({
-      title: 'Delete your Data?',
-      message: 'Do you agree to delete all your data and restore this app to initial state?',
+      title: 'Apague todos os dados?',
+      message: 'Você concorda em excluir todos os seus dados e restaurar este aplicativo para o estado inicial?',
       buttons: [
         {
-          text: 'Disagree',
+          text: 'Discordar',
           handler: () => {
             console.log('Disagree clicked');
           }
         },
         {
-          text: 'Agree',
+          text: 'Aceita',
           handler: () => {
             this.DeleteAllDataConfirmed();
           }
@@ -57,13 +70,14 @@ export class MenuSettings {
   }
   DeleteAllDataConfirmed(){
     let loading = this.loadingCtrl.create({
-        content: 'Clearing custom data...'
+        content: 'Eliminando dados personalizados ...' //'Clearing custom data...'
       });
  
     loading.present();
     this.dbprovider.deleteAllCustomData().then((res)=>{
       loading.dismiss();
-      this.showAlert("Apagar dados","Data deleted!","Close");
+      //this.showAlert("Apagar dados","Data deleted!","Close");
+      this.showAlert("Apagar dados","Dados excluídos!","Ok");
     });
   }
   
@@ -73,14 +87,16 @@ export class MenuSettings {
     this.dropboxprovider.login().then((success) => {
       
       let loading = this.loadingCtrl.create({
-        content: 'Backing up to Dropbox...'
+        //content: 'Backing up to Dropbox...'
+        content: 'Fazendo backup no Dropbox...'
       });
       loading.present();
 
       this.dropboxprovider.saveDatabase().then(result => {
 
         loading.dismiss();
-        this.showAlert("Sincronizar Dropbox","Synced!","Done");
+        //this.showAlert("Sincronizar Dropbox","Synced!","Done");
+        this.showAlert("Fazendo backup em Dropbox","Sincronizado!","Ok");
 
       }).catch((err) => {
 
@@ -98,7 +114,7 @@ export class MenuSettings {
     this.dropboxprovider.login().then((success) => {
 
       let loading = this.loadingCtrl.create({
-        content: 'Restoring from Dropbox...'
+        content: 'Restaurando do Dropbox...' //'Restoring from Dropbox...'
       });
       loading.present();
 
@@ -106,9 +122,11 @@ export class MenuSettings {
 
         loading.dismiss();
         if(result == "true")
-          this.showAlert("Restore Dropbox","Restored!","Done");
+          this.showAlert("Restaurar Dropbox","Restaurado!","Ok");
+          //this.showAlert("Restore Dropbox","Restored!","Done");
         else
-          this.showAlert("Restore Dropbox",result,"Done");
+          this.showAlert("Restaurar Dropbox",result,"Ok");
+          //this.showAlert("Restore Dropbox",result,"Done");
 
       }).catch((err) => {
 
@@ -117,7 +135,7 @@ export class MenuSettings {
       });
       
     }, (err) => {
-      this.showAlert("Restore Dropbox",err,"Close");
+      this.showAlert("Restaurar Dropbox",err,"Ok");
     });
   }
   openDeveloperPage(){

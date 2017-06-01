@@ -57,7 +57,8 @@ export class AddEditAccount {
         this.navCtrl.popToRoot();
       });
     }else{
-      this.showAlert("Error","All fields are required.","Ok");
+      //this.showAlert("Error","All fields are required.","Ok");
+      this.showAlert("Erro","Todos os campos são necessários.","Ok");
     }
   }
 

@@ -2,6 +2,10 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Events, PopoverController, AlertController } from 'ionic-angular';
 import { DatePicker } from '@ionic-native/date-picker';
 
+//Language
+import moment from 'moment';
+import 'moment/locale/pt-br';
+
 import { MenuPanel } from '../../sidemenu/menu-panel/menu-panel';
 import { AddEditAccount } from '../../sidemenuextra/add-edit-account/add-edit-account';
 import { AddEditCategory } from '../../sidemenuextra/add-edit-category/add-edit-category';
@@ -35,6 +39,8 @@ isfilterdateActive : Boolean;
                 this.isfilterdateActive = false;
 
                 this.listenToPageEvents(); //Event that listens to fullscreen Side Menu Page Changes
+
+                moment().locale('pt-br'); //Portugese language
   }
 
   //EventListning 
@@ -87,7 +93,8 @@ isfilterdateActive : Boolean;
       if(this.dbprovider.accounts.length>=2){
         this.navCtrl.push(AddAmountEntry,{type : Type.Transfer, selectedaccountid: this.dbprovider.selectedAccount.id});
       }else{
-        this.showAlert("Unavailable","You must have atleast 2 accounts to use this feature","Ok");
+        //this.showAlert("Unavailable","You must have atleast 2 accounts to use this feature","Ok");
+        this.showAlert("Indisponível","Você deve ter ao menos 2 contas para usar esse recurso","Ok");
       }
     }
   delete(id: string) {
@@ -118,7 +125,10 @@ isfilterdateActive : Boolean;
       this.isfilterdateActive = true;
     }
   }
-
+  getDateinPortugese(date : string)
+  {
+    return moment(date).format("dddd, DD MMMM YYYY"); //https://momentjs.com/
+  }
   showAlert(title: string, subTitle: string, buttonText : string){
     var alert = this.alertCtrl.create({
         title: title,

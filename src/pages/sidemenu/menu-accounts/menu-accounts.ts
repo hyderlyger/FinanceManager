@@ -28,7 +28,8 @@ export class MenuAccounts {
       this.events.publish(this.dbprovider.event_MenuEvent,EventType.OpenAddEditAccount); //asking root timeline to open Page
       this.menuCtrl.close();
     }else{
-      this.showAlert("Access Denied","Get Premium version to use this feature.","Ok");
+      //this.showAlert("Access Denied","Get Premium version to use this feature.","Ok");
+      this.showAlert("Acesso negado","Obtenha uma versão premium para usar esse recurso.","Ok");
     }
   }
   editAccountPage(accountid : string){

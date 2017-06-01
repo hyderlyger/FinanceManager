@@ -40,17 +40,21 @@ export class MenuProfile {
               this._newpass2 = "";
               this._username = this.dbprovider.user.name;
               this._email = this.dbprovider.user.email;
-              this.showAlert("Success","Your profile has been updated.","OK");
+              //this.showAlert("Success","Your profile has been updated.","OK");
+              this.showAlert("Sucesso","Seu perfil foi atualizado.","OK");
             }
           });
         }else{
-          this.showAlert("Error","New passwords fields must be identical.","OK");
+          //this.showAlert("Error","New passwords fields must be identical.","OK");
+          this.showAlert("Erro","Novos campos de senhas devem ser idênticos.","OK");
         }
       }else{
-        this.showAlert("Error","Incorrect actual password.","OK");
+        //this.showAlert("Error","Incorrect actual password.","OK");
+        this.showAlert("Erro","Senha real incorreta","OK");
       }
     }else{
-      this.showAlert("Error","All fields are required","OK");
+      //this.showAlert("Error","All fields are required","OK");
+      this.showAlert("Erro","Todos os campos são necessários","OK");
     }
   }
   showAlert(title: string, subTitle: string, buttonText : string){

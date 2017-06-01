@@ -30,7 +30,7 @@ export class LoginPage {
     if(this.userid && this.userpass)
     {
       let loading = this.loadingCtrl.create({
-        content: 'Logging in...'
+        content: 'Entrar...'  //Loging In
       });
       loading.present();
 
@@ -42,7 +42,7 @@ export class LoginPage {
           this.error = result;
       });
     }else{
-      this.error = "UserID & Password fields are required";
+      this.error = "Os campos ID do usuário e senha são obrigatórios."; //The user ID and password fields are required.
     }
   }
   RegisterMePage(){

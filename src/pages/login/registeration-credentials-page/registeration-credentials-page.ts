@@ -39,10 +39,10 @@ export class RegisterationCredentialsPage {
                                             this.error = result;
                                         });
       }else{
-        this.error = "Passwords must be identical";
+        this.error = "As senhas devem ser idênticas."; //"Passwords must be identical";
       }
     }else{
-      this.error = "Please fill all fields";
+      this.error = "Preencha todos os campos"; //"Please fill all fields";
     }
   }
   GoBackToLogin(){

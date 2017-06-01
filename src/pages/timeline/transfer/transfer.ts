@@ -31,7 +31,8 @@ export class Transfer {
                 this.type = navParams.get("type");
                 this.selectedAccountFrom = this.dbprovider.getAccountbyID(this.navParams.get("accountid"));
                 this.selectedAccountTo = this.dbprovider.getDistinctAccountOtherthantheMentionedID(this.navParams.get("accountid"));
-  }
+                
+}
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad Transfer');
@@ -96,10 +97,12 @@ export class Transfer {
                         this.navCtrl.popToRoot();
                       });
       }else{
-        this.showAlert("Conflict", "The selected accounts can not be identical.", "Ok");
+        //this.showAlert("Conflict", "The selected accounts can not be identical.", "Ok");
+        this.showAlert("Conflito", "As contas selecionadas não podem ser idênticas.", "Ok");
       }
     }else{
-      this.showAlert("Missing Fields", "All fields are required", "Ok");
+      //this.showAlert("Missing Fields", "All fields are required", "Ok");
+      this.showAlert("Campos perdidos", "Todos os campos são necessários.", "Ok");
     }
   }
 }

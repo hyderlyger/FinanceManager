@@ -28,7 +28,7 @@ export class RegisterationInfoPage {
       let data= { fullname : this.fullname, email : this.email, dob : this.dobRaw };
       this.navCtrl.push(RegisterationCredentialsPage,data);
     }else{
-      this.error = "Please fill all fields";
+      this.error = "Preencha todos os campos";//"Please fill all fields";
     }
   }
   GoBackToLogin(){

@@ -58,7 +58,8 @@ export class AddAmountEntry {
       }
     
     }else{
-        this.showAlert("Missing Field!", "The price must be positive and non-zero","Got It!");
+        //this.showAlert("Missing Field!", "The price must be positive and non-zero","Got It!");
+        this.showAlert("Campo perdido!", "O preço deve ser positivo e não-zero","Ok");
       }
   }
 

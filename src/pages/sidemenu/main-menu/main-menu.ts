@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AlertController, MenuController, Events } from 'ionic-angular';
+import { MenuController, Events } from 'ionic-angular';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { MenuProfile } from '../menu-profile/menu-profile';
@@ -16,20 +16,12 @@ import { EventType } from '../../../models/enums';
   templateUrl: 'main-menu.html',
 })
 export class MainMenu {
-  constructor(public navCtrl: NavController,public alertCtrl: AlertController, public navParams: NavParams,
+  constructor(public navCtrl: NavController, public navParams: NavParams,
               private events : Events, private dbprovider : DBProvider, private menuCtrl : MenuController) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MainMenu');
-  }
-  showAlert(msg : string){
-    let alert = this.alertCtrl.create({
-      title: msg,
-      subTitle: 'Clicked',
-      buttons: ['OK']
-    });
-    alert.present();
   }
   
   openProfile(){

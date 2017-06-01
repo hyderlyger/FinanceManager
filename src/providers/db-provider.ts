@@ -83,11 +83,11 @@ export class DBProvider {
                 resolve("Accepted");  //Success Case
               });
             }else
-              resolve("Invalid UserID or Password");
+              resolve("ID de usuário ou senha inválidos");//resolve("Invalid UserID or Password");
           }else
-            resolve("No User Found. Please Register");
+            resolve("Nenhum usuário encontrado, registre-se");//resolve("No User Found, please Register");
       }else
-        resolve("UserID & Password fields are required");
+        resolve("Os campos ID do usuário e senha são obrigatórios");//resolve("UserID & Password fields are required");
 
     });
   }

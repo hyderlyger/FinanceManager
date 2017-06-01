@@ -107,7 +107,8 @@ export class SelectCategory {
 
       pageModal.present();
     }else{
-      this.showAlert("Access Denied","Get Premium version to use this feature.","Ok");
+      //this.showAlert("Access Denied","Get Premium version to use this feature.","Ok");
+      this.showAlert("Acesso negado","Obtenha uma versão premium para usar esse recurso.","Ok");
     }
   }
   showAlert(title: string, subTitle: string, buttonText : string){

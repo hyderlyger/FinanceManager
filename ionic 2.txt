@@ -102,6 +102,7 @@ DATE:
 Formats: https://ionicframework.com/docs/api/components/datetime/DateTime/
 myDate: String = new Date().toISOString();	//Ionic uses the ISO 8601 datetime format for its value. The value is simply a string
 Native Calender : https://ionicframework.com/docs/native/date-picker/
+Locale (Language) : Use Moment.js : https://forum.ionicframework.com/t/how-can-i-import-moment-js-locale-solved/53393/8
 
 Pipes:
 https://www.joshmorony.com/how-to-use-pipes-to-manipulate-data-in-ionic-2/

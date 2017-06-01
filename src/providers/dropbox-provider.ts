@@ -50,7 +50,8 @@ export class DropboxProvider {
           if(event.url.indexOf("access_denied") > -1)  {
             listener.unsubscribe();
             browser.close();
-            reject("Could not authenticate. Please try again.");
+            //reject("Could not authenticate, please try again.");
+            reject("Não foi possível autenticar, tente novamente.");
           }
     
         });
@@ -122,26 +123,32 @@ export class DropboxProvider {
                                                                                 })
                                                                               });
                                                             }else{
-                                                              resolve("Unable to Read Files");
+                                                              //resolve("Unable to Read Files");
+                                                              resolve("Não é possível ler arquivos");
                                                             }
                                                           });
                                           }else{
-                                            resolve("Unable to Read Files");
+                                            //resolve("Unable to Read Files");
+                                            resolve("Não é possível ler arquivos");
                                           }
                                         }else{
-                                          resolve("Unable to Read Files");
+                                          //resolve("Unable to Read Files");
+                                          resolve("Não é possível ler arquivos");
                                         }
 
                                       }).catch(error=>{ //not helping
-                                        resolve("Unable to Read Files");
+                                        //resolve("Unable to Read Files");
+                                        resolve("Não é possível ler arquivos");
                                       });
 
                       }else{
-                        resolve("File Not Found");
+                        //resolve("File Not Found.");
+                        resolve("Arquivo não encontrado.");
                       }
 
                     }).catch(err=>{
-                      resolve("File Not Found");
+                      //resolve("File Not Found.");
+                      resolve("Arquivo não encontrado.");
                     });
     });
   }

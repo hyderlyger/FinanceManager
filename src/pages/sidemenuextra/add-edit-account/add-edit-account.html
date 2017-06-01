@@ -34,7 +34,7 @@
       <td style="width:10%;"></td>
 
       <td style="width:45%; text-align: center;">
-          <h5 class="labelheading">Date initial</h5>
+          <h5 class="labelheading">Data inicial</h5>
           <ion-datetime class="inputborder" color="_black" style="font-size: 1.8rem; padding: 5px;" displayFormat="DD/MM/YYYY" [(ngModel)]="_startingdate"></ion-datetime>
       </td>
     </tr>
@@ -68,6 +68,7 @@
 <ion-footer>
   <ion-toolbar text-center color="_offwhite">
     <button ion-button center class="borderButton colorBlue" (click)="saveEntry();">
+      <!--{{ _category.id ? "Update Account" : "Add Account"}}-->
       {{ _account.id ? "Atualizar conta" : "Adicionar Conta"}}
     </button>
   </ion-toolbar>

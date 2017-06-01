@@ -30,7 +30,7 @@
           <ion-item-divider light class="listgroupheading">
             <!--<div class="listgroupheadingbackline"></div> Problem in Android-->
             <ion-note small color="_black" class="listgroupheadingnote">
-              {{ dateGroup.date.toDateString() }}
+              {{ getDateinPortugese(dateGroup.date)}}
             </ion-note>
 
           </ion-item-divider>
@@ -69,7 +69,8 @@
                     <ion-item-options *ngIf="ammountEntry.issystem == false">
                         <button class="red_itemOption" (click)="delete(ammountEntry.id)">
                             <ion-icon name="trash"></ion-icon>
-                            Delete
+                            <!--Delete-->
+                            Excluir
                         </button>
                     </ion-item-options>
                 </ion-item-sliding>
