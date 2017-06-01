@@ -37,6 +37,10 @@ Open All 	-> ctrl + k, ctrl + J
 
 ----------------------------------------------------
 
+Latest ionic :
+npm uninstall -g ionic
+npm install -g ionic@latest
+
 //IONIC 2
 http://blog.teamtreehouse.com/install-node-js-npm-windows
 

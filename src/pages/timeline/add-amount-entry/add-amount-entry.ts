@@ -166,6 +166,9 @@ export class AddAmountEntry {
       );
   }
   ondateChange(val){
-    this.date = new Date(val);
-    this.dateShort = this.date.getDate();  }
+    if(val){
+      this.date = new Date(val);
+      this.dateShort = this.date.getDate();  
+    }
+  }
 }

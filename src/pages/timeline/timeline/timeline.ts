@@ -112,9 +112,11 @@ isfilterdateActive : Boolean;
       );
   }
   onfilterdateChange(val){
-    this.filterdateRaw = new Date(val);
-    this.filterdate = this.filterdateRaw.getDate();
-    this.isfilterdateActive = true;
+    if(val){
+      this.filterdateRaw = new Date(val);
+      this.filterdate = this.filterdateRaw.getDate();
+      this.isfilterdateActive = true;
+    }
   }
 
   showAlert(title: string, subTitle: string, buttonText : string){
