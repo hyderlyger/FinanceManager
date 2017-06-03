@@ -43,7 +43,7 @@ export class AddEditCategory {
 
   saveEntry()
   {
-    if( this._category.imageindex && this._category.subject ){  //Edit Case
+    if( this._category.imageindex && this._category.subject && this.notJustWhiteSpaces(this._category.subject) ){  //Edit Case
 
         this.dbprovider.addOrUpdateCategory(this._category).then(result=>{
         this.navCtrl.popToRoot();
@@ -61,5 +61,7 @@ export class AddEditCategory {
       });
     alert.present();
   }
-
+  notJustWhiteSpaces(str : string){
+    return /\S/.test(str);
+  }
 }

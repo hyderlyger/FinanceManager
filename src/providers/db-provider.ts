@@ -406,8 +406,8 @@ export class DBProvider {
     let issystem = false;
     //Accounts
     this.accounts = []; //Clearing
-    this.accounts.push( new Account( UUID.UUID(), "Cartão de Crédito", 7, dateToday, issystem, 0));  //CreditCard
     this.accounts.push( new Account( UUID.UUID(), "Dinheiro", 1, dateToday, issystem, 0));           //Cash
+    this.accounts.push( new Account( UUID.UUID(), "Cartão de Crédito", 7, dateToday, issystem, 0));  //CreditCard
     
     this.categories = []; //Clearing
     //Categories - Expense

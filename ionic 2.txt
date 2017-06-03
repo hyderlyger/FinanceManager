@@ -148,3 +148,6 @@ http://jsfiddle.net/kizu/4RPFa/4571/
 
 ICON and SPLASH GENERATION
 ionic cordova resources --help
+
+Platform Specific Backend
+http://ionicframework.com/docs/api/platform/Platform/

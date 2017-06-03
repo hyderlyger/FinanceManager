@@ -52,8 +52,9 @@ export class AddEditAccount {
 
   saveEntry()
   {
-    if( (this._account.imageindex || this._account.imageindex == 0) && this._account.subject && this._startingdate &&
-        (this._account.startingbalance || this._account.startingbalance == 0) ){  //Edit Case
+    if( (this._account.imageindex || this._account.imageindex == 0) && this._startingdate &&
+        (this._account.startingbalance || this._account.startingbalance == 0 &&
+         this._account.subject && this.notJustWhiteSpaces(this._account.subject)) ){  //Edit Case
 
         this._account.initialdate = new Date(this._startingdate);
         this.dbprovider.addOrUpdateAccount(this._account).then(result=>{
@@ -92,5 +93,7 @@ export class AddEditAccount {
       });
     alert.present();
   }
-
+  notJustWhiteSpaces(str : string){
+    return /\S/.test(str);
+  }
 }

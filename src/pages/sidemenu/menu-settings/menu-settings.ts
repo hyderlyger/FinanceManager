@@ -24,42 +24,21 @@ export class MenuSettings {
   ionViewDidLoad() {
     console.log('ionViewDidLoad MenuSettings');
   }
-  // DeleteAllData(){
-
-  //   let confirm = this.alertCtrl.create({
-  //     title: 'Delete your Data?',
-  //     message: 'Do you agree to delete all your data and restore this app to initial state?',
-  //     buttons: [
-  //       {
-  //         text: 'Disagree',
-  //         handler: () => {
-  //           console.log('Disagree clicked');
-  //         }
-  //       },
-  //       {
-  //         text: 'Agree',
-  //         handler: () => {
-  //           this.DeleteAllDataConfirmed();
-  //         }
-  //       }
-  //     ]
-  //   });
-  //   confirm.present();
-  // }
+  
   DeleteAllData(){
 
     let confirm = this.alertCtrl.create({
-      title: 'Apague todos os dados?',
-      message: 'Você concorda em excluir todos os seus dados e restaurar este aplicativo para o estado inicial?',
+      title: 'Apague todos os dados?', //'Delete your Data?',
+      message: 'Você concorda em excluir todos os seus dados e restaurar este aplicativo para o estado inicial?', //'Do you agree to delete all your data and restore this app to initial state?',
       buttons: [
         {
-          text: 'Discordar',
+          text: 'Discordar', //'Disagree',
           handler: () => {
             console.log('Disagree clicked');
           }
         },
         {
-          text: 'Aceita',
+          text: 'Aceita', //'Agree',
           handler: () => {
             this.DeleteAllDataConfirmed();
           }
