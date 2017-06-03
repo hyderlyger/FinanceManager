@@ -15,7 +15,6 @@ export class AddAmountEntry {
 
   type : Type;
   observation : string;
-  dateShort : number;
   date : Date;
   price : number;
 
@@ -29,7 +28,6 @@ export class AddAmountEntry {
               private datePicker: DatePicker) {
     this.type = navParams.get("type");
     this.date = new Date();
-    this.dateShort = this.date.getDate();
     this.price = 0;
     this.previousPrice = 0;
     this.ispoint = false;
@@ -169,7 +167,6 @@ export class AddAmountEntry {
   ondateChange(val){
     if(val){
       this.date = new Date(val);
-      this.dateShort = this.date.getDate();  
     }
   }
 }

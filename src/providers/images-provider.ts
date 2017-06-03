@@ -150,7 +150,8 @@ export class ImagesProvider {
         case 11:
             _color = new Color("rgba(0, 160, 176, "+Opacity+")","#00A0B0"); //Bluish
             break;
-        default:
+        default:    //null case
+            _color = new Color("rgba(242, 242, 242, "+Opacity+")","#F2F2F2"); //Bluish
             break;
     }
     return _color;

@@ -35,7 +35,7 @@ export class DBProvider {
   public selectedAccount : Account;
 
   //UserAccessLevel
-  public isUserAccessLevelPreminum : Boolean = false;
+  public isUserAccessLevelPreminum : Boolean = true;
 
   //CONSTRUCTOR
   constructor(private storage : Storage , private imagesprovider : ImagesProvider) {
@@ -450,55 +450,54 @@ export class DBProvider {
     });
 
     let currentDate : Date = new Date(1990); //random old date
-    let currentCatID : string = "00"; //random false id
     let currentGroup = [];
-    let currentSubGroup = [];
+    let currentSubGroupCategories = [];
     let currentSubGroupTotal = {value : 0};
 
     datesorted.forEach((value, index) => {
+        //Date Grouping Area
+          var itemDate : Date = new Date(value.timestamp);  //converting string date to Date object
 
-        var itemDate : Date = new Date(value.timestamp);  //converting string date to Date object
+          if( itemDate.getDate() != currentDate.getDate() || itemDate.getMonth() != currentDate.getMonth() ||
+              itemDate.getFullYear() != currentDate.getFullYear()){
 
-        //Grouping on date
-        if( itemDate.getDate() != currentDate.getDate() || itemDate.getMonth() != currentDate.getMonth() ||
-            itemDate.getFullYear() != currentDate.getFullYear()){
-
-            currentDate = itemDate;
-            currentCatID = "00";  //resetting the categoryid aswell
-
-            let newGroup = {
-                groupid : UUID.UUID(),
-                date: currentDate,
-                CategoryGroups: []
-            };
-            
-            currentGroup = newGroup.CategoryGroups; //pointer to the group
-            this.amountEntriesGroupsAndSubgroups.push(newGroup);
-        }
-
-        //Grouping on Category within a Date
-        if(currentCatID != value.categoryID){
-
-          currentCatID = value.categoryID;
-
-          let newsubgroup = {
-            subgroupid : UUID.UUID(),
-            subgroupCategoryID : currentCatID,
-            subgroupTotal : {value : 0},
-            subgrouptype : value.type,
-            isvisible : false,  //responsible for opening and closing this group
-            CategoryEntries : []
+              currentDate = itemDate;
+              let newGroup = {
+                  groupid : UUID.UUID(),
+                  date: currentDate,
+                  CategoryGroups: []
+              };
+              currentGroup = newGroup.CategoryGroups; //pointer to the group
+              this.amountEntriesGroupsAndSubgroups.push(newGroup);
           }
-          currentSubGroup = newsubgroup.CategoryEntries;  //pointer to the subgroup
-          currentSubGroupTotal = newsubgroup.subgroupTotal; //pointer to the subgroup total
-          currentGroup.push(newsubgroup);
-        }
 
-        //Updating subgroup Total
-        currentSubGroupTotal.value += value.price;
+        //Category Grouping Area
+          let matchCattegorySubgroup = currentGroup.find(item=> item.subgroupCategoryID == value.categoryID); //looking in the subgroup list
+          if(!matchCattegorySubgroup){  //not found case : create new subgroup
 
-        //Inserting the actual entry
-        currentSubGroup.push(value);
+            let newsubgroup = {
+              subgroupid : UUID.UUID(),
+              subgroupCategoryID : value.categoryID,
+              subgroupTotal : {value : 0},
+              subgrouptype : value.type,
+              isvisible : false,  //responsible for opening and closing this group
+              CategoryEntries : []
+            }
+            currentSubGroupCategories = newsubgroup.CategoryEntries;  //pointer to the subgroup
+            currentSubGroupTotal = newsubgroup.subgroupTotal; //pointer to the subgroup total
+            currentGroup.push(newsubgroup);
+
+          }else{  //found case : using previous subgroup
+            currentSubGroupCategories = matchCattegorySubgroup.CategoryEntries;
+            currentSubGroupTotal = matchCattegorySubgroup.subgroupTotal;
+          }
+
+          //Updating subgroup Total
+          currentSubGroupTotal.value += value.price;
+
+          //Inserting the actual entry
+          currentSubGroupCategories.push(value);
+    
     });
   }
 

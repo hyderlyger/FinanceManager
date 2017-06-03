@@ -35,7 +35,10 @@
 
       <td style="width:45%; text-align: center;">
           <h5 class="labelheading">Data inicial</h5>
-          <ion-datetime class="inputborder" color="_black" style="font-size: 1.8rem; padding: 5px;" displayFormat="DD/MM/YYYY" [(ngModel)]="_startingdate"></ion-datetime>
+          <button ion-button clear icon-only right (click)="showDatePicker();">
+            <ion-note class="inputborder" color="_black" style="font-size: 1.8rem; padding: 5px;">{{_startingdate | date: 'dd/MM/yyyy'}}</ion-note>
+          </button>
+          <!--<ion-datetime  class="inputborder" color="_black" style="font-size: 1.8rem; padding: 5px;" displayFormat="DD/MM/YYYY" [(ngModel)]="_startingdate"></ion-datetime>-->
       </td>
     </tr>
     

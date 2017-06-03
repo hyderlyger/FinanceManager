@@ -8,6 +8,10 @@ import { Type } from '../../../models/enums';
 import { Color } from '../../../models/helpers';
 import { PopoverAccountSelect } from '../../../components/popover-account-select/popover-account-select';
 
+//Language
+import moment from 'moment';
+import 'moment/locale/pt-br';
+
 @IonicPage()
 @Component({
   selector: 'page-menu-panel',
@@ -17,7 +21,8 @@ export class MenuPanel {
   @ViewChild('doughnutCanvas') doughnutCanvas;
   @ViewChild('lineCanvas') lineCanvas;
 
-  date : string;
+  shortdate : string;
+  date : Date;
   doughnutChart: any;
   lineChart :  any;
 
@@ -32,10 +37,10 @@ export class MenuPanel {
 
   constructor(  public navCtrl: NavController, public navParams: NavParams, private dbprovider : DBProvider,
                 private imagesprovider : ImagesProvider, private popoverCtrl: PopoverController ) {
-      this.date = new Date().toISOString();
-
+      moment().locale('pt-br'); //Portugese language
+      this.date = new Date();
+      this.shortdate = this.getDateinPortugese(this.date);
   }
-
   generatelineData(){
     //reset
     this.LineGraphLabels = [];
@@ -114,7 +119,7 @@ export class MenuPanel {
 
     //Collecting the Categories to show
     for(var i=0; i<12; i++){
-        var newCat = new monthlyCategoryTotal(this.dbprovider.categories[i], this.imagesprovider.getColorbyExpenseCategoryImageIndex(this.dbprovider.categories[i].imageindex,0.7),0);  //0.7 Opasity
+        var newCat = new monthlyCategoryTotal(this.dbprovider.categories[i], this.imagesprovider.getColorbyExpenseCategoryImageIndex(this.dbprovider.categories[i].imageindex,0.7),0);  //0.7 Opacity
         this.monthlyCategoryList.push(newCat);
     }
 
@@ -141,10 +146,10 @@ export class MenuPanel {
   updateGraphsData()
   {
     this.generatedoughnutData();
-    var DonutLabels : Array<string> = [];
-    var DonutPrices : Array<number> = [];
-    var DonutBackgroundColors : Array<string> = [];
-    var DonutHoverColors : Array<string> = [];
+    let DonutLabels : Array<string> = [];
+    let DonutPrices : Array<number> = [];
+    let DonutBackgroundColors : Array<string> = [];
+    let DonutHoverColors : Array<string> = [];
 
     this.monthlyCategoryList.forEach((cat)=>{
         DonutLabels.push(cat.category.subject);
@@ -153,6 +158,16 @@ export class MenuPanel {
         DonutHoverColors.push(cat.color.hex);
     });
 
+    //For empty case : putting empty row
+    let nonemptypricerow = DonutPrices.find(item=> item > 0);
+    if(!nonemptypricerow)
+    {
+        DonutLabels.push("Sem dados");//("No Data");
+        DonutPrices.push(1);
+        let emptycolor = this.imagesprovider.getColorbyExpenseCategoryImageIndex(null,0.7);
+        DonutBackgroundColors.push(emptycolor.rgb);
+        DonutHoverColors.push(emptycolor.hex);
+    }
 
     //previous chart flash back issue
     if(this.doughnutChart!=null){
@@ -285,21 +300,25 @@ export class MenuPanel {
   }
 
   NextMonth(){
-      var currentdate= new Date(this.date);
+      var currentdate= this.date;
       currentdate.setMonth(currentdate.getMonth()+1);
-      this.date = currentdate.toISOString();
+      this.shortdate = this.getDateinPortugese(currentdate);
       this.updateGraphsData();
   }
   PreviousMonth(){
-      var currentdate= new Date(this.date);
+      var currentdate= this.date;
       currentdate.setMonth(currentdate.getMonth()-1);
-      this.date = currentdate.toISOString();
+      this.shortdate = this.getDateinPortugese(currentdate);
       this.updateGraphsData();
   }
-  onTimeChange(newval){
-      this.date = newval;
-      this.updateGraphsData();
+  getDateinPortugese(date : Date)
+  {
+      return moment(this.date).format("MMMM, YYYY");
   }
+//   onTimeChange(newval){
+//       this.date = newval;
+//       this.updateGraphsData();
+//   }
 
 }
 

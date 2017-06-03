@@ -10,12 +10,10 @@ import { DatePicker} from '@ionic-native/date-picker';
 export class RegisterationInfoPage {
   fullname : string = "";
   email : string = "";
-  dob : string = "";
-  dobRaw : Date;
+  dob : Date;
   error : string = "";
   constructor(public navCtrl: NavController, public navParams: NavParams, private datePicker: DatePicker) {
-    this.dobRaw = new Date();
-    this.dob = this.formatddmmyy(this.dobRaw);
+    this.dob = new Date();
   }
 
   ionViewDidLoad() {
@@ -25,11 +23,15 @@ export class RegisterationInfoPage {
   {
     if( this.fullname && this.email && this.dob)
     {
-      let data= { fullname : this.fullname, email : this.email, dob : this.dobRaw };
-      this.navCtrl.push(RegisterationCredentialsPage,data);
-    }else{
+      if(this.validateEmail(this.email)){
+
+        let data= { fullname : this.fullname, email : this.email, dob : this.dob };
+        this.navCtrl.push(RegisterationCredentialsPage,data);
+
+      }else
+        this.error = "E-mail inválido"; //"Invalid Email.";
+    }else
       this.error = "Preencha todos os campos";//"Please fill all fields";
-    }
   }
   GoBackToLogin(){
     this.navCtrl.popToRoot();
@@ -50,25 +52,11 @@ export class RegisterationInfoPage {
   }
   onfilterdateChange(val){
     if(val){
-      this.dobRaw = new Date(val);
-      this.dob = this.formatddmmyy(this.dobRaw);
+      this.dob = new Date(val);
     }
   }
-  formatddmmyy(today : Date){
-    var dd = today.getDate();
-    var mm = today.getMonth()+1; //January is 0!
-
-    let ddfixed : string,mmfixed : string;
-
-    var yyyy = today.getFullYear();
-    if(dd<10)
-        ddfixed='0'+dd;
-    else
-        ddfixed= dd.toString();
-    if(mm<10)
-        mmfixed='0'+mm;
-    else
-        mmfixed= mm.toString();
-    return ddfixed+'/'+mmfixed+'/'+yyyy;
+  validateEmail(email) {
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(email);
   }
 }

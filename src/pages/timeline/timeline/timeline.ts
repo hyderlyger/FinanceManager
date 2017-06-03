@@ -26,7 +26,6 @@ import { ImagesProvider } from '../../../providers/images-provider';
   templateUrl: 'timeline.html',
 })
 export class Timeline {
-filterdate : number;
 filterdateRaw : Date;
 isfilterdateActive : Boolean;
 
@@ -35,7 +34,6 @@ isfilterdateActive : Boolean;
               private alertCtrl : AlertController, private datePicker: DatePicker) {
 
                 this.filterdateRaw = new Date();
-                this.filterdate = this.filterdateRaw.getDate();
                 this.isfilterdateActive = false;
 
                 this.listenToPageEvents(); //Event that listens to fullscreen Side Menu Page Changes
@@ -121,7 +119,6 @@ isfilterdateActive : Boolean;
   onfilterdateChange(val){
     if(val){
       this.filterdateRaw = new Date(val);
-      this.filterdate = this.filterdateRaw.getDate();
       this.isfilterdateActive = true;
     }
   }
@@ -136,5 +133,8 @@ isfilterdateActive : Boolean;
         buttons: [buttonText]
       });
     alert.present();
+  }
+  RemoveFilter(){
+    this.isfilterdateActive = false;
   }
 }

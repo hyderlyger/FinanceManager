@@ -53,7 +53,6 @@ export class AddEditCategory {
       this.showAlert("Erro","Todos os campos são necessários.","Ok");
     }
   }
-
   showAlert(title: string, subTitle: string, buttonText : string){
     var alert = this.alertCtrl.create({
         title: title,

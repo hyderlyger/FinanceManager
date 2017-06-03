@@ -6,7 +6,7 @@
     </button>
     <button id="Calender" class="menuheaderbutton colorRed" ion-button clear icon-only right (click) = "showDatePicker();"
             style="float: right; margin-right:10px; background-image: url('assets/Images/InOut/icons/05.png');  background-size: cover;">
-      <h5 style="margin-top: 50%; font-size: 2.2rem; font-weight: bolder;">{{dateShort}}</h5>
+      <h5 style="margin-top: 50%; font-size: 2.2rem; font-weight: bolder;">{{date | date: 'dd'}}</h5>
     </button>
   </ion-navbar>
 
@@ -37,7 +37,7 @@
         <div class="img35by35" style="float:left; margin-left:10px;">
           <img class="img35by35" [ngClass]=" type == 3 ? '' : 'tilt'" [src]="type == 1 ? 'assets/Images/InOut/icons/02-1.png' : (type == 2 ? 'assets/Images/InOut/icons/02.png' : 'assets/Images/InOut/icons/02-2.png') " />
         </div>
-        <ion-input style="float:left; width:200px; margin-left:10px;" type="text" placeholder="Observation" [(ngModel)]="observation"></ion-input>
+        <ion-input style="float:left; width:200px; margin-left:10px;" type="text" placeholder="Observação" [(ngModel)]="observation"></ion-input>
       </td>
     </tr>
 

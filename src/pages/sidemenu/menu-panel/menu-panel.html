@@ -25,7 +25,8 @@
         </button>
       </td>
       <td style="width:50%; text-align: center;">
-          <ion-datetime style="font-size: 20px;" displayFormat="MMMM, YYYY" pickerFormat="MM/YYYY" [ngModel]="date" (ngModelChange)="onTimeChange($event)"></ion-datetime>
+        <ion-label style="font-size: 20px;">{{shortdate}}</ion-label>
+        <!--<ion-datetime style="font-size: 20px;" displayFormat="MMMM, YYYY" pickerFormat="MM/YYYY" [ngModel]="date" (ngModelChange)="onTimeChange($event)"></ion-datetime>-->
       </td>
       <td style="width:25%;">
         <button style="float:left;" ion-button clear icon-only color="_black" (click)="NextMonth();">

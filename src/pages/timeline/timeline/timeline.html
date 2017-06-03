@@ -23,7 +23,13 @@
 </ion-header>
 
 <ion-content padding class="color_offwhite">
-
+    <div *ngIf="isfilterdateActive" class="backgroundColorBlue" style="width:100%; height:35px; text-align: center;">
+      <button ion-button clear icon-only text-center color="_offwhite" style="margin:0px 5px 0px 0px;" (click)="RemoveFilter();">
+          <!--<h5>Clear Filter</h5>-->
+          <h5 style="margin: auto;">Remover filtro de data</h5>
+          <img style="margin-left:10px; max-width:25px; max-height:25px;" src="assets/Images/Profile/icons/04.png"/>
+        </button>
+    </div>
     <ion-list no-lines >
       <ion-item-group no-lines *ngFor="let dateGroup of dbprovider.amountEntriesGroupsAndSubgroups">
         <div *ngIf="isfilterdateActive ? ( dateGroup.date.getDate() == filterdateRaw.getDate() && dateGroup.date.getMonth() == filterdateRaw.getMonth() && dateGroup.date.getFullYear() == filterdateRaw.getFullYear() ) : true">
@@ -104,7 +110,7 @@
     </button>
     <button id="Calender" class="btnfooterimg colorRed" ion-button clear icon-only right (click)="showDatePicker();"
             style="margin-right:10px; background-image: url('assets/Images/Timeline/icons/09.png');  background-size: cover;">
-            <h5 style="margin-top: 30%; font-size: 2.8rem; font-weight: bolder;">{{filterdate}}</h5>
+            <h5 style="margin-top: 30%; font-size: 2.8rem; font-weight: bolder;">{{filterdateRaw | date : 'dd'}}</h5>
       <!--<ion-datetime style="margin-top: 10px;" displayFormat="DD" pickerFormat="DD/MM/YYYY" [ngModel]="filterdate" (ngModelChange)="onfilterdateChange($event);" ></ion-datetime>-->
     </button>
 

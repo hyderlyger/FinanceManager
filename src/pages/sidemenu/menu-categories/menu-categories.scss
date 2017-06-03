@@ -23,12 +23,18 @@ page-menu-categories {
         height:23px; 
         text-align: center;
     }
+    .rowimagecontainer:before,
+    .rowimagecontainer_before {
+        content: "";
+        display: inline-block;
+        height: 100%;
+        vertical-align: middle;
+    }
     .rowimg{
         max-width : 23px;
         max-height : 23px;
         vertical-align: middle;
     }
-
     .rowtitle{
         font-size: 13px;
         font-weight: bolder;

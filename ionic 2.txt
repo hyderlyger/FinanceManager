@@ -142,3 +142,9 @@ Placeholder Color Change:
         text-indent: 0;
         color: #8B8D91;
     }
+
+Vertically allign middle an img in div :
+http://jsfiddle.net/kizu/4RPFa/4571/
+
+ICON and SPLASH GENERATION
+ionic cordova resources --help
