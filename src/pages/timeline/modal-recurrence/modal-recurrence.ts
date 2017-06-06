@@ -46,6 +46,9 @@ export class ModalRecurrence {
       this.showAlert("Erro","A contagem repetida deve ser maior que zero","Ok");
     }
   }
+  cancelAndClose(){
+    this.viewCtrl.dismiss();
+  }
   showAlert(title: string, subTitle: string, buttonText : string){
     var alert = this.alertCtrl.create({
         title: title,

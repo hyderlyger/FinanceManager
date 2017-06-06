@@ -9,4 +9,11 @@ export class Category {
                             
 
     }
+    clone( obj : Category){
+        this.id = obj.id;
+        this.subject = obj.subject;
+        this.imageindex = obj.imageindex;
+        this.issystem = obj.issystem;
+        this.type = obj.type;
+    }
 }

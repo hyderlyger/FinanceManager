@@ -72,7 +72,7 @@
   <ion-toolbar text-center color="_offwhite">
     <button ion-button center class="borderButton colorBlue" (click)="saveEntry();">
       <!--{{ _category.id ? "Update Account" : "Add Account"}}-->
-      {{ _account.id ? "Atualizar conta" : "Adicionar Conta"}}
+      {{ !_isAddPage ? "Atualizar conta" : "Adicionar Conta"}}
     </button>
   </ion-toolbar>
 </ion-footer>

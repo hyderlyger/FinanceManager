@@ -3,12 +3,13 @@
     <name>Meu Gestor</name>
     <description>Ionic2/Cordova app.</description>
     <author email="hyder.lyger@gmail.com" href="hyder.lyger@gmail.com">Haider Rasool</author>
-    <content src="index.html" />
+    <content original-src="index.html" src="http://192.168.10.12:8100" />
     <access origin="*" />
     <allow-navigation href="http://ionic.local/*" />
     <allow-navigation href="http://192.168.100.17:8100" />
     <allow-navigation href="http://192.168.10.10:8100" />
     <allow-navigation href="http://192.168.1.11:8100" />
+    <allow-navigation href="http://192.168.10.12:8100" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <allow-intent href="tel:*" />

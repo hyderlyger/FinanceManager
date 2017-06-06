@@ -16,7 +16,7 @@ export class AddEditAccount {
   _account : Account = new Account("","",0,null,false,0);
   _accountImagesArray : Array<string>= [];
   _startingdate : Date; //for ion-datetime
-
+  _isAddPage = false;
   constructor(public navCtrl: NavController, public navParams: NavParams, private dbprovider : DBProvider,
               private imageprovider : ImagesProvider, private alertCtrl : AlertController,
               private datePicker: DatePicker) {
@@ -28,10 +28,11 @@ export class AddEditAccount {
                 {
                   if(this._account.id){ //Edit
                     let matchedaccount = this.dbprovider.accounts.find(item => item.id == this._account.id);
-                    this._account = matchedaccount; //check if shallow or deep copy
+                    this._account.clone(matchedaccount); // for deep copy : simple assignment makes shallow one
                     this._startingdate = new Date(this._account.initialdate);
 
                   }else{  //Add New
+                    this._isAddPage = true;
                     this._account.id = "";
                     this._account.imageindex = 0;  //first img
                     this._startingdate = new Date();

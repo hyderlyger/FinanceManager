@@ -12,7 +12,7 @@ import { Type } from '../../../models/enums';
 export class AddEditCategory {
   _category : Category = new Category("","",0,Type.Revenue,false);
   _categoryImagesArray : Array<string>= [];
-
+  _isAddPage = false;
   constructor(public navCtrl: NavController, public navParams: NavParams, private dbprovider : DBProvider,
               private imageprovider : ImagesProvider, private alertCtrl : AlertController) {
                 this._category.type = this.navParams.get("type");
@@ -23,9 +23,11 @@ export class AddEditCategory {
                 {
                   if(this._category.id){ //Edit
                     let matchedcategory = this.dbprovider.categories.find(item => item.id == this._category.id);
-                    this._category = matchedcategory; //check if shallow or deep copy
+                    
+                    this._category.clone(matchedcategory); // for deep copy : simple assignment makes shallow one
 
                   }else{  //Add New
+                    this._isAddPage = true;
                     this._category.id = "";
                     this._category.imageindex = 0;  //first img
                     this._category.issystem = false;
@@ -45,7 +47,7 @@ export class AddEditCategory {
   {
     if( this._category.imageindex && this._category.subject && this.notJustWhiteSpaces(this._category.subject) ){  //Edit Case
 
-        this.dbprovider.addOrUpdateCategory(this._category).then(result=>{
+      this.dbprovider.addOrUpdateCategory(this._category).then(result=>{
         this.navCtrl.popToRoot();
       });
     }else{

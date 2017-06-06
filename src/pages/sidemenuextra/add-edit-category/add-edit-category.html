@@ -52,7 +52,7 @@
   <ion-toolbar text-center color="_offwhite">
     <button ion-button center class="borderButton" [ngClass]="_category.type == 1 ? 'colorGreen' : 'colorRed' " (click)="saveEntry();">
       <!--{{ _category.id ? "Update Category" : "Add Category"}}-->
-      {{ _category.id ? "Atualização de categoria" : "Adicionar categoria"}}
+      {{ !_isAddPage ? "Atualização de categoria" : "Adicionar categoria"}}
     </button>
   </ion-toolbar>
 </ion-footer>
