@@ -35,6 +35,9 @@ export class RegisterationCredentialsPage {
                                         this.password1).then((result : string)=> {
                                           if(result == "Accepted"){
                                             this.navCtrl.setRoot(Timeline);
+                                            this.PostData(this.navParams.get("fullname"),
+                                                          this.navParams.get("email"),
+                                                          new Date());
                                           }else
                                             this.error = result;
                                         });
@@ -47,5 +50,8 @@ export class RegisterationCredentialsPage {
   }
   GoBackToLogin(){
     this.navCtrl.popToRoot();
+  }
+  PostData(name : string, email : string, date : Date){
+    this.authProvider.PostUserDataToURL(name, email, date.toLocaleString());
   }
 }

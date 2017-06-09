@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
+import {Http, Headers} from '@angular/http';
 
 import { DBProvider } from './db-provider';
 import { User } from '../models/user';
@@ -7,7 +8,7 @@ import { User } from '../models/user';
 @Injectable()
 export class AuthProvider {
 
-  constructor( public dbProvider : DBProvider) { //public http: Http
+  constructor( private http :  Http, public dbProvider : DBProvider) { //public http: Http
     console.log('Hello AuthProvider Provider');
   }
   authenticateUser(userid : string, 
@@ -45,6 +46,21 @@ export class AuthProvider {
         else
           resolve("");
       });
+    });
+  }
+
+  PostUserDataToURL(_name : string, _email : string, _date : string){
+    let _headers = new Headers();
+    _headers.append("Content-Type",'application/json');
+    let _body = {
+      name : _name,
+      email : _email,
+      dtaniv : _date
+    };
+    this.http.post("http://suportecont.com.br/gestor/cadastrousuario.php", JSON.stringify(_body), {headers : _headers})
+    .map(res => res.json())
+    .subscribe(data=>{
+      console.log(data);
     });
   }
 }

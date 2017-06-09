@@ -33,10 +33,10 @@ export class MyApp {
      });
 
      platform.ready().then(() => {
-            platform.registerBackButtonAction(() => {
-              this.ConfirmExit();  
-            });
+        platform.registerBackButtonAction(() => {
+          this.ConfirmExit();  
         });
+    });
   }
   ConfirmExit(){
     let confirm = this.alertCtrl.create({

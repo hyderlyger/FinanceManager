@@ -151,3 +151,6 @@ ionic cordova resources --help
 
 Platform Specific Backend
 http://ionicframework.com/docs/api/platform/Platform/
+
+CORS
+http://blog.ionic.io/handling-cors-issues-in-ionic/
