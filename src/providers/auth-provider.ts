@@ -51,16 +51,16 @@ export class AuthProvider {
 
   PostUserDataToURL(_name : string, _email : string, _date : string){
     let _headers = new Headers();
-    _headers.append("Content-Type",'application/json');
-    let _body = {
-      name : _name,
-      email : _email,
-      dtaniv : _date
-    };
-    this.http.post("http://suportecont.com.br/gestor/cadastrousuario.php", JSON.stringify(_body), {headers : _headers})
-    .map(res => res.json())
-    .subscribe(data=>{
-      console.log(data);
-    });
+    _headers.append("Content-Type",'text/plain');
+    let _body = "name=TESTE&dtaniv=2017-06-11&email=TESTE@TESTE.COM.BR";
+    try{
+      this.http.post("http://suportecont.com.br/gestor/cadastrousuario.php", _body, {headers : _headers})
+      .map(res => res.json())
+      .subscribe(data=>{
+        console.log(data);
+      });
+    }catch(error){
+      console.log(error);
+    }
   }
 }

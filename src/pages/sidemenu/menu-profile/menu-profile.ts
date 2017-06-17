@@ -29,15 +29,23 @@ export class MenuProfile {
     this._email = this.dbprovider.user.email;
   }
   updateUser(){
-    if(this._username && this._email && this._actualpass && this._newpass && this._newpass2){
+    if(this._username && this._email){
       if(this.validateEmail(this._email)){
-        if(this._actualpass == this.dbprovider.user.password){
-          if(this._newpass == this._newpass2){
-            this.comfirmUpdate();
+        //Password update case
+        if(this._actualpass && this._newpass && this._newpass2){  
+          if(this._actualpass == this.dbprovider.user.password){
+            if(this._newpass == this._newpass2){
+              this.comfirmUpdate();
+            }else
+              this.showAlert("Erro","Novos campos de senhas devem ser idênticos.","OK");//this.showAlert("Error","New passwords fields must be identical.","OK");
           }else
-            this.showAlert("Erro","Novos campos de senhas devem ser idênticos.","OK");//this.showAlert("Error","New passwords fields must be identical.","OK");
-        }else
-          this.showAlert("Erro","Senha real incorreta","OK");//this.showAlert("Error","Incorrect actual password.","OK");}else
+            this.showAlert("Erro","Senha real incorreta","OK");//this.showAlert("Error","Incorrect actual password.","OK");}else
+        }
+        //just change the user name/email case
+        else{  
+          this._newpass = ""; //removing
+          this.comfirmUpdate();
+        }
       }else
           this.showAlert("Erro","E-mail inválido.","OK");//this.showAlert("Error","Invalid Email.","OK");
     }else
@@ -57,16 +65,19 @@ export class MenuProfile {
         {
           text: 'Aceita',
           handler: () => {
-            this.ConfirmedUpdateUser();
+            if(this._newpass)
+              this.ConfirmedUpdateUser(this._newpass);
+            else
+              this.ConfirmedUpdateUser(this.dbprovider.user.password);
           }
         }
       ]
     });
     confirm.present();
   }
-  ConfirmedUpdateUser(){
+  ConfirmedUpdateUser(password : string){
     //Updating the user
-    this.dbprovider.updateUser(this._username, this._email, this._newpass).then((state)=>{
+    this.dbprovider.updateUser(this._username, this._email, password).then((state)=>{
       if(state){
         this._actualpass = "";
         this._newpass = "";
