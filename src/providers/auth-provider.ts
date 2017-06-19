@@ -55,7 +55,7 @@ export class AuthProvider {
     let _body = "name=TESTE&dtaniv=2017-06-11&email=TESTE@TESTE.COM.BR";
     try{
       this.http.post("http://suportecont.com.br/gestor/cadastrousuario.php", _body, {headers : _headers})
-      .map(res => res.json())
+      //.map(res => res.json()) //not in json
       .subscribe(data=>{
         console.log(data);
       });
