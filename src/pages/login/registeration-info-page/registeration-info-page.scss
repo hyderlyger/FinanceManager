@@ -16,7 +16,7 @@ page-registeration-info-page {
         text-indent: 0;
         color: #8B8D91;
     }
-
+    
     //layout
     .fillcomplete{
         width:100%;
@@ -108,5 +108,14 @@ page-registeration-info-page {
     }
     .floatleft{
         float:left;
+    }
+
+}
+//Android Specific
+.md {
+    page-registeration-info-page{
+        .androidleft{
+            margin-left:8px;
+        }
     }
 }

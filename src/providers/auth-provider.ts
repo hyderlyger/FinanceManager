@@ -4,7 +4,8 @@ import {Http, Headers} from '@angular/http';
 
 import { DBProvider } from './db-provider';
 import { User } from '../models/user';
-
+//date
+import moment from 'moment';  //for date formating
 @Injectable()
 export class AuthProvider {
 
@@ -52,9 +53,11 @@ export class AuthProvider {
   PostUserDataToURL(_name : string, _email : string, _date : string){
     let _headers = new Headers();
     _headers.append("Content-Type",'text/plain');
-    let _body = "name=TESTE&dtaniv=2017-06-11&email=TESTE@TESTE.COM.BR";
+    //let _body = "name="+_name+"&dtaniv="+_date+"&email="+_email;
+    let formatedDate = moment(_date).format('YYYY-MM-DD');;
+    let _data = "name="+_name+"&dtaniv="+formatedDate+"&email="+_email;  //testing
     try{
-      this.http.post("http://suportecont.com.br/gestor/cadastrousuario.php", _body, {headers : _headers})
+      this.http.get("http://suportecont.com.br/gestor/cadastrousuario.php"+"?"+_data, {headers : _headers})
       //.map(res => res.json()) //not in json
       .subscribe(data=>{
         console.log(data);
@@ -64,3 +67,4 @@ export class AuthProvider {
     }
   }
 }
+
