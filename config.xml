@@ -3,7 +3,7 @@
     <name>Meu Gestor</name>
     <description>Ionic2/Cordova app.</description>
     <author email="hyder.lyger@gmail.com" href="hyder.lyger@gmail.com">Haider Rasool</author>
-    <content original-src="index.html" src="http://192.168.1.13:8100" />
+    <content src="index.html" />
     <access origin="*" />
     <allow-navigation href="http://ionic.local/*" />
     <allow-navigation href="http://192.168.100.17:8100" />
@@ -57,6 +57,7 @@
     <feature name="StatusBar">
         <param name="ios-package" onload="true" value="CDVStatusBar" />
     </feature>
+    <allow-navigation href="http://192.168.100.11:8100" />
     <plugin name="cordova-plugin-console" spec="1.0.5" />
     <plugin name="cordova-plugin-datepicker" spec="^0.9.3" />
     <plugin name="cordova-plugin-device" spec="1.1.4" />

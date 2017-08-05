@@ -43,9 +43,9 @@ export class AuthProvider {
     return new Promise (resolve =>{
       this.dbProvider.GetUserID().then ( id => {
         if(id)
-          resolve (id);
+          resolve(id);
         else
-          resolve("");
+          resolve(null);
       });
     });
   }

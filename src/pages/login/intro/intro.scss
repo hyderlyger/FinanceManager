@@ -1,0 +1,24 @@
+page-intro {
+    ion-slide {
+      background-color: map-get($colors, _offwhite);
+    }
+    ion-col h2,ion-col p{
+      margin-left: 10%;
+      margin-right: 10%;
+    }
+    ion-slide img {
+      height: auto !important;
+      width: 80% !important;
+    }
+    ion-footer button{
+      float: right;
+      margin-right: 10px;
+      color:map-get($colors, _red);
+      font-weight: bold;
+    }
+    .BigButton{
+      font-weight: bold;
+      width:70%;
+    }
+        
+}

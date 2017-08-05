@@ -7,21 +7,23 @@ import { HttpModule } from '@angular/http';
 import { DatePicker } from '@ionic-native/date-picker';
 
 //Pages
+//Login
+import { LoginPage } from '../pages/login/login-page/login-page';
+import { RegisterationInfoPage } from '../pages/login/registeration-info-page/registeration-info-page';
+import { RegisterationCredentialsPage } from '../pages/login/registeration-credentials-page/registeration-credentials-page';
+import { IntroPage } from '../pages/login/intro/intro';
 //--Menus
 import { MainMenu } from '../pages/sidemenu/main-menu/main-menu';
-import { MenuProfile } from '../pages/sidemenu/menu-profile/menu-profile'
-import { MenuPanel } from '../pages/sidemenu/menu-panel/menu-panel'
-import { MenuCategories } from '../pages/sidemenu/menu-categories/menu-categories'
-import { MenuAccounts } from '../pages/sidemenu/menu-accounts/menu-accounts'
-import { MenuSettings } from '../pages/sidemenu/menu-settings/menu-settings'
+import { MenuProfile } from '../pages/sidemenu/menu-profile/menu-profile';
+import { MenuPanel } from '../pages/sidemenu/menu-panel/menu-panel';
+import { MenuCategories } from '../pages/sidemenu/menu-categories/menu-categories';
+import { MenuAccounts } from '../pages/sidemenu/menu-accounts/menu-accounts';
+import { MenuSettings } from '../pages/sidemenu/menu-settings/menu-settings';
 //--MenuExtra
 import { AddEditAccount } from '../pages/sidemenuextra/add-edit-account/add-edit-account';
 import { AddEditCategory } from '../pages/sidemenuextra/add-edit-category/add-edit-category';
 import { DeveloperPage } from '../pages/sidemenuextra/developer-page/developer-page';
 //--Timeine
-import { LoginPage } from '../pages/login/login-page/login-page'
-import { RegisterationInfoPage } from '../pages/login/registeration-info-page/registeration-info-page';
-import { RegisterationCredentialsPage } from '../pages/login/registeration-credentials-page/registeration-credentials-page';
 import { Timeline } from '../pages/timeline/timeline/timeline';
 import { AddAmountEntry } from '../pages/timeline/add-amount-entry/add-amount-entry';
 import { SelectCategory } from '../pages/timeline/select-category/select-category';
@@ -65,6 +67,7 @@ import { PopoverRecurrenceType } from '../components/popover-recurrence-type/pop
     LoginPage,
     RegisterationInfoPage,
     RegisterationCredentialsPage,
+    IntroPage,
     //TimelinePages
     Timeline,
     AddAmountEntry,
@@ -101,6 +104,7 @@ import { PopoverRecurrenceType } from '../components/popover-recurrence-type/pop
     LoginPage,
     RegisterationInfoPage,
     RegisterationCredentialsPage,
+    IntroPage,
     //TimelinePages
     Timeline,
     AddAmountEntry,

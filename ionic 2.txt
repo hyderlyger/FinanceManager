@@ -41,6 +41,9 @@ Latest ionic :
 npm uninstall -g ionic
 npm install -g ionic@latest
 
+IONIC MARKETPLACE:
+https://market.ionic.io/
+
 //IONIC 2
 http://blog.teamtreehouse.com/install-node-js-npm-windows
 
@@ -152,5 +155,14 @@ ionic cordova resources --help
 Platform Specific Backend
 http://ionicframework.com/docs/api/platform/Platform/
 
-CORS
+CORS issue
 http://blog.ionic.io/handling-cors-issues-in-ionic/
+
+Git NOT FOUND:
+run "npm install" in git shell
+
+Keyboard overlapping input Issue:
+https://forum.ionicframework.com/t/keyboard-hides-input-until-i-start-typing/60827
+
+First Time Intro Guide:
+https://www.joshmorony.com/creating-a-sliding-introduction-component-in-ionic-2/

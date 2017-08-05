@@ -35,7 +35,7 @@ export class DBProvider {
   public selectedAccount : Account;
 
   //UserAccessLevel
-  public isUserAccessLevelPreminum : Boolean = true;
+  public isUserAccessLevelPreminum : Boolean = false;
 
   //CONSTRUCTOR
   constructor(private storage : Storage , private imagesprovider : ImagesProvider) {
@@ -94,7 +94,9 @@ export class DBProvider {
   public GetUserID(){
     return new Promise (resolve =>{
       this.LoadLatestUSERfromDB().then( ()=>{
-        let userID = this.user.id;
+        let userID = "";
+        if(this.user)
+          userID = this.user.id;
         resolve(userID);
       });
     });

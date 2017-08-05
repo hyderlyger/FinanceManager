@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { Timeline } from '../../timeline/timeline/timeline';
 
 import { AuthProvider } from '../../../providers/auth-provider';
@@ -14,7 +14,7 @@ export class RegisterationCredentialsPage {
   password1 : string = "";
   password2 : string = "";
   error : string = "";
-  constructor(public navCtrl: NavController, public navParams: NavParams,
+  constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl : AlertController,
               public authProvider : AuthProvider) {
   }
 
@@ -38,6 +38,8 @@ export class RegisterationCredentialsPage {
                                             this.PostData(this.navParams.get("fullname"),
                                                           this.navParams.get("email"),
                                                           new Date());
+                                            // First time intro Popup
+                                            //this.showAlert("Introdução","i am intro","Consegui"); //this.showAlert("Introduction","","Got It");
                                           }else
                                             this.error = result;
                                         });
@@ -50,6 +52,14 @@ export class RegisterationCredentialsPage {
   }
   GoBackToLogin(){
     this.navCtrl.popToRoot();
+  }
+  showAlert(title: string, subTitle: string, buttonText : string){
+    var alert = this.alertCtrl.create({
+        title: title,
+        subTitle: subTitle,
+        buttons: [buttonText]
+      });
+    alert.present();
   }
   PostData(name : string, email : string, date : Date){
     this.authProvider.PostUserDataToURL(name, email, date.toLocaleString());
