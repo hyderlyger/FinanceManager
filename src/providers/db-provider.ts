@@ -35,7 +35,7 @@ export class DBProvider {
   public selectedAccount : Account;
 
   //UserAccessLevel
-  public isUserAccessLevelPreminum : Boolean = false;
+  public isUserAccessLevelPreminum : Boolean = true;
 
   //CONSTRUCTOR
   constructor(private storage : Storage , private imagesprovider : ImagesProvider) {

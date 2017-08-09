@@ -55,16 +55,22 @@ TODOLIST
 https://www.thepolyglotdeveloper.com/2016/06/create-a-simple-todo-list-app-using-ionic-2-for-android-and-ios/
 
 ERRROR FIXES && Helping stuff
+
 command prompt switch drive :- C:\> cd /d D:\foo\bar\
+
 ionic g page myPage
 fix error: IonicModule -> IonicPageModule
+
 IONIC for MAC => script error fix => npm install @ionic/app-scripts@latest --save-dev
+
 Multiple Buttons in title :  <ion-buttons end>
       <button>
         <ion-icon name="menu"></ion-icon>
       </button>
     </ion-buttons>
+
 Whole list-item click : <button ion-item (click)="onClick();">
+
 Provider without service? solution: remove "public http: Http" from constructor
 
 Debugger (In Package.json):
@@ -166,3 +172,6 @@ https://forum.ionicframework.com/t/keyboard-hides-input-until-i-start-typing/608
 
 First Time Intro Guide:
 https://www.joshmorony.com/creating-a-sliding-introduction-component-in-ionic-2/
+
+Ionic Cordova plugins:
+https://www.joshmorony.com/using-cordova-plugins-in-ionic-2-with-ionic-native/
