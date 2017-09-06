@@ -78,6 +78,8 @@ Debugger (In Package.json):
     "ionic_source_map": "source-map"
   },
 
+Binding seperate-> [ngModel]="filterdate" (ngModelChange)="onfilterdateChange($event);"
+
 Android build error (no gradle wrapper): https://developer.android.com/studio/index.html#downloads download and Replaced C:\Users\username\AppData\Local\Android\sdk\tools with extracted sub-folder tools/ 
 
 Lifecycle of Page:
@@ -85,6 +87,9 @@ http://blog.ionic.io/navigating-lifecycle-events/
 
 FOR GIT CLONE:
 https://www.pluralsight.com/guides/front-end-javascript/cloning-an-ionic-2-application-from-github?status=in-review
+
+Git NOT FOUND:
+run "git clone" in git shell
 
 Model:
 https://www.joshmorony.com/how-to-create-a-data-model-in-ionic-2/
@@ -164,9 +169,6 @@ http://ionicframework.com/docs/api/platform/Platform/
 CORS issue
 http://blog.ionic.io/handling-cors-issues-in-ionic/
 
-Git NOT FOUND:
-run "npm install" in git shell
-
 Keyboard overlapping input Issue:
 https://forum.ionicframework.com/t/keyboard-hides-input-until-i-start-typing/60827
 
@@ -175,3 +177,15 @@ https://www.joshmorony.com/creating-a-sliding-introduction-component-in-ionic-2/
 
 Ionic Cordova plugins:
 https://www.joshmorony.com/using-cordova-plugins-in-ionic-2-with-ionic-native/
+
+Publishing App (Android):
+http://ionicframework.com/docs/v1/guide/publishing.html (Open console in Administration Rights)
+
+Directives:
+https://www.joshmorony.com/how-to-create-a-directive-in-ionic-2-parallax-header/
+
+Componnents: (Input loading issue in constructor)
+ngOnChanges(...args: any[]) { //input is loaded now	}
+
+FileUpload:
+https://ionicframework.com/docs/native/file-transfer/

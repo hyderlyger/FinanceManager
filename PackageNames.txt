@@ -1,0 +1,3 @@
+com.ionicframework.financemanager259276
+
+com.ionicframework.financemanagerpro259276
