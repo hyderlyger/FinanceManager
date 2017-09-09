@@ -181,6 +181,10 @@ https://www.joshmorony.com/using-cordova-plugins-in-ionic-2-with-ionic-native/
 Publishing App (Android):
 http://ionicframework.com/docs/v1/guide/publishing.html (Open console in Administration Rights)
 
+Publishing App (iOS):
+https://clearbridgemobile.com/how-to-submit-an-app-to-the-app-store/
+Screenshots: https://www.appstorescreenshot.com/
+
 Directives:
 https://www.joshmorony.com/how-to-create-a-directive-in-ionic-2-parallax-header/
 

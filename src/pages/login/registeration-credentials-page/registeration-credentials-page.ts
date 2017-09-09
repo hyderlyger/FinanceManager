@@ -37,9 +37,7 @@ export class RegisterationCredentialsPage {
                                             this.navCtrl.setRoot(Timeline);
                                             this.PostData(this.navParams.get("fullname"),
                                                           this.navParams.get("email"),
-                                                          new Date());
-                                            // First time intro Popup
-                                            //this.showAlert("Introdução","i am intro","Consegui"); //this.showAlert("Introduction","","Got It");
+                                                          this.navParams.get("dob"));
                                           }else
                                             this.error = result;
                                         });
@@ -62,6 +60,6 @@ export class RegisterationCredentialsPage {
     alert.present();
   }
   PostData(name : string, email : string, date : Date){
-    this.authProvider.PostUserDataToURL(name, email, date.toLocaleString());
+    this.authProvider.PostUserDataToURL(name, email, date ? date.toLocaleString() : "999");
   }
 }

@@ -13,7 +13,7 @@ export class RegisterationInfoPage {
   dob : Date;
   error : string = "";
   constructor(public navCtrl: NavController, public navParams: NavParams, private datePicker: DatePicker) {
-    this.dob = new Date();
+    this.dob = null;
   }
 
   ionViewDidLoad() {
@@ -21,7 +21,7 @@ export class RegisterationInfoPage {
   }
   next()
   {
-    if( this.fullname && this.email && this.dob)
+    if( this.fullname && this.email ) //&& this.dob)
     {
       if(this.validateEmail(this.email)){
 
