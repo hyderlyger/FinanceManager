@@ -60,6 +60,6 @@ export class RegisterationCredentialsPage {
     alert.present();
   }
   PostData(name : string, email : string, date : Date){
-    this.authProvider.PostUserDataToURL(name, email, date ? date.toLocaleString() : "999");
+    this.authProvider.PostUserDataToURL(name, email, date ? date.toLocaleString() : "9999");
   }
 }
